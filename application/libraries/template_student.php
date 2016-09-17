@@ -1,16 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TemplateStudent
+class Template_student
 {
+	// protected $ci;
+
 	public function __construct()
 	{
 		$this->ci =& get_instance();
 	}
 
-	public function getHeader()
+	public function getHeader($SCREENNAME)
 	{
-		return '
+		return'
 		<!DOCTYPE html>
 		<html lang="en">
 
@@ -21,7 +23,7 @@ class TemplateStudent
 			<meta name="description" content="">
 			<meta name="author" content="">
 
-			<title><?php echo "คำร้องขอสอบกรณีพิเศษ";?></title>
+			<title>'.$SCREENNAME.'</title>
 
 			<!-- Bootstrap Core CSS -->
 			<link href="'.base_url().'assets/css/bootstrap.min.css" rel="stylesheet">
@@ -65,10 +67,9 @@ class TemplateStudent
 			';
 		}
 
-		public function getFooter()
+		public function  getFooter()
 		{
 			return '
-
 			<!-- Footer -->
 			<footer>
 				<div class="row">
@@ -78,23 +79,20 @@ class TemplateStudent
 				</div>
 				<!-- /.row -->
 			</footer>
-
 		</div>
 		<!-- /.container -->
 
 		<!-- jQuery -->
-		<script src="<?php echo base_url();?>assets/js/jquery.js"></script>
+		<script src="'.base_url().'assets/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
-		<script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-
+		<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
 	</body>
-
 	</html>
 	';
 }
 
 }
 
-/* End of file template.php */
-/* Location: ./application/libraries/template.php */
+/* End of file TemplateStudent.php */
+/* Location: ./application/libraries/TemplateStudent.php */
