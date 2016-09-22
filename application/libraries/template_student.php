@@ -30,6 +30,9 @@ class Template_student
 
 			<!-- Custom CSS -->
 			<link href="'.base_url().'assets/css/portfolio-item.css" rel="stylesheet">
+			<link href="'.base_url().'assets/css/main.css" rel="stylesheet">
+			<!-- jQuery -->
+			<script src="'.base_url().'assets/js/jquery.js"></script>
 		</head>
 
 		<body>
@@ -81,9 +84,6 @@ class Template_student
 			</footer>
 		</div>
 		<!-- /.container -->
-
-		<!-- jQuery -->
-		<script src="'.base_url().'assets/js/jquery.js"></script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
