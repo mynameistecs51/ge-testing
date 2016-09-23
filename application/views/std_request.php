@@ -17,7 +17,7 @@
 	}
 </style>
 <!-- Page Content -->
-<div class="container form_input" style="text-align:left; margin-bottom:10px"> <!--  End div containner อยู่footer -->
+<div class="container form_input" style="text-align:left; margin-top:30px"> <!--  End div containner อยู่footer -->
 
 	<!-- Portfolio Item Heading -->
 	<div class="row ">
@@ -104,19 +104,21 @@
 				<option value='3' >3</option>
 			</select>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<label>ภาค</label>
 			<p class="required">*</p>
-			<label class="radio-inline"><input type="radio" name="pak" value="1" checked=""> ปกติ</label>
-			<label class="radio-inline"><input type="radio" name="pak" value="2" > รุปแบบพิเศษ</label>
-			<label class="radio-inline"><input type="radio" name="pak" value="3" > อื่น ๆ........</label>
+			<label class="radio-inline"><input type="radio" name="pak" id='pak1' value="1" checked=""> ปกติ</label>
+			<label class="radio-inline"><input type="radio" name="pak" id='pak2'  value="2" > รุปแบบพิเศษ</label>
+			<label class="radio-inline">	<input type="radio" name="pak" id='pak3'  value="3" > อื่น ๆ </label>
+			<div class="col-sm-7 pull-right"><input type="text" name="aboutPak" class="form-control " id='aboutPak' disabled=""></div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<label>ระดับ</label>
 			<p class="required">*</p>
 			<label class="radio-inline"><input type="radio" name="class" value="1" checked=""> ปริญญาตรี</label>
 			<label class="radio-inline"><input type="radio" name="class" value="2" > ปริญญาตรี(ต่อเนื่อ)</label>
-			<label class="radio-inline"><input type="radio" name="class" value="3" > อื่น ๆ........</label>
+			<label class="radio-inline"><input type="radio" name="class" value="3" > อื่น ๆ</label>
+			<div class="col-sm-5 pull-right"><input type="text" name="aboutClass" class="form-control " id='aboutClass' disabled=""></div>
 		</div>
 		<div class="col-sm-2">
 			<label>ปีการศึกษา</label>
@@ -159,7 +161,7 @@
 			<textarea name="detail" class="form-control" rows='3'></textarea>
 		</div>
 		<div class="col-sm-5">
-			<p >โดยมีหลังฐานดังนี้</p>
+			<p >โดยมีหลังฐานดังนี้ 1.)</p>
 			<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
 		</div>
 		<div class="col-sm-1">
@@ -187,6 +189,7 @@
 	<script type="text/javascript">
 		$(function(){
 			addEvidence();
+			check_aboutPak();
 		});
 		function countEvidence(){
 			var  countEvid=$('.evidence').length;
@@ -199,7 +202,7 @@
 				var numEvid = $('.delEvidence').length+1;
 				var html = '<div  id="add_evidence'+numEvid+'" >';
 				html += '<div class="col-sm-5 " >';
-				html += '<p >โดยมีหลังฐานดังนี้</p>'
+				html += '<p >โดยมีหลังฐานดังนี้  '+(numEvid+1)+'.)</p>'
 				html += '<input type="text" class="form-control evidence"  name="evidence[]">';
 				html += '</div>';
 				html += '<div class="col-sm-1">';
@@ -223,6 +226,12 @@
 				}else{
 					return false;
 				}
+			});
+		}
+		function check_aboutPak() {
+			$('#pak3').checked(function() {
+				// $('#aboutPak').removeAttr("disabled");
+				alert('ok');
 			});
 		}
 	</script>
