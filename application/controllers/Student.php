@@ -44,9 +44,11 @@ class Student extends CI_Controller {
 			'req_course' =>  $this->input->post('course'),
 			'req_courseID' =>  $this->input->post('courseID'),
 			'req_teacher' =>  $this->input->post('teacher'),
+			'req_detail' 	=> $this->input->post('detail'),
 			'req_evidence'  => implode(',',$this->input->post('evidence')),
 			);
-		$this->db->insert('requestion',$dataRequestion);
+		// $this->db->insert('requestion',$dataRequestion);
+		$this->load->view('tcpdf',$dataRequestion);
 	}
 
 	public function tcpdf()
