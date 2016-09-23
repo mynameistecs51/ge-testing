@@ -107,18 +107,18 @@
 		<div class="col-sm-6">
 			<label>ภาค</label>
 			<p class="required">*</p>
-			<label class="radio-inline"><input type="radio" name="pak" id='pak1' value="1" checked=""> ปกติ</label>
-			<label class="radio-inline"><input type="radio" name="pak" id='pak2'  value="2" > รุปแบบพิเศษ</label>
-			<label class="radio-inline">	<input type="radio" name="pak" id='pak3'  value="3" > อื่น ๆ </label>
+			<label class="radio-inline pak"><input type="radio" name="pak" id='pak1' value="1" checked=""> ปกติ</label>
+			<label class="radio-inline pak"><input type="radio" name="pak" id='pak2'  value="2" > รุปแบบพิเศษ</label>
+			<label class="radio-inline pak">	<input type="radio" name="pak" id='pak3'  value="3" > อื่น ๆ..... </label>
 			<div class="col-sm-7 pull-right"><input type="text" name="aboutPak" class="form-control " id='aboutPak' disabled=""></div>
 		</div>
 		<div class="col-sm-6">
 			<label>ระดับ</label>
 			<p class="required">*</p>
-			<label class="radio-inline"><input type="radio" name="class" value="1" checked=""> ปริญญาตรี</label>
-			<label class="radio-inline"><input type="radio" name="class" value="2" > ปริญญาตรี(ต่อเนื่อ)</label>
-			<label class="radio-inline"><input type="radio" name="class" value="3" > อื่น ๆ</label>
-			<div class="col-sm-5 pull-right"><input type="text" name="aboutClass" class="form-control " id='aboutClass' disabled=""></div>
+			<label class="radio-inline class"><input type="radio" name="class" id='class1' value="1" checked=""> ปริญญาตรี</label>
+			<label class="radio-inline class"><input type="radio" name="class" id='class2' value="2" > ปริญญาตรี(ต่อเนื่อ)</label>
+			<label class="radio-inline class"><input type="radio" name="class" id='class3' value="3" > อื่น ๆ.....</label>
+			<div class="col-sm-5 pull-right"><input type="text" name="aboutClass" class="form-control " id='aboutClass' disabled=''></div>
 		</div>
 		<div class="col-sm-2">
 			<label>ปีการศึกษา</label>
@@ -155,7 +155,7 @@
 			<p class="required">*</p>
 			<input type="text" name="teacher" class="form-control">
 		</div>
-		<div class="col-sm-8">
+		<div class="col-sm-5">
 			<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
 			<p class="required">*</p>
 			<textarea name="detail" class="form-control" rows='3'></textarea>
@@ -190,6 +190,7 @@
 		$(function(){
 			addEvidence();
 			check_aboutPak();
+			check_aboutClass();
 		});
 		function countEvidence(){
 			var  countEvid=$('.evidence').length;
@@ -229,9 +230,23 @@
 			});
 		}
 		function check_aboutPak() {
-			$('#pak3').checked(function() {
-				// $('#aboutPak').removeAttr("disabled");
-				alert('ok');
+			$('.pak').on('click',function(){
+				if($('#pak3').is(':checked')  ){
+					$('#aboutPak').removeAttr('disabled');
+				}else{
+					$('#aboutPak').attr('disabled','disabled');
+					$('#aboutPak').attr('value','');
+				}
+			});
+		}
+		function check_aboutClass(){
+			$('.class').click(function(){
+				if($('#class3').is(':checked')){
+					$('#aboutClass').removeAttr('disabled');
+				}else{
+					$('#aboutClass').attr('disabled','disabled');
+					$('#aboutClass').attr('value','');
+				}
 			});
 		}
 	</script>

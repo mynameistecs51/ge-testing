@@ -48,6 +48,11 @@ class Student extends CI_Controller {
 			);
 		$this->db->insert('requestion',$dataRequestion);
 	}
+
+	public function tcpdf()
+	{
+		$this->load->view('tcpdf');
+	}
 }
 /* End of file Studen.php */
 /* Location: ./application/controllers/Studen.php */
