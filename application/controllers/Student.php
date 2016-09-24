@@ -6,6 +6,8 @@ class Student extends CI_Controller {
 	{
 		parent::__construct();
 		$this->ctl='Student';
+		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
+		$this->dt_now = $now->format('Y-m-d H:i:s');
 	}
 	public function   index()
 	{
@@ -46,6 +48,9 @@ class Student extends CI_Controller {
 			'req_teacher' =>  $this->input->post('teacher'),
 			'req_detail' 	=> $this->input->post('detail'),
 			'req_evidence'  => implode(',',$this->input->post('evidence')),
+			'id_create' => '1',
+			'dt_create' => $this->dt_now ,
+			'ip_create' => $_SERVER["REMOTE_ADDR"],
 			);
 		// $this->db->insert('requestion',$dataRequestion);
 		$this->load->view('tcpdf',$dataRequestion);
