@@ -8,6 +8,7 @@ class Student extends CI_Controller {
 		$this->ctl='Student';
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
+		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
 	}
 	public function   index()
 	{
@@ -20,6 +21,7 @@ class Student extends CI_Controller {
 
 	public function mainPage($SCREENNAME)
 	{
+		$this->data['today'] = $this->datenow;
 		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
 		$this->data['footer'] = $this->template_student->getFooter();
 	}
@@ -41,11 +43,11 @@ class Student extends CI_Controller {
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
 			'req_group' =>  $this->input->post('group'),
-			'req_date' =>  $this->input->post('date'),
-			'req_time' =>  $this->input->post('time'),
-			'req_course' =>  $this->input->post('course'),
-			'req_courseID' =>  $this->input->post('courseID'),
-			'req_teacher' =>  $this->input->post('teacher'),
+			'req_date' =>  implode(',',$this->convert_date($this->input->post('date'))),
+			'req_time' =>  implode(',',$this->input->post('time')),
+			'req_course' =>  implode(',',$this->input->post('course')),
+			'id_course' =>  implode(',',$this->input->post('courseID')),
+			'req_teacher' =>  implode(',',$this->input->post('teacher')),
 			'req_detail' 	=> $this->input->post('detail'),
 			'req_evidence'  => implode(',',$this->input->post('evidence')),
 			'id_create' => '1',
@@ -60,6 +62,26 @@ class Student extends CI_Controller {
 	{
 		$this->load->view('tcpdf');
 	}
+	public function alert($massage)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')';
+		</SCRIPT>";
+	}
+
+	public function convert_date($val_date)
+	{
+		$date = str_replace('/', '-',$val_date);
+		$d=$date[0].$date[1];
+		$m=$date[3].$date[4];
+		$y=$date[6].$date[7].$date[8].$date[9];
+		$y=intval($y)-543;
+		$date = $y."-".$m."-".$d;
+			//$date = date("Y-m-d", strtotime($date));
+		return $date;
+	}
+
 }
 /* End of file Studen.php */
 /* Location: ./application/controllers/Studen.php */

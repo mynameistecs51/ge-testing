@@ -31,8 +31,15 @@ class Template_student
 			<!-- Custom CSS -->
 			<link href="'.base_url().'assets/css/portfolio-item.css" rel="stylesheet">
 			<link href="'.base_url().'assets/css/main.css" rel="stylesheet">
+
 			<!-- jQuery -->
 			<script src="'.base_url().'assets/js/jquery.js"></script>
+
+			<!-- datePicker -->
+			<link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
+			<script src="'.base_url().'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
+			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script>
+
 		</head>
 
 		<body>

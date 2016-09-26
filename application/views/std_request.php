@@ -110,7 +110,7 @@
 			<label class="radio-inline pak"><input type="radio" name="pak" id='pak1' value="1" checked=""> ปกติ</label>
 			<label class="radio-inline pak"><input type="radio" name="pak" id='pak2'  value="2" > รุปแบบพิเศษ</label>
 			<label class="radio-inline pak">	<input type="radio" name="pak" id='pak3'  value="3" > อื่น ๆ..... </label>
-			<div class="col-sm-7 pull-right"><input type="text" name="aboutPak" class="form-control " id='aboutPak' disabled=""></div>
+			<div class="col-sm-6 pull-right"><input type="text" name="aboutPak" class="form-control " id='aboutPak' disabled=""></div>
 		</div>
 		<div class="col-sm-6">
 			<label>ระดับ</label>
@@ -120,7 +120,7 @@
 			<label class="radio-inline class"><input type="radio" name="class" id='class3' value="3" > อื่น ๆ.....</label>
 			<div class="col-sm-5 pull-right"><input type="text" name="aboutClass" class="form-control " id='aboutClass' disabled=''></div>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-3">
 			<label>ปีการศึกษา</label>
 			<p class="required">*</p>
 			<input type="text" name="year" class="form-control">
@@ -130,32 +130,40 @@
 			<p class="required">*</p>
 			<input type="number" min='1' max="10" name="group" class="form-control">
 		</div>
-		<div class="col-sm-3">
-			<label>ในวันที่/เดือน/พ.ศ.</label>
-			<p class="required">*</p>
-			<input type="date" name="date" class="form-control" format='YYYY-MM-DD '>
-		</div>
+		<div class="col-sm-12"></div>
 		<div class="col-sm-2">
-			<label>เวลา</label>
+			<label>รหัสวิชา</label>
 			<p class="required">*</p>
-			<input type='time' name='time' class="form-control">
+			<input type="text" name="courseID[]" class="form-control courseID" autocomplete>
 		</div>
 		<div class="col-sm-3">
 			<label>ซึ่งเป็นการสอบในรายวิชา</label>
 			<p class="required">*</p>
-			<input type="text" name="course" class="form-control">
+			<input type="text" name="course[]" class="form-control">
 		</div>
-		<div class="col-sm-3">
-			<label>รหัสวิชา</label>
-			<p class="required">*</p>
-			<input type="text" name="courseID" class="form-control">
-		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-2">
 			<label>ชื่ออาจารย์ประจำวิชา</label>
 			<p class="required">*</p>
-			<input type="text" name="teacher" class="form-control">
+			<input type="text" name="teacher[]" class="form-control">
 		</div>
-		<div class="col-sm-5">
+		<div class="col-sm-2">
+			<label>ในวันที่/เดือน/พ.ศ.</label>
+			<p class="required">*</p>
+			<input type="text" name="date[]" class="form-control date" value="<?php echo $today ?>">
+		</div>
+		<div class="col-sm-2">
+			<label>เวลา</label>
+			<p class="required">*</p>
+			<input type='time' name='time[]' class="form-control time" >
+		</div>
+		<div class="col-sm-1">
+			<p>&nbsp;</p>
+			<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
+		</div>
+		<div class="add_Course">
+			<!-- add Course  -->
+		</div>
+		<div class="col-sm-12">
 			<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
 			<p class="required">*</p>
 			<textarea name="detail" class="form-control" rows='3'></textarea>
@@ -188,17 +196,25 @@
 	<hr>
 	<script type="text/javascript">
 		$(function(){
+			//  ---- javasript custom ---//
 			addEvidence();
 			check_aboutPak();
 			check_aboutClass();
+			addCourse();
+
+			// --- core javascript ---//
+			// datetimepicker
+			$('.date').datepicker();
+
 		});
+		// --manage Evidence --//
 		function countEvidence(){
 			var  countEvid=$('.evidence').length;
 			for(i= 0 ; i <countEvid ; i++){
 				delEvidence(i);
 			}
 		}
-		function addEvidence(){
+		function addEvidence(){			//add Evidence //
 			$('#addEvidence').click(function(){
 				var numEvid = $('.delEvidence').length+1;
 				var html = '<div  id="add_evidence'+numEvid+'" >';
@@ -221,7 +237,7 @@
 		function delEvidence(num)
 		{
 			$('#delEvidence'+num ).click(function(){
-				var chk =  confirm('คุณต้องการย้อนกลับ ใช่หรือไม่ ?');
+				var chk =  confirm('คุณต้องการลบใช่หรือไม่ ?');
 				if(chk==true){
 					$('#add_evidence'+num).remove();
 				}else{
@@ -229,6 +245,64 @@
 				}
 			});
 		}
+		// --- end manage  Evidence -- //
+		// ---manage Course ---//
+		function countCourse(){
+			var numCourse = $('.courseID').length;
+			for(var Course = 0 ;Course < numCourse ; Course++){
+				delCourse(numCourse);
+			}
+		}
+		function  addCourse(){
+			$('#addCourse').click(function(){
+				var  numCourse = $('.del_Course').length+1;
+				var html = '<div id="add_Course'+numCourse+'">';
+				html += '<div class="col-sm-2">';
+				html += '<label>รหัสวิชา</label>';
+				html += '<p class="required">*</p>';
+				html += '<input type="text" name="courseID[]" class="form-control courseID" autocomplete>';
+				html += '</div>';
+				html += '<div class="col-sm-3">';
+				html += '<label>ซึ่งเป็นการสอบในรายวิชา</label>';
+				html += '<p class="required">*</p>';
+				html +='<input type="text" name="course[]" class="form-control">';
+				html += '</div>';
+				html += '<div class="col-sm-2">';
+				html += '<label>ชื่ออาจารย์ประจำวิชา</label>';
+				html += '<p class="required">*</p>';
+				html += '<input type="text" name="teacher[]" class="form-control">';
+				html += '</div>';
+				html += '<div class="col-sm-2">';
+				html += '<label>ในวันที่/เดือน/พ.ศ.</label>';
+				html += '<p class="required">*</p>';
+				html += '<input type="text" name="date[]" class="form-control date" value="<?php echo $today ?>">';
+				html += '</div>';
+				html += '<div class="col-sm-2">';
+				html += '<label>เวลา</label>';
+				html += '<p class="required">*</p>';
+				html += '<input type="time" name="time[]" class="form-control" >';
+				html += '</div>';
+				html += '<div class="col-sm-1">';
+				html += '<p>&nbsp;</p>';
+				html += '<i class="btn btn-danger del_Course" id="del_Course'+numCourse+'" > <span class="glyphicon glyphicon glyphicon-minus"></span></i>';
+				html += '</div>';
+				html += '</div>';
+				$('.add_Course').append(html);
+				delCourse(numCourse);
+			});
+			countCourse();
+		}
+		function delCourse(numCourse) {
+			$('#del_Course'+numCourse).click(function(){
+				var delCourse_cfr = confirm("คุณต้องการลบใช่หรือไม่ ?");
+				if(delCourse_cfr == true){
+					$('#add_Course'+numCourse).remove()
+				}else{
+					return false;
+				}
+			});
+		}
+		//---end manage Course --//
 		function check_aboutPak() {
 			$('.pak').on('click',function(){
 				if($('#pak3').is(':checked')  ){
