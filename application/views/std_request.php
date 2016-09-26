@@ -130,72 +130,87 @@
 			<p class="required">*</p>
 			<input type="number" min='1' max="10" name="group" class="form-control">
 		</div>
-		<div class="col-sm-12"></div>
-		<div class="col-sm-2">
-			<label>รหัสวิชา</label>
-			<p class="required">*</p>
-			<input type="text" name="courseID[]" class="form-control courseID" autocomplete>
+		<div id="datetimepicker1" class="input-append date ">
+			<input id="datetimepicker1" data-time-icon="icon-time" data-format="hh:mm" type="text" class='form-control add-on '></input>
+			<!-- <span class="add-on">
+			 <span class="glyphicon glyphicon-time"></span>
+			</span> -->
 		</div>
-		<div class="col-sm-3">
-			<label>ซึ่งเป็นการสอบในรายวิชา</label>
-			<p class="required">*</p>
-			<input type="text" name="course[]" class="form-control">
-		</div>
-		<div class="col-sm-2">
-			<label>ชื่ออาจารย์ประจำวิชา</label>
-			<p class="required">*</p>
-			<input type="text" name="teacher[]" class="form-control">
-		</div>
-		<div class="col-sm-2">
-			<label>ในวันที่/เดือน/พ.ศ.</label>
-			<p class="required">*</p>
-			<input type="text" name="date[]" class="form-control date" value="<?php echo $today ?>">
-		</div>
-		<div class="col-sm-2">
-			<label>เวลา</label>
-			<p class="required">*</p>
-			<input type='time' name='time[]' class="form-control time" >
-		</div>
-		<div class="col-sm-1">
-			<p>&nbsp;</p>
-			<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
-		</div>
-		<div class="add_Course">
-			<!-- add Course  -->
-		</div>
-		<div class="col-sm-12">
-			<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
-			<p class="required">*</p>
-			<textarea name="detail" class="form-control" rows='3'></textarea>
-		</div>
-		<div class="col-sm-5">
-			<p >โดยมีหลังฐานดังนี้ 1.)</p>
-			<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
-		</div>
-		<div class="col-sm-1">
-			<p>&nbsp;</p>
-			<i class="btn btn-primary addEvidence" id="addEvidence" > <span class="glyphicon glyphicon-plus"></span></i>
-		</div>
-		<div class="add_evidence">
-			<!-- show ddata add origin -->
-		</div>
-		<div class="col-sm-12"><br></div>
-		<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;">
-			<button type="submit" id="save" class="btn btn-modal">
-				<span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span>
-			</button>
-			<button type="reset" class="btn btn-modal" data-dismiss="modal">
-				<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
-			</button>
-		</div>
-		<!-- </form> -->
-		<?php echo form_close(); ?>
 	</div>
-	<!-- /.row -->
-
-	<hr>
 	<script type="text/javascript">
-		$(function(){
+		$(function() {
+			$('#datetimepicker1').datetimepicker({
+				pick24HourFormat: true,
+				pickDate: false
+			});
+		});
+	</script>
+	<div class="col-sm-12"></div>
+	<div class="col-sm-2">
+		<label>รหัสวิชา</label>
+		<p class="required">*</p>
+		<input type="text" name="courseID[]" class="form-control courseID" autocomplete>
+	</div>
+	<div class="col-sm-3">
+		<label>ซึ่งเป็นการสอบในรายวิชา</label>
+		<p class="required">*</p>
+		<input type="text" name="course[]" class="form-control">
+	</div>
+	<div class="col-sm-2">
+		<label>ชื่ออาจารย์ประจำวิชา</label>
+		<p class="required">*</p>
+		<input type="text" name="teacher[]" class="form-control">
+	</div>
+	<div class="col-sm-2">
+		<label>ในวันที่/เดือน/พ.ศ.</label>
+		<p class="required">*</p>
+		<input type="text" id='date' name="date[]" class="form-control date" value="<?php echo $today ?>">
+	</div>
+	<div class="col-sm-2">
+		<label>เวลา</label>
+		<p class="required">*</p>
+		<input type='text' data-format="hh:mm:ss" id='time' name='time[]' class="form-control time add-on" >
+	</div>
+	<div class="col-sm-1">
+		<p>&nbsp;</p>
+		<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
+	</div>
+	<div class="add_Course">
+		<!-- add Course  -->
+	</div>
+	<div class="col-sm-12">
+		<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
+		<p class="required">*</p>
+		<textarea name="detail" class="form-control" rows='3'></textarea>
+	</div>
+	<div class="col-sm-5">
+		<p >โดยมีหลังฐานดังนี้ 1.)</p>
+		<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
+	</div>
+	<div class="col-sm-1">
+		<p>&nbsp;</p>
+		<i class="btn btn-primary addEvidence" id="addEvidence" > <span class="glyphicon glyphicon-plus"></span></i>
+	</div>
+	<div class="add_evidence">
+		<!-- show ddata add origin -->
+	</div>
+	<div class="col-sm-12"><br></div>
+	<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;">
+		<button type="submit" id="save" class="btn btn-modal">
+			<span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span>
+		</button>
+		<button type="reset" class="btn btn-modal" data-dismiss="modal">
+			<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
+		</button>
+	</div>
+	<!-- </form> -->
+	<?php echo form_close(); ?>
+</div>
+<!-- /.row -->
+
+<hr>
+<script type="text/javascript">
+	$(function(){
 			//  ---- javasript custom ---//
 			addEvidence();
 			check_aboutPak();
@@ -204,8 +219,10 @@
 
 			// --- core javascript ---//
 			// datetimepicker
-			$('.date').datepicker();
+			// $('#date').datepicker();
+			$('#datetimepicker3').datetimepicker({
 
+			});
 		});
 		// --manage Evidence --//
 		function countEvidence(){

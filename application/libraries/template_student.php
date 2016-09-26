@@ -26,7 +26,7 @@ class Template_student
 			<title>'.$SCREENNAME.'</title>
 
 			<!-- Bootstrap Core CSS -->
-			<link href="'.base_url().'assets/css/bootstrap.min.css" rel="stylesheet">
+			<link href="'.base_url().'assets/css/bootstrap.css" rel="stylesheet">
 
 			<!-- Custom CSS -->
 			<link href="'.base_url().'assets/css/portfolio-item.css" rel="stylesheet">
@@ -35,10 +35,22 @@ class Template_student
 			<!-- jQuery -->
 			<script src="'.base_url().'assets/js/jquery.js"></script>
 
+
+			<!-- Bootstrap Core JavaScript -->
+			<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
+
 			<!-- datePicker -->
-			<link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
+			<!--  <link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
 			<script src="'.base_url().'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
-			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script>
+			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script> -->
+
+			<!-- time picker -->
+		<!--	<link href="'.base_url().'assets/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+			<script src="'.base_url().'assets/timepicker/bootstrap-timepicker.min.js"></script> -->
+
+			<!-- datetime picker -->
+			<link href="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+			<script src="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 		</head>
 
@@ -92,8 +104,6 @@ class Template_student
 		</div>
 		<!-- /.container -->
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
 	</body>
 	</html>
 	';
