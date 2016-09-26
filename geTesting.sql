@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2016 at 02:30 AM
+-- Generation Time: Sep 26, 2016 at 04:20 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -19,6 +19,60 @@ SET time_zone = "+00:00";
 --
 -- Database: `geTesting`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
+
+CREATE TABLE `course` (
+  `id_course` int(11) NOT NULL,
+  `course_id` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `course_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `id_group` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id_course`, `course_id`, `course_name`, `id_group`) VALUES
+(1, '1500101', 'ภาษาไทยเพื่อการสื่อสาร', 1),
+(2, '1500102', 'ภาษาอังกฤษเพื่อการสื่อสาร', 1),
+(3, '1500103', 'การอ่านและการเขียนภาษาอังกฤษเพื่อวัตถุประสงค์ทั่วไป', 1),
+(4, '1500104', 'จริยธรรมกับชีวิต', 2),
+(5, '2000101', 'สุนทรียภาพเพื่อชีวิต', 2),
+(6, '2500101', 'พฤติกรรมมนุษย์กับการพัฒนาตน', 2),
+(7, '1500105', 'การรู้สารสนเทศ', 2),
+(9, '2500102', 'สังคมวัฒนธรรมไทยและภูมิปัญญาท้องถิ่น', 3),
+(10, '2500103', 'วิถีโลก', 3),
+(11, '2500104', 'กฎหมายเพื่อชีวิตและสิทธิมนุษยชน', 3),
+(12, '4000101', 'ชีวิตกับสิ่งแวดล้อม', 4),
+(13, '4000102', 'วิทยาศาสตร์เพื่อคุณภาพชีวิต', 4),
+(14, '4000103', 'การคิดและการตัดสินใจ', 4),
+(15, '4000104', 'เทคโนโลยีสารสนเทศเพื่อการเรียนรู้', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groupCourse`
+--
+
+CREATE TABLE `groupCourse` (
+  `id_group` int(11) NOT NULL,
+  `group_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `groupCourse`
+--
+
+INSERT INTO `groupCourse` (`id_group`, `group_name`) VALUES
+(1, 'กลุ่มวิชาภาษาศาสตร์'),
+(2, 'กลุ่มวิชาสังคมศาสตร์'),
+(3, 'กลุ่มวิชามนุษย์ศาสตร์'),
+(4, 'กุล่มวิชาวิทยาศาสตร์และเทคโนโลยี');
 
 -- --------------------------------------------------------
 
@@ -43,23 +97,38 @@ CREATE TABLE `requestion` (
   `req_date` date NOT NULL COMMENT 'วันที่',
   `req_time` time NOT NULL COMMENT 'เวลา',
   `req_course` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT 'วิชา',
-  `req_courseID` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'รหัสวิชา',
+  `id_course` int(11) NOT NULL COMMENT 'รหัสวิชา',
   `req_group` varchar(3) COLLATE utf8_unicode_ci NOT NULL COMMENT 'หมู่เรียน',
   `req_teacher` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT 'อาจารย์ประจำวิชา',
   `req_detail` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'สาเหตุที่ขาดสอบ',
-  `req_evidence` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'หลักฐาน'
+  `req_evidence` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'หลักฐาน',
+  `id_create` int(11) NOT NULL,
+  `dt_create` datetime NOT NULL,
+  `ip_create` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `requestion`
 --
 
-INSERT INTO `requestion` (`id_req`, `req_prename`, `req_name`, `req_lastname`, `req_stdID`, `req_faculty`, `req_branch`, `req_classNum`, `req_tel`, `req_pak`, `req_class`, `req_term`, `req_year`, `req_date`, `req_time`, `req_course`, `req_courseID`, `req_group`, `req_teacher`, `req_detail`, `req_evidence`) VALUES
-(1, 'นาย', 'ไชยวัฒน์', 'ไชยวัฒน์', '59040249201', 'วิทยาศาสตร์', 'วิทยาการคอมพิวเตอร์', '1', '1111111111', '1', '1', '1', '2559', '2016-09-23', '01:00:00', 'ทดสอบ', '1234', '3', 'test teacher', '', 'ไม่มี,ไม่มี');
+INSERT INTO `requestion` (`id_req`, `req_prename`, `req_name`, `req_lastname`, `req_stdID`, `req_faculty`, `req_branch`, `req_classNum`, `req_tel`, `req_pak`, `req_class`, `req_term`, `req_year`, `req_date`, `req_time`, `req_course`, `id_course`, `req_group`, `req_teacher`, `req_detail`, `req_evidence`, `id_create`, `dt_create`, `ip_create`) VALUES
+(1, 'นาย', 'ไชยวัฒน์', 'ไชยวัฒน์', '59040249201', 'วิทยาศาสตร์', 'วิทยาการคอมพิวเตอร์', '1', '1111111111', '1', '1', '1', '2559', '2016-09-23', '01:00:00', 'ทดสอบ', 1234, '3', 'test teacher', '', 'ไม่มี,ไม่มี', 0, '0000-00-00 00:00:00', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`id_course`);
+
+--
+-- Indexes for table `groupCourse`
+--
+ALTER TABLE `groupCourse`
+  ADD PRIMARY KEY (`id_group`);
 
 --
 -- Indexes for table `requestion`
@@ -71,6 +140,16 @@ ALTER TABLE `requestion`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `groupCourse`
+--
+ALTER TABLE `groupCourse`
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `requestion`
 --
