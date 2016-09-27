@@ -9,7 +9,7 @@ class Student extends CI_Controller {
 		$this->load->model('mdl_student');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-		$this->datenow =$now->format('d-m-').($now->format('Y')+543);
+		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
 	}
 	public function   index()
 	{
@@ -44,7 +44,7 @@ class Student extends CI_Controller {
 			'req_pak' =>  $this->input->post('pak'),
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
-			'req_date' =>  $this->input->post('date'),
+			'req_date' =>  implode(',',$this->convert_date($this->input->post('date'))),
 			'req_time' =>  implode(',',$this->input->post('time')),
 			'id_course' =>  implode(',',$this->input->post('courseID')),
 			'req_teacher' =>  implode(',',$this->input->post('teacher')),
@@ -54,10 +54,10 @@ class Student extends CI_Controller {
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
 			);
-		// $this->db->insert('requestion',$dataRequestion);
+		$this->db->insert('requestion',$dataRequestion);
 		// $this->load->view('tcpdf',$dataRequestion);
-		echo "<pre>";
-		print_r($dataRequestion);
+		// echo "<pre>";
+		// print_r($dataRequestion);
 	}
 
 	public function getCourseAll()
@@ -80,14 +80,17 @@ class Student extends CI_Controller {
 		</SCRIPT>";
 	}
 
-	public function convert_date($val_date)
+	public function convert_date($val_date=array())
 	{
-		$date = str_replace('/', '-',$val_date);
-		$d=$date[0].$date[1];
-		$m=$date[3].$date[4];
-		$y=$date[6].$date[7].$date[8].$date[9];
-		$y=intval($y)-543;
-		$date = $y."-".$m."-".$d;
+		$date ='';
+		for($i = 0;$i <count($val_date); $i ++){
+			$date = str_replace('/', '-',$val_date);
+			$d=$date[$i][0].$date[$i][1];
+			$m=$date[$i][3].$date[$i][4];
+			$y=$date[$i][6].$date[$i][7].$date[$i][8].$date[$i][9];
+			$y=intval($y)-543;
+		}
+		// $date = $y."-".$m."-".$d;
 			//$date = date("Y-m-d", strtotime($date));
 		return $date;
 	}

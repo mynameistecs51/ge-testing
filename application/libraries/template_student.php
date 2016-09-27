@@ -79,10 +79,10 @@ class Template_student
 								<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
 							</li>
 							<li>
-								<a href="#">Services</a>
+								<a href="#">สมัครสมาชิก</a>
 							</li>
 							<li>
-								<a href="#">Contact</a>
+								<a href="#">login</a>
 							</li>
 						</ul>
 					</div>

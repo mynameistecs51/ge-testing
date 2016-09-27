@@ -135,7 +135,7 @@
 			<label>ซึ่งเป็นการสอบในรายวิชา</label>
 			<p class="required">*</p>
 			<select name="courseID[]" class="selectpicker show-tick form-control courseID"  data-live-search="true">
-				<option >------------------SELCET---------------------</option>}
+				<option >------------------SELCET---------------------</option>
 				<?php foreach ($courseData as $rowCourse): ?>
 					<option value="<?php echo $rowCourse['id_course'] ?>"><?php echo $rowCourse['course_id'].' '.$rowCourse['course_name']; ?></option>
 				<?php endforeach;?>
@@ -210,7 +210,9 @@
 			addCourse();
 
 			// --- core javascript ---//
-			$('.date').datepicker();
+			$('.date').datepicker({
+				format:'dd/MM/YY',
+			});
 			$('.selectpicker').selectpicker();
 
 			$('.time').datetimepicker({
@@ -274,7 +276,7 @@
 				html +='<label>ซึ่งเป็นการสอบในรายวิชา</label>';
 				html +='<p class="required">*</p>';
 				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true">';
-				html +='<option value="">----------select----------</option>';
+				html +='<option >------------------SELCET---------------------</option>';
 				html +='</select>';
 				html +='</div>';
 				html +='<div class="col-sm-3">';
@@ -304,11 +306,13 @@
 				html += '</div>';
 				$('.add_Course').append(html);
 
-				$('#date'+numCourse).datepicker();
+				$('#date'+numCourse).datepicker({
+					format:'dd/MM/YY',
+				});
 				$('#time'+numCourse).datetimepicker({
 					pick24HourFormat: true,
 					pickSeconds: false,
-					pickDate: false
+					pickDate: false,
 				});
 				delCourse(numCourse);
 				// getCourse on select
@@ -316,7 +320,7 @@
 					url:'<?php echo base_url().$controller;?>/getCourseAll/',
 					dataType: 'JSON',
 					success:function(resp){
-						var selected ="<option value=''>----------select----------</option>";
+						var selected ="<option >------------------SELCET---------------------</option>";
 						$.each(resp, function( indexCourse, valueCourse ) {
 							selected +="<option value='"+valueCourse['id_course']+"'>"+valueCourse['course_id']+" "+valueCourse['course_name']+"</option>";
 						});
