@@ -40,17 +40,21 @@ class Template_student
 			<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
 
 			<!-- datePicker -->
-			<!--  <link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
+			 <link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
 			<script src="'.base_url().'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
-			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script> -->
+			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script>
 
 			<!-- time picker -->
-		<!--	<link href="'.base_url().'assets/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+			<!--	<link href="'.base_url().'assets/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 			<script src="'.base_url().'assets/timepicker/bootstrap-timepicker.min.js"></script> -->
 
 			<!-- datetime picker -->
 			<link href="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
 			<script src="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
+			<!-- select picker -->
+			<link href="'.base_url().'assets/selectpicker/bootstrap-select.min.css" rel="stylesheet">
+			<script src="'.base_url().'assets/selectpicker/bootstrap-select.min.js"></script>
 
 		</head>
 

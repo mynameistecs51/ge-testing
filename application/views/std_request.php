@@ -130,87 +130,79 @@
 			<p class="required">*</p>
 			<input type="number" min='1' max="10" name="group" class="form-control">
 		</div>
-		<div id="datetimepicker1" class="input-append date ">
-			<input id="datetimepicker1" data-time-icon="icon-time" data-format="hh:mm" type="text" class='form-control add-on '></input>
-			<!-- <span class="add-on">
-			 <span class="glyphicon glyphicon-time"></span>
-			</span> -->
+		<div class="col-sm-12"></div>
+		<div class="col-sm-4">
+			<label>ซึ่งเป็นการสอบในรายวิชา</label>
+			<p class="required">*</p>
+			<select name="courseID[]" class="selectpicker show-tick form-control courseID"  data-live-search="true">
+				<option >------------------SELCET---------------------</option>}
+				<?php foreach ($courseData as $rowCourse): ?>
+					<option value="<?php echo $rowCourse['id_course'] ?>"><?php echo $rowCourse['course_id'].' '.$rowCourse['course_name']; ?></option>
+				<?php endforeach;?>
+			</select>
 		</div>
+		<div class="col-sm-3">
+			<label>ชื่ออาจารย์ประจำวิชา</label>
+			<p class="required">*</p>
+			<input type="text" name="teacher[]" class="form-control">
+		</div>
+		<div class="col-sm-2">
+			<label>ในวันที่/เดือน/พ.ศ.</label>
+			<p class="required">*</p>
+			<input type="text" id='date' name="date[]" class="form-control date" value="<?php echo $today ?>"/>
+		</div>
+		<div class="col-sm-2">
+			<label>เวลา</label>
+			<p class="required">*</p>
+			<div id="time" class="input-group input-append time ">
+				<input name='time[]'  data-time-icon="icon-time" data-format="hh:mm" type="text" class='form-control '/>
+				<span class="input-group-addon add-on">
+					<span class="glyphicon glyphicon-time"></span>
+				</span>
+			</div>
+		</div>
+		<div class="col-sm-1">
+			<p>&nbsp;</p>
+			<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
+		</div>
+		<div class="add_Course">
+			<!-- add Course  -->
+		</div>
+		<div class="col-sm-12">
+			<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
+			<p class="required">*</p>
+			<textarea name="detail" class="form-control" rows='3'></textarea>
+		</div>
+		<div class="col-sm-5">
+			<p >โดยมีหลังฐานดังนี้ 1.)</p>
+			<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
+		</div>
+		<div class="col-sm-1">
+			<p>&nbsp;</p>
+			<i class="btn btn-primary addEvidence" id="addEvidence" > <span class="glyphicon glyphicon-plus"></span></i>
+		</div>
+		<div class="add_evidence">
+			<!-- show ddata add origin -->
+		</div>
+		<div class="col-sm-12"><br></div>
+		<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;">
+			<button type="submit" id="save" class="btn btn-modal">
+				<span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span>
+			</button>
+			<button type="reset" class="btn btn-modal" data-dismiss="modal">
+				<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
+			</button>
+		</div>
+		<!-- </form> -->
+		<?php echo form_close(); ?>
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#datetimepicker1').datetimepicker({
-				pick24HourFormat: true,
-				pickDate: false
-			});
-		});
-	</script>
-	<div class="col-sm-12"></div>
-	<div class="col-sm-2">
-		<label>รหัสวิชา</label>
-		<p class="required">*</p>
-		<input type="text" name="courseID[]" class="form-control courseID" autocomplete>
-	</div>
-	<div class="col-sm-3">
-		<label>ซึ่งเป็นการสอบในรายวิชา</label>
-		<p class="required">*</p>
-		<input type="text" name="course[]" class="form-control">
-	</div>
-	<div class="col-sm-2">
-		<label>ชื่ออาจารย์ประจำวิชา</label>
-		<p class="required">*</p>
-		<input type="text" name="teacher[]" class="form-control">
-	</div>
-	<div class="col-sm-2">
-		<label>ในวันที่/เดือน/พ.ศ.</label>
-		<p class="required">*</p>
-		<input type="text" id='date' name="date[]" class="form-control date" value="<?php echo $today ?>">
-	</div>
-	<div class="col-sm-2">
-		<label>เวลา</label>
-		<p class="required">*</p>
-		<input type='text' data-format="hh:mm:ss" id='time' name='time[]' class="form-control time add-on" >
-	</div>
-	<div class="col-sm-1">
-		<p>&nbsp;</p>
-		<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
-	</div>
-	<div class="add_Course">
-		<!-- add Course  -->
-	</div>
-	<div class="col-sm-12">
-		<label>ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก</label>
-		<p class="required">*</p>
-		<textarea name="detail" class="form-control" rows='3'></textarea>
-	</div>
-	<div class="col-sm-5">
-		<p >โดยมีหลังฐานดังนี้ 1.)</p>
-		<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
-	</div>
-	<div class="col-sm-1">
-		<p>&nbsp;</p>
-		<i class="btn btn-primary addEvidence" id="addEvidence" > <span class="glyphicon glyphicon-plus"></span></i>
-	</div>
-	<div class="add_evidence">
-		<!-- show ddata add origin -->
-	</div>
-	<div class="col-sm-12"><br></div>
-	<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;">
-		<button type="submit" id="save" class="btn btn-modal">
-			<span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span>
-		</button>
-		<button type="reset" class="btn btn-modal" data-dismiss="modal">
-			<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
-		</button>
-	</div>
-	<!-- </form> -->
-	<?php echo form_close(); ?>
-</div>
-<!-- /.row -->
 
-<hr>
-<script type="text/javascript">
-	$(function(){
+	<!-- /.row -->
+
+
+	<hr>
+	<script type="text/javascript">
+		$(function(){
 			//  ---- javasript custom ---//
 			addEvidence();
 			check_aboutPak();
@@ -218,10 +210,13 @@
 			addCourse();
 
 			// --- core javascript ---//
-			// datetimepicker
-			// $('#date').datepicker();
-			$('#datetimepicker3').datetimepicker({
+			$('.date').datepicker();
+			$('.selectpicker').selectpicker();
 
+			$('.time').datetimepicker({
+				pick24HourFormat: true,
+				pickSeconds: false,
+				pickDate: false,
 			});
 		});
 		// --manage Evidence --//
@@ -246,6 +241,7 @@
 				html += "</div>";
 
 				$('.add_evidence').append(html);
+
 				delEvidence(numEvid);
 			});
 
@@ -274,38 +270,64 @@
 			$('#addCourse').click(function(){
 				var  numCourse = $('.del_Course').length+1;
 				var html = '<div id="add_Course'+numCourse+'">';
-				html += '<div class="col-sm-2">';
-				html += '<label>รหัสวิชา</label>';
-				html += '<p class="required">*</p>';
-				html += '<input type="text" name="courseID[]" class="form-control courseID" autocomplete>';
-				html += '</div>';
-				html += '<div class="col-sm-3">';
-				html += '<label>ซึ่งเป็นการสอบในรายวิชา</label>';
-				html += '<p class="required">*</p>';
-				html +='<input type="text" name="course[]" class="form-control">';
-				html += '</div>';
-				html += '<div class="col-sm-2">';
-				html += '<label>ชื่ออาจารย์ประจำวิชา</label>';
-				html += '<p class="required">*</p>';
-				html += '<input type="text" name="teacher[]" class="form-control">';
-				html += '</div>';
-				html += '<div class="col-sm-2">';
-				html += '<label>ในวันที่/เดือน/พ.ศ.</label>';
-				html += '<p class="required">*</p>';
-				html += '<input type="text" name="date[]" class="form-control date" value="<?php echo $today ?>">';
-				html += '</div>';
-				html += '<div class="col-sm-2">';
-				html += '<label>เวลา</label>';
-				html += '<p class="required">*</p>';
-				html += '<input type="time" name="time[]" class="form-control" >';
-				html += '</div>';
+				html +='<div class="col-sm-4">';
+				html +='<label>ซึ่งเป็นการสอบในรายวิชา</label>';
+				html +='<p class="required">*</p>';
+				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true">';
+				html +='<option value="">----------select----------</option>';
+				html +='</select>';
+				html +='</div>';
+				html +='<div class="col-sm-3">';
+				html +='<label>ชื่ออาจารย์ประจำวิชา</label>';
+				html +='<p class="required">*</p>';
+				html +='<input type="text" name="teacher[]" class="form-control">';
+				html +='</div>';
+				html +='<div class="col-sm-2">';
+				html +='<label>ในวันที่/เดือน/พ.ศ.</label>';
+				html +='<p class="required">*</p>';
+				html +='<input type="text" id="date'+numCourse+'" name="date[]" class="form-control date" value="<?php echo $today ?>">';
+				html +='</div>';
+				html +='<div class="col-sm-2">';
+				html +='<label>เวลา</label>';
+				html +='<p class="required">*</p>';
+				html +='<div id="time'+numCourse+'" class="input-group input-append time ">';
+				html +='<input name="time[]"  data-time-icon="icon-time" data-format="hh:mm" type="text" class="form-control "></input>';
+				html +='<span class="input-group-addon add-on">';
+				html +='<span class="glyphicon glyphicon-time"></span>';
+				html +='</span>';
+				html +='</div>';
+				html +='</div>';
 				html += '<div class="col-sm-1">';
 				html += '<p>&nbsp;</p>';
 				html += '<i class="btn btn-danger del_Course" id="del_Course'+numCourse+'" > <span class="glyphicon glyphicon glyphicon-minus"></span></i>';
 				html += '</div>';
 				html += '</div>';
 				$('.add_Course').append(html);
+
+				$('#date'+numCourse).datepicker();
+				$('#time'+numCourse).datetimepicker({
+					pick24HourFormat: true,
+					pickSeconds: false,
+					pickDate: false
+				});
 				delCourse(numCourse);
+				// getCourse on select
+				$.ajax({
+					url:'<?php echo base_url().$controller;?>/getCourseAll/',
+					dataType: 'JSON',
+					success:function(resp){
+						var selected ="<option value=''>----------select----------</option>";
+						$.each(resp, function( indexCourse, valueCourse ) {
+							selected +="<option value='"+valueCourse['id_course']+"'>"+valueCourse['course_id']+" "+valueCourse['course_name']+"</option>";
+						});
+					// console.log(selected);
+					$('#courseID'+numCourse).html(selected).selectpicker('refresh');
+
+				},
+				error:function(err){
+					alert(err+"error");
+				}
+			});
 			});
 			countCourse();
 		}

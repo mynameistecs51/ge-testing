@@ -9,6 +9,11 @@ class Mdl_student extends CI_Model {
 
 	}
 
+	public function getCourseAll()
+	{
+		$data = $this->db->get('course');
+		return $data->result_array();
+	}
 }
 
 /* End of file mdl_student.php */

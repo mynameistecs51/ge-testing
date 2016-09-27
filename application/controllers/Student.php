@@ -6,9 +6,10 @@ class Student extends CI_Controller {
 	{
 		parent::__construct();
 		$this->ctl='Student';
+		$this->load->model('mdl_student');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
+		$this->datenow =$now->format('d-m-').($now->format('Y')+543);
 	}
 	public function   index()
 	{
@@ -21,6 +22,7 @@ class Student extends CI_Controller {
 
 	public function mainPage($SCREENNAME)
 	{
+		$this->data['courseData'] = $this->mdl_student->getCourseAll();
 		$this->data['today'] = $this->datenow;
 		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
 		$this->data['footer'] = $this->template_student->getFooter();
@@ -42,10 +44,8 @@ class Student extends CI_Controller {
 			'req_pak' =>  $this->input->post('pak'),
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
-			'req_group' =>  $this->input->post('group'),
-			'req_date' =>  implode(',',$this->convert_date($this->input->post('date'))),
+			'req_date' =>  $this->input->post('date'),
 			'req_time' =>  implode(',',$this->input->post('time')),
-			'req_course' =>  implode(',',$this->input->post('course')),
 			'id_course' =>  implode(',',$this->input->post('courseID')),
 			'req_teacher' =>  implode(',',$this->input->post('teacher')),
 			'req_detail' 	=> $this->input->post('detail'),
@@ -55,13 +55,23 @@ class Student extends CI_Controller {
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
 			);
 		// $this->db->insert('requestion',$dataRequestion);
-		$this->load->view('tcpdf',$dataRequestion);
+		// $this->load->view('tcpdf',$dataRequestion);
+		echo "<pre>";
+		print_r($dataRequestion);
+	}
+
+	public function getCourseAll()
+	{
+		$allCourse = $this->mdl_student->getCourseAll();
+
+		echo  json_encode($allCourse);
 	}
 
 	public function tcpdf()
 	{
 		$this->load->view('tcpdf');
 	}
+
 	public function alert($massage)
 	{
 		echo "<meta charset='UTF-8'>
