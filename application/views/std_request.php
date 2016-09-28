@@ -134,8 +134,7 @@
 		<div class="col-sm-4">
 			<label>ซึ่งเป็นการสอบในรายวิชา</label>
 			<p class="required">*</p>
-			<select name="courseID[]" class="selectpicker show-tick form-control courseID"  data-live-search="true">
-				<option >------------------SELCET---------------------</option>
+			<select name="courseID[]" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">
 				<?php foreach ($courseData as $rowCourse): ?>
 					<option value="<?php echo $rowCourse['id_course'] ?>"><?php echo $rowCourse['course_id'].' '.$rowCourse['course_name']; ?></option>
 				<?php endforeach;?>
@@ -275,8 +274,7 @@
 				html +='<div class="col-sm-4">';
 				html +='<label>ซึ่งเป็นการสอบในรายวิชา</label>';
 				html +='<p class="required">*</p>';
-				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true">';
-				html +='<option >------------------SELCET---------------------</option>';
+				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
 				html +='</select>';
 				html +='</div>';
 				html +='<div class="col-sm-3">';
