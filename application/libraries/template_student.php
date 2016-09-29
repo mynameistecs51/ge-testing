@@ -82,7 +82,8 @@ class Template_student
 								<a href="#">สมัครสมาชิก</a>
 							</li>
 							<li>
-								<a href="#">login</a>
+								<!-- <a href="authen/login">login</a> -->
+							'.anchor('authen', 'LOGIN', '').'
 							</li>
 						</ul>
 					</div>

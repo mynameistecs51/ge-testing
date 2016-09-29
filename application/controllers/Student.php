@@ -80,6 +80,11 @@ class Student extends CI_Controller {
 		</SCRIPT>";
 	}
 
+	public function login()
+	{
+		$this->load->view('login');
+	}
+
 	public function convert_date($val_date=array())
 	{
 		$date ='';
