@@ -79,11 +79,13 @@ class Template_student
 								<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
 							</li>
 							<li>
-								<a href="#">สมัครสมาชิก</a>
+								'.anchor('Authen/regis', 'สมัครสมาชิก').'
 							</li>
 							<li>
-								<!-- <a href="authen/login">login</a> -->
-							'.anchor('authen', 'LOGIN', '').'
+							'.anchor('Authen', 'LOGIN', '').'
+							</li>
+							<li>
+							'.anchor('Authen/logOut/', 'LOGOUT').'
 							</li>
 						</ul>
 					</div>

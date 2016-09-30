@@ -41,27 +41,28 @@
 		<div class="col-sm-3" >
 			<label>คำนำหน้าชื่อ
 				<p class="required">*</p>
-				<label class="radio-inline"><input type="radio" name="prename" value="1" checked >นาย</label>
-				<label class="radio-inline"><input type="radio" name="prename" value="2">นาง</label>
-				<label class="radio-inline"><input type="radio" name="prename" value="3">นางสาว</label>
+				<label class="radio-inline"><input type="radio" name="prename" value="1" <?php echo $checkPrename =($preName == 1)?'checked':''; ?> >นาย</label>
+				<?php $checkPrename =($preName == 2)?'checked':'false'; ?>
+				<label class="radio-inline"><input type="radio" name="prename" value="2" <?php echo $checkPrename =($preName == 2)?'checked':''; ?> >นาง</label>
+				<label class="radio-inline"><input type="radio" name="prename" value="3" <?php echo $checkPrename =($preName == 3)?'checked':'false'; ?> >นางสาว</label>
 			</label>
 		</div>
 		<div class="col-sm-2">
 			<label>ชื่อ
 				<p class="required">*</p>
-				<input type="text" class="form-control" name='name' required="" autofocus>
+				<input type="text" class="form-control" name='name' required="" value="<?php echo $name;?>" autofocus>
 			</label>
 		</div>
 		<div class="col-sm-2" >
 			<label>นามสกุล
 				<p class="required">*</p>
-				<input type="text" name="lastname" class="form-control" required="">
+				<input type="text" name="lastname" class="form-control" required="" value="<?php echo $lastname; ?>">
 			</label>
 		</div>
 		<div class="col-sm-2">
 			<label> รหัสนักศึกษา
 				<p class="required">*</p>
-				<input type="text" name="stdID" class="form-control" required="">
+				<input type="text" name="stdID" class="form-control" required="" value="<?php echo $mem_id; ?>">
 			</label>
 		</div>
 		<div class="col-sm-3">
@@ -91,7 +92,7 @@
 		<div class="col-sm-4">
 			<label>หมายเลขโทรศัพท์ที่ติดต่อได้สะดวก</label>
 			<p class="required">*</p>
-			<input type="tel" name="tel" class="form-control" required="">
+			<input type="text" name="tel" class="form-control" required="" value="<?php echo $mem_tel; ?>">
 		</div>
 		<!-- </div> -->
 

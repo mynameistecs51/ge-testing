@@ -13,32 +13,31 @@
 </head>
 <body align='center'>-->
 	<div class="col-sm-12" style="padding-top:10%;">
-		<div class="col-sm-4">
-		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading" style="text-align:left;">ระบบยื่นคำร้องขอสอบกรณีพิเศษ</div>
 				<div class="panel-body">
 					<div class="col-sm-12">
-						<?php echo form_open('#', 'class="form-horizontal"'); ?>
+						<?php echo form_open('Authen/checkLogin/', 'class="form-horizontal"'); ?>
 						<!-- <form class="form-horizontal" method="post" action="<?php echo base_url();?>index.php/teacher/"> -->
 						<div class="form-group">
-							<label for="userName" class="col-sm-4 control-label">อีเมลล์</label>
+							<label for="loginEmail" class="col-sm-3 control-label"><h4>อีเมลล์</h4></label>
 							<div class="col-sm-8">
-							<input type="text" class="form-control col-sm-12" id="userName" name="userName" placeholder="test@yourmail.com" autofocus="true">
+								<input type="email" class="form-control col-sm-12 input-lg" id="loginEmail" name="loginEmail" placeholder="my_email@yourmail.com" required title="กรุณากรอกข้อมูล" autofocus>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="password" class="col-sm-4 control-label">รหัสผ่าน</label>
+							<label for="loginPassword" class="col-sm-3	control-label"><h4>รหัสผ่าน</h4></label>
 							<div class="col-sm-8">
-								<input type="password" class="form-control col-sm-12" id="password" name="password" value="......">
+								<input type="password" class="form-control col-sm-12 input-lg" id="loginPassword" name="loginPassword"  required title="กรุณากรอกข้อมูล">
 							</div>
 						</div>
-						<div class="col-sm-12  " >
-							<button type="submit" class="btn btn-primary pull-right col-sm-4">เข้าสู่ระบบ</button>
-							<!--   <button type="regis" class="btn btn-info  pull-left col-sm-4"> สมัครสมาชิก</button> -->
-							<?php echo anchor('#', 'สมัครสมาชิก', 'class="btn btn-info pull-left col-sm-4"'); ?>
-						</div>
+						<!-- <div class="col-sm-12  " > -->
+						<button type="submit" class="btn btn-primary pull-right col-sm-5">เข้าสู่ระบบ</button>
+						<!--   <button type="regis" class="btn btn-info  pull-left col-sm-4"> สมัครสมาชิก</button> -->
+						<?php echo anchor('Authen/regis', 'สมัครสมาชิก', 'class="btn btn-info pull-left col-sm-5"'); ?>
+						<!-- </div> -->
 						<!-- </form> -->
 						<?php echo form_close(); ?>
 					</div>

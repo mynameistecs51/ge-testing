@@ -23,6 +23,13 @@ class Student extends CI_Controller {
 	public function mainPage($SCREENNAME)
 	{
 		$this->data['courseData'] = $this->mdl_student->getCourseAll();
+		$this->data['name'] = $this->session->userdata('mem_name');
+		$this->data['lastname'] = $this->session->userdata('mem_lastname');
+		$this->data['mem_id'] = $this->session->userdata('mem_id');
+		$this->data['mem_tel'] = $this->session->userdata('mem_tel');
+		$this->data['preName'] = $this->session->userdata('mem_preName');
+		$this->data['id_member'] = $this->session->userdata('id_member');
+		$this->data['mem_email'] = $this->session->userdata('mem_email');
 		$this->data['today'] = $this->datenow;
 		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
 		$this->data['footer'] = $this->template_student->getFooter();
@@ -72,14 +79,6 @@ class Student extends CI_Controller {
 		$this->load->view('tcpdf');
 	}
 
-	public function alert($massage)
-	{
-		echo "<meta charset='UTF-8'>
-		<SCRIPT LANGUAGE='JavaScript'>
-			window.alert('$massage')';
-		</SCRIPT>";
-	}
-
 	public function login()
 	{
 		$this->load->view('login');
@@ -99,6 +98,17 @@ class Student extends CI_Controller {
 			//$date = date("Y-m-d", strtotime($date));
 		return $date;
 	}
+
+
+	public function alert($massage, $url)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')
+			window.location.href='".site_url($url)."';
+		</SCRIPT>";
+	}
+
 
 }
 /* End of file Studen.php */

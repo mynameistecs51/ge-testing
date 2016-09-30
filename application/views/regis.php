@@ -21,13 +21,13 @@
 			<div class="panel-body">
 				<div class="form_input  col-sm-12">
 					<div class="containner">
-						<?php echo form_open('#'); ?>
+						<?php echo form_open('Authen/insertRegis'); ?>
 						<div class="form-group">
 							<div class="text-header"><b style="color:#000;"><h3>.::LOGIN::.</h3></b></div>
 							<div class="col-sm-4">
 								<label> EMIL
 									<p class="required">*</p>
-									<input type="text" name="email" class="form-control" placeholder="YOUR EMIL@mail.com" required="">
+									<input type="text" name="email" class="form-control" placeholder="YOUR EMIL@mail.com" required="" autofocus>
 								</label>
 							</div>
 							<div class="col-sm-4">
@@ -37,7 +37,7 @@
 								</label>
 							</div>
 						</div>
-						<!-- <hr class="col-sm-12"> -->
+						<hr class="col-sm-12">
 						<div class="col-sm-12"></div>
 						<div class="col-sm-4" >
 							<label>คำนำหน้าชื่อ
@@ -50,7 +50,7 @@
 						<div class="col-sm-4">
 							<label>ชื่อ
 								<p class="required">*</p>
-								<input type="text" class="form-control" name='name' required="" autofocus>
+								<input type="text" class="form-control" name='name' required="" >
 							</label>
 						</div>
 						<div class="col-sm-4" >

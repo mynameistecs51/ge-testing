@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2016 at 09:51 AM
+-- Generation Time: Sep 30, 2016 at 02:24 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -88,8 +88,16 @@ CREATE TABLE `member` (
   `mem_lastname` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `mem_tel` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `mem_email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `mem_passc` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `mem_passwd` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `mem_status` enum('0','1','2','3') COLLATE utf8_unicode_ci NOT NULL COMMENT '0 = ทั่วไป||นศ ,1 = อาหจารย์ ,2 = หัวหน้าหมวด ,3 = admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`id_member`, `mem_id`, `mem_preName`, `mem_name`, `mem_lastname`, `mem_tel`, `mem_email`, `mem_passwd`, `mem_status`) VALUES
+(6, '1234', '1', 'ไชยวัฒน์', 'หอมแสง', '1234', 'te@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0');
 
 -- --------------------------------------------------------
 
@@ -176,7 +184,7 @@ ALTER TABLE `groupcourse`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `requestion`
 --
