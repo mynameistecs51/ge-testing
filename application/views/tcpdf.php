@@ -89,7 +89,7 @@ $html = '
 	<tr >
 		<td  align="justify"   width="100%">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$preName.' '.$req_name.' '.$req_lastname.' </u>  รหัสนักศึกษา <u> '.$req_stdID.'  </u> คณะ  <u> '.$req_faculty.' </u>  สาขาวิชา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u> หมายเลขที่ติดต่อได้สะดวก  <u> '.$req_tel.' </u> 	ภาค  <u> '.$req_pak.' </u>	ระดับ  <u> '.$req_class.' </u> <br/>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ได้ขาดสอบปลายภาคเรียนที่  <u> '.$req_term.' </u> ปีการศึกษา <u> '.$req_year.' </u> ในวันที่ <u> '.$req_date.' </u>  เวลา <u> '.$req_time.' </u> น. ซึ่งเป็นการสอบในรายวิชา <u> '.$req_course.' </u> รัหสวิชา <u> '.$req_courseID.' </u> หมู่เรียน <u> '.$req_group.' </u> โดยมีอาจารย์ <u> '.$req_teacher.' </u> เป็นผู้สอน  <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ได้ขาดสอบปลายภาคเรียนที่  <u> '.$req_term.' </u> ปีการศึกษา <u> '.$req_year.' </u> ซึ่งเป็นการสอบในรายวิชา <u>'.$a="".'</u> รัหสวิชา <u> วนลูบมาแสดง'.count($selectCourse).''.$selectCourse[0]["id_course"].' </u> หมู่เรียน <u> '.$a="".' </u> ในวันที่ <u> '.$a="".' </u>  เวลา <u> '.$a="".' </u> น.  โดยมีอาจารย์ <u> '.$a="".' </u> เป็นผู้สอน  <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u> '.$req_detail.' </u>  โดยมีหลักฐาน 1.) <u> '.$req_evidence.' </u>  2.)  <u> ฝาขวดเหล้า </u>
 		</td>
 	</tr>
@@ -139,7 +139,7 @@ $html = '
 		<td width="100%">
 			<hr>
 			<div align="right">ส่วนของนักศึกษา <br>***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ</div>
-			<div align="left">ข้าพเจ้า<u>  '.$preName.' '.$req_name.'  '.$req_lastname.'  </u> รหัสนักศึกษา<u> '.$req_stdID.' </u>  คณะ <u> '.$req_faculty.' </u>  สาขาวิขา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u>  หมายเขตที่ติดต่อได้สะดวก <u> '.$req_tel.' </u> ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <u> '.$req_course.' </u> รหัสวิชา <u> '.$req_courseID.'  </u>  หมู่เรียนที่ <u>  '.$req_group.'  </u> โดยมีอาจารย์ <u>  '.$req_teacher.'  </u>  เป็นผู้สอน </div>
+			<div align="left">ข้าพเจ้า<u>  '.$preName.' '.$req_name.'  '.$req_lastname.'  </u> รหัสนักศึกษา<u> '.$req_stdID.' </u>  คณะ <u> '.$req_faculty.' </u>  สาขาวิขา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u>  หมายเขตที่ติดต่อได้สะดวก <u> '.$req_tel.' </u> ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <u>'.$a="".' </u> รหัสวิชา <u> '.$a="".'  </u>  หมู่เรียนที่ <u>  '.$a="".'  </u> โดยมีอาจารย์ <u>  '.$a="".'  </u>  เป็นผู้สอน </div>
 			<i align="right">
 				..........................................................................<br>
 				(วันที่รับคำร้อง....................................................)<br>

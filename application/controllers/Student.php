@@ -51,20 +51,43 @@ class Student extends CI_Controller {
 			'req_pak' =>  $this->input->post('pak'),
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
-			'req_date' =>  implode(',',$this->convert_date($this->input->post('date'))),
-			'req_time' =>  implode(',',$this->input->post('time')),
-			'id_course' =>  implode(',',$this->input->post('courseID')),
-			'req_teacher' =>  implode(',',$this->input->post('teacher')),
 			'req_detail' 	=> $this->input->post('detail'),
 			'req_evidence'  => implode(',',$this->input->post('evidence')),
-			'id_create' => '1',
+			'id_create' =>$this->session->userdata('id_member'),
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
 			);
-		$this->db->insert('requestion',$dataRequestion);
-		// $this->load->view('tcpdf',$dataRequestion);
+		$id_req = $this->mdl_student->insertRequestion($dataRequestion);
+		// $this->db->insert('requestion',$dataRequestion);
+
 		// echo "<pre>";
 		// print_r($dataRequestion);
+		$countCourse = count($this->input->post('courseID'));
+		$courseID = $this->input->post('courseID');
+		$dateSelect = $this->convert_date($this->input->post('date'));
+		$timeSelect = $this->input->post('time');
+		$teacherSelect = $this->input->post('teacher');
+		$selectCourse = array();
+		for($i = 0; $i < $countCourse; $i++){
+			$selectCourse[$i] = array(
+				'id_reqCourse' => '',
+				'id_req' => $id_req,
+				'id_member' => $this->session->userdata('id_member'),
+				'id_course' => $courseID[$i],
+				'rc_teacher' => $teacherSelect[$i],
+				'rc_date' => $dateSelect[$i],
+				'rc_time' => $timeSelect[$i],
+				'dt_create' => $this->dt_now,
+				);
+			$this->mdl_student->insertReqCourse($selectCourse[$i]);
+		}
+		echo "<pre>";
+		// print_r($selectCourse);
+		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
+		// print_r($dataDetail);
+		// print_r($dataRequestion);echo "<br>";
+		// print_r($selectCourse);
+		$this->load->view('tcpdf',$dataDetail);
 	}
 
 	public function getCourseAll()
@@ -84,21 +107,19 @@ class Student extends CI_Controller {
 		$this->load->view('login');
 	}
 
-	public function convert_date($val_date=array())
+	public function convert_date($val_date )
 	{
-		$date ='';
+		 // $dateArr	=array();
+		$date = str_replace('/', '-',$val_date);
 		for($i = 0;$i <count($val_date); $i ++){
-			$date = str_replace('/', '-',$val_date);
 			$d=$date[$i][0].$date[$i][1];
 			$m=$date[$i][3].$date[$i][4];
 			$y=$date[$i][6].$date[$i][7].$date[$i][8].$date[$i][9];
 			$y=intval($y)-543;
+			$date[$i] = $y."-".$m."-".$d;
 		}
-		// $date = $y."-".$m."-".$d;
-			//$date = date("Y-m-d", strtotime($date));
 		return $date;
 	}
-
 
 	public function alert($massage, $url)
 	{

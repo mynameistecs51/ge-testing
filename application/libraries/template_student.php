@@ -40,7 +40,7 @@ class Template_student
 			<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
 
 			<!-- datePicker -->
-			 <link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
+			<link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
 			<script src="'.base_url().'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
 			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script>
 
@@ -70,24 +70,11 @@ class Template_student
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">สำนักวิชาการศึกษาทั่วไป</a>
+						<a class="navbar-brand" >สำนักวิชาการศึกษาทั่วไป</a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
-							</li>
-							<li>
-								'.anchor('Authen/regis', 'สมัครสมาชิก').'
-							</li>
-							<li>
-							'.anchor('Authen', 'LOGIN', '').'
-							</li>
-							<li>
-							'.anchor('Authen/logOut/', 'LOGOUT').'
-							</li>
-						</ul>
+						'.$this->menu().'
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -114,6 +101,34 @@ class Template_student
 	</body>
 	</html>
 	';
+}
+
+public function menu()
+{
+	if($this->ci->session->userdata('id_member') == null){
+		return '
+		<ul class="nav navbar-nav">
+			<!-- <li><a href="#">คำร้องขอสอบกรณีพิเศษ</a></li> -->
+			<li>
+				'.anchor('Authen/regis', 'สมัครสมาชิก').'
+			</li>
+			<li>
+				'.anchor('Authen', 'LOGIN', '').'
+			</li>
+		</ul>
+		';
+	}else{
+		return '
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
+			</li>
+			<li>
+				'.anchor('Authen/logOut/', 'LOGOUT').'
+			</li>
+		</ul>
+		';
+	}
 }
 
 }

@@ -14,6 +14,20 @@ class Mdl_student extends CI_Model {
 		$data = $this->db->get('course');
 		return $data->result_array();
 	}
+
+	public function insertRequestion($dataRequestion)
+	{
+		$this->db->insert('requestion',$dataRequestion);
+		$last_id = $this->db->insert_id();
+		return $last_id;
+	}
+
+	public function insertReqCourse($selectCourse)
+	{
+		$this->db->insert('requestion_course',$selectCourse);
+		// echo "<pre>";
+		// print_r($selectCourse);
+	}
 }
 
 /* End of file mdl_student.php */
