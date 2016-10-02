@@ -74,9 +74,12 @@ switch ($req_prename) {
 	$preName = "นางสาว";
 	break;
 }
+
+// $couse = "";
+
 $now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 // --------------------------------//
-$html = '
+$html = '<<<EOD
 <table width="100%" cellspacing="5" >
 	<tr>
 		<td align="center"><h2> คำร้องขอสอบกรณีพิเศษ </h2></td>
@@ -88,8 +91,11 @@ $html = '
 	</tr>
 	<tr >
 		<td  align="justify"   width="100%">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$preName.' '.$req_name.' '.$req_lastname.' </u>  รหัสนักศึกษา <u> '.$req_stdID.'  </u> คณะ  <u> '.$req_faculty.' </u>  สาขาวิชา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u> หมายเลขที่ติดต่อได้สะดวก  <u> '.$req_tel.' </u> 	ภาค  <u> '.$req_pak.' </u>	ระดับ  <u> '.$req_class.' </u> <br/>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ได้ขาดสอบปลายภาคเรียนที่  <u> '.$req_term.' </u> ปีการศึกษา <u> '.$req_year.' </u> ซึ่งเป็นการสอบในรายวิชา <u>'.$a="".'</u> รัหสวิชา <u> วนลูบมาแสดง'.count($selectCourse).''.$selectCourse[0]["id_course"].' </u> หมู่เรียน <u> '.$a="".' </u> ในวันที่ <u> '.$a="".' </u>  เวลา <u> '.$a="".' </u> น.  โดยมีอาจารย์ <u> '.$a="".' </u> เป็นผู้สอน  <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$preName.' '.$req_name.' '.$req_lastname.' </u>  รหัสนักศึกษา <u> '.$req_stdID.'  </u> คณะ  <u> '.$req_faculty.' </u>  สาขาวิชา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u> หมายเลขที่ติดต่อได้สะดวก  <u> '.$req_tel.' </u> 	ภาค  <u> '.$req_pak.' </u>	ระดับ  <u> '.$req_class.' </u> ได้ขาดสอบปลายภาคเรียนที่  <u> '.$req_term.' </u> ปีการศึกษา <u> '.$req_year.' </u> ซึ่งเป็นการสอบในรายวิชา <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			for($i=1; $i <= count($selectCourse); $i++){
+				$html .= $i.")";
+			}
+			$html .='<u> '.$a="".' </u> รัหสวิชา <u> '.$selectCourse[0]["id_course"].' </u> หมู่เรียน <u> '.$a="".' </u> ในวันที่ <u> '.$a="".' </u>  เวลา <u> '.$a="".' </u> น.  โดยมีอาจารย์ <u> '.$a="".' </u> เป็นผู้สอน  <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u> '.$req_detail.' </u>  โดยมีหลักฐาน 1.) <u> '.$req_evidence.' </u>  2.)  <u> ฝาขวดเหล้า </u>
 		</td>
 	</tr>
@@ -147,7 +153,7 @@ $html = '
 				เจ้าหน้าที่ผู้รับคำร้อง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</i>
 			<div align="left">
-			<br><br>
+				<br><br>
 				***นักศึกษาสามารถติดต่อข่าวสาร  ผลการพิจารณาคำร้องขอสอบกรณีพิเศษ ได้ที่หน้าห้อง <br>
 				สำนักงาน  สำนักศึกษาทั่วไป  ชั้นใต้ดิน  อาคารเฉลิมพระเกียรติ โทร. 042-211040 ต่อ 1888 และ <br>
 				Facebook Page ฝ่ายวิชาการ  สำนักศึกษาทั่วไป มรภ.อุดรธานี  URL : https://www.facebook.com/GE.Soc.Udru/
@@ -155,7 +161,7 @@ $html = '
 		</td>
 	</tr>
 </table>
-';
+EOD';
 
 // $pdf->AddFont('THSarabun','','THSarabun.php');
 // $pdf->SetFont('THSarabun','',14);

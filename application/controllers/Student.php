@@ -81,13 +81,14 @@ class Student extends CI_Controller {
 				);
 			$this->mdl_student->insertReqCourse($selectCourse[$i]);
 		}
-		echo "<pre>";
+		// echo "<pre>";
 		// print_r($selectCourse);
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
 		// print_r($dataDetail);
 		// print_r($dataRequestion);echo "<br>";
 		// print_r($selectCourse);
-		$this->load->view('tcpdf',$dataDetail);
+		// $this->load->view('tcpdf',$dataDetail);
+		redirect($this->ctl.'/management','refresh');
 	}
 
 	public function getCourseAll()
@@ -95,6 +96,15 @@ class Student extends CI_Controller {
 		$allCourse = $this->mdl_student->getCourseAll();
 
 		echo  json_encode($allCourse);
+	}
+
+	public function management()
+	{
+		$SCREENNAME = "จัดการข้อมูล";
+		$PAGE = "management";
+		$this->data['controller'] = $this->ctl;
+		$this->mainPage($SCREENNAME);
+		$this->load->view($PAGE,$this->data);
 	}
 
 	public function tcpdf()
