@@ -81,14 +81,14 @@ class Student extends CI_Controller {
 				);
 			$this->mdl_student->insertReqCourse($selectCourse[$i]);
 		}
-		// echo "<pre>";
+		echo "<pre>";
 		// print_r($selectCourse);
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
-		// print_r($dataDetail);
+		print_r($dataDetail);
 		// print_r($dataRequestion);echo "<br>";
 		// print_r($selectCourse);
 		// $this->load->view('tcpdf',$dataDetail);
-		redirect($this->ctl.'/management','refresh');
+		// redirect($this->ctl.'/management','refresh');
 	}
 
 	public function getCourseAll()
@@ -100,11 +100,54 @@ class Student extends CI_Controller {
 
 	public function management()
 	{
+		$data_array = array();
+		//SSL = StudentSelectDetail
+		foreach ($this->mdl_student->studentSelect_course($this->session->userdata('id_member')) as $key => $row_SSD) {
+			if(isset($data_array[$row_SSD->id_member])){
+				array_push($data_array[$row_SSD->id_member]['course'],
+					array(
+						'course_id' => $row_SSD->course_id,
+						'course_name' => $row_SSD->course_name,
+						'rc_date' => $row_SSD->rc_date,
+						'rc_time' => $row_SSD->rc_time,
+						'rc_teacher' => $row_SSD->rc_teacher,
+						)
+					);
+				continue;
+			}
+			if(!isset($data_array[$row_SSD->id_member])){
+				$data_array[$row_SSD->id_member] = array(
+					'id_member' => $row_SSD->id_member,
+					'studentName' => $row_SSD->studentName,
+					'mem_tel' => $row_SSD->mem_tel,
+					'mem_email' => $row_SSD->mem_email,
+					'mem_id' => $row_SSD->mem_id,
+					'req_branch' => $row_SSD->req_branch,
+					'req_classNum' => $row_SSD->req_classNum,
+					'req_pak' => $row_SSD->req_pak,
+					'req_class' => $row_SSD->req_class,
+					'req_term' => $row_SSD->req_term,
+					'req_year' => $row_SSD->req_year,
+					'course' => array(
+						$key => array(
+							'course_id' => $row_SSD->course_id,
+							'course_name' => $row_SSD->course_name,
+							'rc_date' => $row_SSD->rc_date,
+							'rc_time' => $row_SSD->rc_time,
+							'rc_teacher' => $row_SSD->rc_teacher,
+							)
+						)
+					);
+			}
+		}
 		$SCREENNAME = "จัดการข้อมูล";
 		$PAGE = "management";
 		$this->data['controller'] = $this->ctl;
+		$this->data['reqDetail'] = $data_array;
 		$this->mainPage($SCREENNAME);
-		$this->load->view($PAGE,$this->data);
+		// $this->data['studentDetail'] = $this->mdl_student->studentSelect_course($this->session->userdata('id_member'));
+		// $this->load->view($PAGE,$this->data);
+		$this->load->view('tcpdf',$this->data);
 	}
 
 	public function tcpdf()

@@ -27,6 +27,8 @@ class Template_student
 
 			<!-- Bootstrap Core CSS -->
 			<link href="'.base_url().'assets/css/bootstrap.css" rel="stylesheet">
+			<link href="'.base_url().'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+
 
 			<!-- Custom CSS -->
 			<link href="'.base_url().'assets/css/portfolio-item.css" rel="stylesheet">

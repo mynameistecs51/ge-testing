@@ -62,24 +62,17 @@ $pdf->Ln(1);  //ความก้างของบรรทัด
 // ob_start();
 
 			// HTML text with soft hyphens (&shy;)
-$preName = '';
-switch ($req_prename) {
-	case '1':
-	$preName = "นาย";
-	break;
-	case '2':
-	$preName = 'นาง';
-	break;
-	default:
-	$preName = "นางสาว";
-	break;
-}
 
 // $couse = "";
 
 $now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 // --------------------------------//
-$html = '<<<EOD
+
+$html ='';
+foreach ($reqDetail as $key => $row_SSD):
+	$name = $row_SSD['studentName'];
+endforeach;
+$html .= '<<<EOD
 <table width="100%" cellspacing="5" >
 	<tr>
 		<td align="center"><h2> คำร้องขอสอบกรณีพิเศษ </h2></td>
@@ -91,12 +84,8 @@ $html = '<<<EOD
 	</tr>
 	<tr >
 		<td  align="justify"   width="100%">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$preName.' '.$req_name.' '.$req_lastname.' </u>  รหัสนักศึกษา <u> '.$req_stdID.'  </u> คณะ  <u> '.$req_faculty.' </u>  สาขาวิชา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u> หมายเลขที่ติดต่อได้สะดวก  <u> '.$req_tel.' </u> 	ภาค  <u> '.$req_pak.' </u>	ระดับ  <u> '.$req_class.' </u> ได้ขาดสอบปลายภาคเรียนที่  <u> '.$req_term.' </u> ปีการศึกษา <u> '.$req_year.' </u> ซึ่งเป็นการสอบในรายวิชา <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-			for($i=1; $i <= count($selectCourse); $i++){
-				$html .= $i.")";
-			}
-			$html .='<u> '.$a="".' </u> รัหสวิชา <u> '.$selectCourse[0]["id_course"].' </u> หมู่เรียน <u> '.$a="".' </u> ในวันที่ <u> '.$a="".' </u>  เวลา <u> '.$a="".' </u> น.  โดยมีอาจารย์ <u> '.$a="".' </u> เป็นผู้สอน  <br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u> '.$req_detail.' </u>  โดยมีหลักฐาน 1.) <u> '.$req_evidence.' </u>  2.)  <u> ฝาขวดเหล้า </u>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$a="".' </u>  รหัสนักศึกษา <u>  '.$a="".'  </u> คณะ  <u>  '.$a="".'  </u>  สาขาวิชา <u> '.$a="".'  </u>  ชั้นปีที่ <u>  '.$a="".'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$a="".'  </u> 	ภาค  <u> '.$a="".'  </u>	ระดับ  <u>  '.$a="".'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$a="".'  </u> ปีการศึกษา <u>  '.$a="".'  </u> ซึ่งเป็นการสอบในรายวิชา <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u> '.$a="".' </u> รัหสวิชา <u> '.$a="".'  </u> หมู่เรียน <u> '.$a="".' </u> ในวันที่ <u> '.$a="".' </u>  เวลา <u> '.$a="".' </u> น.  โดยมีอาจารย์ <u> '.$a="".' </u> เป็นผู้สอน  <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u>  '.$a="".'  </u>  โดยมีหลักฐาน 1.) <u>  '.$a="".'  </u>  2.)  <u> ฝาขวดเหล้า </u>
 		</td>
 	</tr>
 	<tr>
@@ -109,8 +98,8 @@ $html = '<<<EOD
 		<td width="30%;"  align="left" >
 			<div align="center">
 				(ลงชื่อ)................................................<br>
-				(<u>  '.$preName.' '.$req_name.'  '.$req_lastname.'  </u>)<br>
-				วันที่<u>  '.$now->format('d/m/').($now->format('Y')+543).' เวลา  '.$now->format('H:i:s').'  </u>
+				(<u>   '.$a="".'  </u>)<br>
+				วันที่<u>   '.$a="".'   </u>
 			</div>
 		</td>
 	</tr>
@@ -145,7 +134,7 @@ $html = '<<<EOD
 		<td width="100%">
 			<hr>
 			<div align="right">ส่วนของนักศึกษา <br>***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ</div>
-			<div align="left">ข้าพเจ้า<u>  '.$preName.' '.$req_name.'  '.$req_lastname.'  </u> รหัสนักศึกษา<u> '.$req_stdID.' </u>  คณะ <u> '.$req_faculty.' </u>  สาขาวิขา <u> '.$req_branch.' </u>  ชั้นปีที่ <u> '.$req_classNum.' </u>  หมายเขตที่ติดต่อได้สะดวก <u> '.$req_tel.' </u> ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <u>'.$a="".' </u> รหัสวิชา <u> '.$a="".'  </u>  หมู่เรียนที่ <u>  '.$a="".'  </u> โดยมีอาจารย์ <u>  '.$a="".'  </u>  เป็นผู้สอน </div>
+			<div align="left">ข้าพเจ้า<u>  '.$a="".'   </u> รหัสนักศึกษา<u>  '.$a="".'  </u>  คณะ <u>  '.$a="".'  </u>  สาขาวิขา <u>  '.$a="".'  </u>  ชั้นปีที่ <u>  '.$a="".'  </u>  หมายเขตที่ติดต่อได้สะดวก <u>  '.$a="".'  </u> ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <u>'.$a="".' </u> รหัสวิชา <u> '.$a="".'  </u>  หมู่เรียนที่ <u>  '.$a="".'  </u> โดยมีอาจารย์ <u>  '.$a="".'  </u>  เป็นผู้สอน </div>
 			<i align="right">
 				..........................................................................<br>
 				(วันที่รับคำร้อง....................................................)<br>
@@ -161,7 +150,7 @@ $html = '<<<EOD
 		</td>
 	</tr>
 </table>
-EOD';
+EOD'; // End forearch
 
 // $pdf->AddFont('THSarabun','','THSarabun.php');
 // $pdf->SetFont('THSarabun','',14);
