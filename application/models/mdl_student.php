@@ -42,14 +42,26 @@ class Mdl_student extends CI_Model {
 		member.mem_tel,
 		member.mem_email,
 		member.mem_id,
-		requestion.req_branch,
+		member.mem_faculty,
+		member.mem_branch,
 		requestion.req_classNum,
-		requestion.req_pak,
-		requestion.req_class,
+		(CASE requestion.req_pak
+		WHEN 1 THEN 'ปกติ'
+		WHEN 2 THEN 'พิเศษ'
+		WHEN 3 THEN 'อื่น ๆ'
+		END )AS pak,
+		(CASE requestion.req_class
+		WHEN 1 THEN 'ปริญาตรี'
+		WHEN 2 THEN 'ปริญญาโท'
+		WHEN 3 THEN 'อื่น ๆ'
+		END) AS class,
 		requestion.req_term,
 		requestion.req_year,
+		requestion.req_group,
+		requestion.req_detail,
+		requestion.req_evidence,
 		requestion_course.rc_teacher,
-		requestion_course.rc_date,
+		CONCAT(DATE_FORMAT(requestion_course.rc_date,'%d'),'/',DATE_FORMAT(requestion_course.rc_date,'%m'),'/',DATE_FORMAT(requestion_course.rc_date,'%Y')+543) AS rc_date,
 		requestion_course.rc_time,
 		course.course_id,
 		course.course_name,
@@ -62,7 +74,7 @@ class Mdl_student extends CI_Model {
 		INNER JOIN requestion
 		ON requestion.id_req = requestion_course.id_req
 		INNER JOIN member ON member.id_member = requestion.id_create
-		WHERE member.id_member='6'
+		WHERE member.id_member='".$id_member."'
 		";
 		$query = $this->db->query($sql)->result();
 		return $query;

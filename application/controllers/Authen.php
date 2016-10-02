@@ -5,18 +5,34 @@ class Authen extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ctl = 'Authen';
+		$this->ctl = 'Authen/';
 		$this->load->model('mdl_authen','',TRUE);
 		$this->load->library('session');
 	}
 
 	public function index()
 	{
-		$SCREENNAME="LOGIN";
-		$PAGE = "login";
-		$this->data['controller'] = $this->ctl;
-		$this->mainPage($SCREENNAME);
-		$this->load->view($PAGE,$this->data);
+		if($this->session->userdata("id_member")==""){
+			$SCREENNAME="LOGIN";
+			$PAGE = "login";
+			$this->data['controller'] = $this->ctl;
+			$this->mainPage($SCREENNAME);
+			$this->load->view($PAGE,$this->data);
+		}else{
+			$session_data = $this->session->userdata('mem_status');
+			switch ($session_data) {
+				case '1':
+				redirect('dashboard/teacher','refresh');
+				break;
+				case '2':
+				redirect('dashboard/headGroup','refresh');
+				break;
+				redirect('dashboard/admin','refresh');
+				default:
+				redirect('Student','refresh');
+				break;
+			}
+		}
 	}
 
 	public function regis()
@@ -38,10 +54,12 @@ class Authen extends CI_Controller {
 			'mem_name' => $this->input->post('name'),
 			'mem_lastname' => $this->input->post('lastname'),
 			'mem_id' => $this->input->post('stdID'),
+			'mem_faculty' => $this->input->post('faculty'),
+			'mem_branch' => $this->input->post('branch'),
 			'mem_tel' => $this->input->post('tel'),
 			);
 
-		$this->db->insert('member',$dataRegis);
+		$this->mdl_authen->insertRegis($dataRegis);
 		$massage = 'สมัครสมาชิกสำเร็จ';
 		$url = 'Authen/';
 		$this->alert($massage,$url);
@@ -90,6 +108,8 @@ class Authen extends CI_Controller {
 					'mem_lastname' =>  $rowResult->mem_lastname,
 					'mem_status' =>  $rowResult->mem_status,
 					'mem_email' => $rowResult->mem_email,
+					'mem_faculty' => $rowResult->mem_faculty,
+					'mem_branch' => $rowResult->mem_branch,
 					'mem_tel' => $rowResult->mem_tel,
 					);
 				$this->session->set_userdata($sess_array);

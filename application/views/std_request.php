@@ -68,12 +68,12 @@
 		<div class="col-sm-3">
 			<label>คณะ</label>
 			<p class="required">*</p>
-			<input type="text" name="faculty" class="form-control" required="">
+			<input type="text" name="faculty" class="form-control" value="<?php echo $mem_faculty; ?>" required="">
 		</div>
 		<div class="col-sm-3">
 			<label>สาขาวิขา</label>
 			<p class="required">*</p>
-			<input type="text" name="branch" class="form-control" required="">
+			<input type="text" name="branch" class="form-control" value="<?php echo $mem_branch; ?>" required="">
 		</div>
 		<div class="col-sm-2">
 			<label>ชั้นปี</label>

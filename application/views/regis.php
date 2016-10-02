@@ -39,7 +39,7 @@
 						</div>
 						<hr class="col-sm-12">
 						<div class="col-sm-12"></div>
-						<div class="col-sm-4" >
+						<div class="col-sm-3" >
 							<label>คำนำหน้าชื่อ
 								<p class="required">*</p>
 								<label class="radio-inline"><input type="radio" name="prename" value="1" checked >นาย</label>
@@ -47,25 +47,37 @@
 								<label class="radio-inline"><input type="radio" name="prename" value="3">นางสาว</label>
 							</label>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<label>ชื่อ
 								<p class="required">*</p>
 								<input type="text" class="form-control" name='name' required="" >
 							</label>
 						</div>
-						<div class="col-sm-4" >
+						<div class="col-sm-3" >
 							<label>นามสกุล
 								<p class="required">*</p>
 								<input type="text" name="lastname" class="form-control" required="">
 							</label>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<label> รหัสนักศึกษา
 								<p class="required">*</p>
 								<input type="text" name="stdID" class="form-control" required="">
 							</label>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
+							<label> คณะ
+								<p class="required">*</p>
+								<input type="text" name="faculty" class="form-control" required="">
+							</label>
+						</div>
+						<div class="col-sm-3">
+							<label> สาขาวิชา
+								<p class="required">*</p>
+								<input type="text" name="branch" class="form-control" required="">
+							</label>
+						</div>
+						<div class="col-sm-3">
 							<label> เบอร์โทรที่ติดต่อได้สะดวก
 								<p class="required">*</p>
 								<input type="text" name="tel" class="form-control" required="">

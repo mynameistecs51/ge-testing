@@ -100,6 +100,15 @@ class Template_student
 		</div>
 		<!-- /.container -->
 
+		<script src="'.base_url().'assets/js/bootstrap-hover-dropdown.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".dropdown-toggle").dropdownHover({delay:0});	//menuhover
+				$(".back-to-top").click(function(){	//buttom back to top page
+					$("html,body").animate({scrollTop:0},"slow");return false;
+				});
+			});
+		</script>
 	</body>
 	</html>
 	';
@@ -125,8 +134,14 @@ public function menu()
 			<li>
 				<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
 			</li>
-			<li>
-				'.anchor('Authen/logOut/', 'LOGOUT').'
+			<li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'.$this->ci->session->userdata('mem_name').'<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" style=" background-color:#000000;">
+					<li>'.anchor('#', 'แก้ไขคำร้อง', 'class="page-scroll"').'</li>
+					<li>'.anchor('Student/printPDF/', 'PRINT PDF', 'class="page-scroll"').'</li>
+					<li>'.anchor('Authen/logOut/', 'LOGOUT').'</li>
+				</ul>
 			</li>
 		</ul>
 		';

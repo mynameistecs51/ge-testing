@@ -10,6 +10,9 @@ class Student extends CI_Controller {
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
 		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
+		if($this->session->userdata('id_member') == ''){
+			redirect('Authen/','refresh');
+		}
 	}
 	public function   index()
 	{
@@ -30,6 +33,8 @@ class Student extends CI_Controller {
 		$this->data['preName'] = $this->session->userdata('mem_preName');
 		$this->data['id_member'] = $this->session->userdata('id_member');
 		$this->data['mem_email'] = $this->session->userdata('mem_email');
+		$this->data['mem_faculty'] = $this->session->userdata('mem_faculty');
+		$this->data['mem_branch'] = $this->session->userdata('mem_branch');
 		$this->data['today'] = $this->datenow;
 		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
 		$this->data['footer'] = $this->template_student->getFooter();
@@ -43,16 +48,15 @@ class Student extends CI_Controller {
 			'req_name' =>  $this->input->post('name'),
 			'req_lastname' =>  $this->input->post('lastname'),
 			'req_stdID' =>  $this->input->post('stdID'),
-			'req_faculty' =>  $this->input->post('faculty'),
-			'req_branch' =>  $this->input->post('branch'),
 			'req_classNum' =>  $this->input->post('classNumber'),
 			'req_tel' =>  $this->input->post('tel'),
 			'req_term' =>  $this->input->post('term'),
 			'req_pak' =>  $this->input->post('pak'),
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
+			'req_group' => $this->input->post('group'),
 			'req_detail' 	=> $this->input->post('detail'),
-			'req_evidence'  => implode(',',$this->input->post('evidence')),
+			'req_evidence'  => implode('  ,  ',$this->input->post('evidence')),
 			'id_create' =>$this->session->userdata('id_member'),
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
@@ -60,7 +64,6 @@ class Student extends CI_Controller {
 		$id_req = $this->mdl_student->insertRequestion($dataRequestion);
 		// $this->db->insert('requestion',$dataRequestion);
 
-		// echo "<pre>";
 		// print_r($dataRequestion);
 		$countCourse = count($this->input->post('courseID'));
 		$courseID = $this->input->post('courseID');
@@ -84,11 +87,11 @@ class Student extends CI_Controller {
 		echo "<pre>";
 		// print_r($selectCourse);
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
-		print_r($dataDetail);
+		// print_r($dataDetail);
 		// print_r($dataRequestion);echo "<br>";
 		// print_r($selectCourse);
 		// $this->load->view('tcpdf',$dataDetail);
-		// redirect($this->ctl.'/management','refresh');
+		redirect($this->ctl.'/printPDF','refresh');
 	}
 
 	public function getCourseAll()
@@ -98,7 +101,7 @@ class Student extends CI_Controller {
 		echo  json_encode($allCourse);
 	}
 
-	public function management()
+	public function printPDF()
 	{
 		$data_array = array();
 		//SSL = StudentSelectDetail
@@ -122,12 +125,15 @@ class Student extends CI_Controller {
 					'mem_tel' => $row_SSD->mem_tel,
 					'mem_email' => $row_SSD->mem_email,
 					'mem_id' => $row_SSD->mem_id,
+					'req_faculty' => $row_SSD->req_faculty,
 					'req_branch' => $row_SSD->req_branch,
 					'req_classNum' => $row_SSD->req_classNum,
-					'req_pak' => $row_SSD->req_pak,
-					'req_class' => $row_SSD->req_class,
+					'req_pak' => $row_SSD->pak,
+					'req_class' => $row_SSD->class,
 					'req_term' => $row_SSD->req_term,
 					'req_year' => $row_SSD->req_year,
+					'req_detail' => $row_SSD->req_detail,
+					'req_evidence' => $row_SSD->req_evidence,
 					'course' => array(
 						$key => array(
 							'course_id' => $row_SSD->course_id,
@@ -141,12 +147,10 @@ class Student extends CI_Controller {
 			}
 		}
 		$SCREENNAME = "จัดการข้อมูล";
-		$PAGE = "management";
+		$PAGE = "printPDF";
 		$this->data['controller'] = $this->ctl;
 		$this->data['reqDetail'] = $data_array;
 		$this->mainPage($SCREENNAME);
-		// $this->data['studentDetail'] = $this->mdl_student->studentSelect_course($this->session->userdata('id_member'));
-		// $this->load->view($PAGE,$this->data);
 		$this->load->view('tcpdf',$this->data);
 	}
 

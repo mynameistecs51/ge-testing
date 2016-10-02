@@ -8,6 +8,10 @@ class Mdl_authen extends CI_Model {
 		parent::__construct();
 
 	}
+	public function insertRegis($dataRegis)
+	{
+		$this->db->insert('member',$dataRegis);
+	}
 
 	public function getMember($email,$password)
 	{
