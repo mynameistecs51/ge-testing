@@ -34,7 +34,7 @@ $config['base_url'] = 'http://localhost/ge-testing/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +53,7 @@ $config['index_page'] = '';
 |
 */
 $config['uri_protocol']	= 'AUTO';
+// $config['uri_protocol'] = "REQUEST_URI";
 
 /*
 |--------------------------------------------------------------------------

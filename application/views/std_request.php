@@ -32,7 +32,7 @@
 	<!-- Portfolio Item Row -->
 	<div class="row">
 		<!-- <form accept="insertRequestion" method="post"> -->
-		<?php echo form_open('Student/insertRequestion'); ?>
+		<?php echo form_open('student/insertRequestion'); ?>
 		<div class="form-group">
 			<label>เรียน ผู้อำนวยการสำนักวิชาศึกษาทั่วไป</label>
 		</div>
@@ -126,11 +126,6 @@
 			<p class="required">*</p>
 			<input type="text" name="year" class="form-control">
 		</div>
-		<div class="col-sm-2">
-			<label>หมู่เรียนที่</label>
-			<p class="required">*</p>
-			<input type="number" min='1' max="10" name="group" class="form-control">
-		</div>
 		<div class="col-sm-12"></div>
 		<div class="col-sm-4">
 			<label>ซึ่งเป็นการสอบในรายวิชา</label>
@@ -141,10 +136,10 @@
 				<?php endforeach;?>
 			</select>
 		</div>
-		<div class="col-sm-3">
-			<label>ชื่ออาจารย์ประจำวิชา</label>
+		<div class="col-sm-1">
+			<label>หมู่เรียนที่</label>
 			<p class="required">*</p>
-			<input type="text" name="teacher[]" class="form-control">
+			<input type="number" min='1' max="10" name="group[]" class="form-control">
 		</div>
 		<div class="col-sm-2">
 			<label>ในวันที่/เดือน/พ.ศ.</label>
@@ -160,6 +155,11 @@
 					<span class="glyphicon glyphicon-time"></span>
 				</span>
 			</div>
+		</div>
+		<div class="col-sm-2">
+			<label>ชื่ออาจารย์ประจำวิชา</label>
+			<p class="required">*</p>
+			<input type="text" name="teacher[]" class="form-control">
 		</div>
 		<div class="col-sm-1">
 			<p>&nbsp;</p>
@@ -278,25 +278,30 @@
 				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
 				html +='</select>';
 				html +='</div>';
-				html +='<div class="col-sm-3">';
-				html +='<label>ชื่ออาจารย์ประจำวิชา</label>';
+				html +='<div class="col-sm-1">';
+				html +='<label>หมู่เรียนที่</label>';
 				html +='<p class="required">*</p>';
-				html +='<input type="text" name="teacher[]" class="form-control">';
+				html +='<input type="number" min="1" max="10" name="group[]" class="form-control">';
 				html +='</div>';
 				html +='<div class="col-sm-2">';
 				html +='<label>ในวันที่/เดือน/พ.ศ.</label>';
 				html +='<p class="required">*</p>';
-				html +='<input type="text" id="date'+numCourse+'" name="date[]" class="form-control date" value="<?php echo $today ?>">';
+				html +='<input type="text" id="date'+numCourse+'" name="date[]" class="form-control date" value="<?php echo $today ?>"/>';
 				html +='</div>';
 				html +='<div class="col-sm-2">';
 				html +='<label>เวลา</label>';
 				html +='<p class="required">*</p>';
-				html +='<div id="time'+numCourse+'" class="input-group input-append time ">';
-				html +='<input name="time[]"  data-time-icon="icon-time" data-format="hh:mm" type="text" class="form-control "></input>';
+				html +='<div id="time" class="input-group input-append time ">';
+				html +='<input name="time[]""  data-time-icon="icon-time" data-format="hh:mm" type="text" class="form-control "/>';
 				html +='<span class="input-group-addon add-on">';
 				html +='<span class="glyphicon glyphicon-time"></span>';
 				html +='</span>';
 				html +='</div>';
+				html +='</div>';
+				html +='<div class="col-sm-2">';
+				html +='<label>ชื่ออาจารย์ประจำวิชา</label>';
+				html +='<p class="required">*</p>';
+				html +='<input type="text" name="teacher[]" class="form-control">';
 				html +='</div>';
 				html += '<div class="col-sm-1">';
 				html += '<p>&nbsp;</p>';

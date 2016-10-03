@@ -36,8 +36,8 @@ class Student extends CI_Controller {
 		$this->data['mem_faculty'] = $this->session->userdata('mem_faculty');
 		$this->data['mem_branch'] = $this->session->userdata('mem_branch');
 		$this->data['today'] = $this->datenow;
-		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
-		$this->data['footer'] = $this->template_student->getFooter();
+		$this->data['header'] = $this->template_student->getHeader($SCREENNAME,base_url());
+		$this->data['footer'] = $this->template_student->getFooter(base_url());
 	}
 
 	public function insertRequestion()
@@ -54,7 +54,6 @@ class Student extends CI_Controller {
 			'req_pak' =>  $this->input->post('pak'),
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
-			'req_group' => $this->input->post('group'),
 			'req_detail' 	=> $this->input->post('detail'),
 			'req_evidence'  => implode('  ,  ',$this->input->post('evidence')),
 			'id_create' =>$this->session->userdata('id_member'),
@@ -69,6 +68,7 @@ class Student extends CI_Controller {
 		$courseID = $this->input->post('courseID');
 		$dateSelect = $this->convert_date($this->input->post('date'));
 		$timeSelect = $this->input->post('time');
+		$group = $this->input->post('group');
 		$teacherSelect = $this->input->post('teacher');
 		$selectCourse = array();
 		for($i = 0; $i < $countCourse; $i++){
@@ -77,6 +77,7 @@ class Student extends CI_Controller {
 				'id_req' => $id_req,
 				'id_member' => $this->session->userdata('id_member'),
 				'id_course' => $courseID[$i],
+				'rc_group' => $group[$i],
 				'rc_teacher' => $teacherSelect[$i],
 				'rc_date' => $dateSelect[$i],
 				'rc_time' => $timeSelect[$i],
@@ -84,7 +85,7 @@ class Student extends CI_Controller {
 				);
 			$this->mdl_student->insertReqCourse($selectCourse[$i]);
 		}
-		echo "<pre>";
+		// echo "<pre>";
 		// print_r($selectCourse);
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
 		// print_r($dataDetail);
@@ -111,6 +112,7 @@ class Student extends CI_Controller {
 					array(
 						'course_id' => $row_SSD->course_id,
 						'course_name' => $row_SSD->course_name,
+						'rc_group' => $row_SSD->rc_group,
 						'rc_date' => $row_SSD->rc_date,
 						'rc_time' => $row_SSD->rc_time,
 						'rc_teacher' => $row_SSD->rc_teacher,
@@ -125,19 +127,21 @@ class Student extends CI_Controller {
 					'mem_tel' => $row_SSD->mem_tel,
 					'mem_email' => $row_SSD->mem_email,
 					'mem_id' => $row_SSD->mem_id,
-					'req_faculty' => $row_SSD->req_faculty,
-					'req_branch' => $row_SSD->req_branch,
+					'mem_faculty' => $row_SSD->mem_faculty,
+					'mem_branch' => $row_SSD->mem_branch,
 					'req_classNum' => $row_SSD->req_classNum,
 					'req_pak' => $row_SSD->pak,
 					'req_class' => $row_SSD->class,
 					'req_term' => $row_SSD->req_term,
 					'req_year' => $row_SSD->req_year,
+					'req_group' => $row_SSD->req_group,
 					'req_detail' => $row_SSD->req_detail,
 					'req_evidence' => $row_SSD->req_evidence,
 					'course' => array(
 						$key => array(
 							'course_id' => $row_SSD->course_id,
 							'course_name' => $row_SSD->course_name,
+							'rc_group' => $row_SSD->rc_group,
 							'rc_date' => $row_SSD->rc_date,
 							'rc_time' => $row_SSD->rc_time,
 							'rc_teacher' => $row_SSD->rc_teacher,
@@ -152,6 +156,8 @@ class Student extends CI_Controller {
 		$this->data['reqDetail'] = $data_array;
 		$this->mainPage($SCREENNAME);
 		$this->load->view('tcpdf',$this->data);
+		// echo "<pre>";
+		// print_r($data_array);
 	}
 
 	public function tcpdf()

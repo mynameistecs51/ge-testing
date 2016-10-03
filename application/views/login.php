@@ -19,7 +19,7 @@
 				<div class="panel-heading" style="text-align:left;">ระบบยื่นคำร้องขอสอบกรณีพิเศษ</div>
 				<div class="panel-body">
 					<div class="col-sm-12">
-						<?php echo form_open('Authen/checkLogin/', 'class="form-horizontal"'); ?>
+						<?php echo form_open('authen/checkLogin/', 'class="form-horizontal"'); ?>
 						<!-- <form class="form-horizontal" method="post" action="<?php echo base_url();?>index.php/teacher/"> -->
 						<div class="form-group">
 							<label for="loginEmail" class="col-sm-3 control-label"><h4>อีเมลล์</h4></label>
@@ -36,7 +36,7 @@
 						<!-- <div class="col-sm-12  " > -->
 						<button type="submit" class="btn btn-primary pull-right col-sm-5">เข้าสู่ระบบ</button>
 						<!--   <button type="regis" class="btn btn-info  pull-left col-sm-4"> สมัครสมาชิก</button> -->
-						<?php echo anchor('Authen/regis', 'สมัครสมาชิก', 'class="btn btn-info pull-left col-sm-5"'); ?>
+						<?php echo anchor('authen/regis', 'สมัครสมาชิก', 'class="btn btn-info pull-left col-sm-5"'); ?>
 						<!-- </div> -->
 						<!-- </form> -->
 						<?php echo form_close(); ?>

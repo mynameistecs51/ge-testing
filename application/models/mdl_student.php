@@ -60,6 +60,7 @@ class Mdl_student extends CI_Model {
 		requestion.req_group,
 		requestion.req_detail,
 		requestion.req_evidence,
+		requestion_course.rc_group,
 		requestion_course.rc_teacher,
 		CONCAT(DATE_FORMAT(requestion_course.rc_date,'%d'),'/',DATE_FORMAT(requestion_course.rc_date,'%m'),'/',DATE_FORMAT(requestion_course.rc_date,'%Y')+543) AS rc_date,
 		requestion_course.rc_time,

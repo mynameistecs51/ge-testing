@@ -53,7 +53,7 @@ $pdf->AddFont('THSarabun','','THSarabun.php');
 $pdf->SetFont('THSarabun','',13);
 
 // $pdf->Write(0, '*** นึกศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน', '', 0, 'L', true, 0, false, false, 0); //ตำแหน่งซ้ายขวา L,R
-$pdf->writeHTML('<div>***นักศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  ส่วนของเจ้าหน้าที่</div>');
+$pdf->writeHTML('<div>***นักศึกษาสามารถยื่นคำร้องขอสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <u> ส่วนของเจ้าหน้าที่</u></div>');
 $pdf->writeHTML("<hr>");
 
 $pdf->Ln(1);  //ความก้างของบรรทัด
@@ -80,9 +80,9 @@ foreach ($reqDetail as $key => $row_SSD) :
 	</tr>
 	<tr >
 		<td  align="justify"   width="100%">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["req_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["req_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> 	ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u> ซึ่งเป็นการสอบในรายวิชา <br>';
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["mem_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> 	ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u>  หมู่เรียนที่  <u> '.$row_SSD["req_group"].' </u> ซึ่งเป็นการสอบในรายวิชา <br>';
 			for($i=0;$i < count($row_SSD['course']); $i++){
-				$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u></u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
+				$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u> ".$row_SSD['course'][$i]['rc_group']. " </u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
 			}
 			$html.='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u>  '.$row_SSD["req_detail"].'  </u>  โดยมีหลักฐาน <u> '.$row_SSD["req_evidence"].' </u>
 		</td>
@@ -121,7 +121,7 @@ foreach ($reqDetail as $key => $row_SSD) :
 				<label><input type="checkbox" name="check" value="ไม่อนุญาต" disabled="">ไม่อนุญาต</label>
 				<label><input type="checkbox" name="check" value="อนุญาต" disabled="">อนุญาต</label>
 			</div><br>
-			เหตุผลประกอบ  ...............................................................................................................................................................................................................................................................<br>
+			เหตุผลประกอบ  ..................................................................................................................................................................................................................................................................................................................................<br>
 			<div align="center">
 				(ลงชื่อ)..........................................................<br>
 				(....................................................................)<br>
@@ -131,11 +131,12 @@ foreach ($reqDetail as $key => $row_SSD) :
 	</tr>
 	<tr>
 		<td width="100%">
-			<hr>
-			<div align="right">ส่วนของนักศึกษา <br>***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ</div>
-			<div align="left">ข้าพเจ้า<u> '.$row_SSD["studentName"].' </u> รหัสนักศึกษา<u> '.$row_SSD["mem_id"].' </u>  คณะ <u> '.$row_SSD["req_faculty"].' </u>  สาขาวิขา <u> '.$row_SSD["req_branch"].' </u> ชั้นปีที่ <u> '.$row_SSD["req_classNum"].' </u>  หมายเขตที่ติดต่อได้สะดวก <u> '.$row_SSD["mem_tel"].' </u>ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <br>';
+			<!--  <hr style="border:2px dashed "> -->
+			<div align="right">
+			--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br><u>ส่วนของนักศึกษา </u> <br>***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ</div>
+			<div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ข้าพเจ้า<u> '.$row_SSD["studentName"].' </u> รหัสนักศึกษา<u> '.$row_SSD["mem_id"].' </u>  คณะ <u> '.$row_SSD["mem_faculty"].' </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].' </u> ชั้นปีที่ <u> '.$row_SSD["req_classNum"].' </u>  หมายเหตุที่ติดต่อได้สะดวก <u> '.$row_SSD["mem_tel"].' </u>ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <br>';
 				for($i=0;$i < count($row_SSD['course']); $i++){
-					$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u></u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
+					$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u>".$row_SSD['course'][$i]['rc_group']. "</u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
 				}
 				$html.='</div><i align="right">	..........................................................................<br>
 				(วันที่รับคำร้อง....................................................)<br>

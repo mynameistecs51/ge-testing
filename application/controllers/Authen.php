@@ -5,7 +5,7 @@ class Authen extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ctl = 'Authen/';
+		$this->ctl = 'authen/';
 		$this->load->model('mdl_authen','',TRUE);
 		$this->load->library('session');
 	}
@@ -29,7 +29,7 @@ class Authen extends CI_Controller {
 				break;
 				redirect('dashboard/admin','refresh');
 				default:
-				redirect('Student','refresh');
+				redirect('student','refresh');
 				break;
 			}
 		}
@@ -61,7 +61,7 @@ class Authen extends CI_Controller {
 
 		$this->mdl_authen->insertRegis($dataRegis);
 		$massage = 'สมัครสมาชิกสำเร็จ';
-		$url = 'Authen/';
+		$url = 'authen/';
 		$this->alert($massage,$url);
 		exit();
 	}
@@ -72,7 +72,7 @@ class Authen extends CI_Controller {
 		$this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean|callback_check_database');
 		if($this->form_validation->run() === FALSE){
 			$massage = "ลงชื่อเข้าใช้ระบบผิดพลาด !!";
-			$url = "Authen/";
+			$url = "authen/";
 			$this->alert($massage,$url);
 			exit();
 		}else{
@@ -86,7 +86,7 @@ class Authen extends CI_Controller {
 				break;
 				redirect('dashboard/admin','refresh');
 				default:
-				redirect('Student','refresh');
+				redirect('student','refresh');
 				break;
 			}
 		}
@@ -110,13 +110,13 @@ class Authen extends CI_Controller {
 					'mem_email' => $rowResult->mem_email,
 					'mem_faculty' => $rowResult->mem_faculty,
 					'mem_branch' => $rowResult->mem_branch,
-					'mem_tel' => $rowResult->mem_tel,
+					// 'mem_tel' => $rowResult->mem_tel,
 					);
 				$this->session->set_userdata($sess_array);
 			}
 		}else{
 			$massage = "อีเมลล์ หรือ รหัสผ่าน ผิดพลาด !!";
-			$url = '/Authen/';
+			$url = '/authen/';
 			$this->alert($massage,$url);
 			exit();
 		}
@@ -124,8 +124,8 @@ class Authen extends CI_Controller {
 
 	public function mainPage($SCREENNAME)
 	{
-		$this->data['header'] = $this->template_student->getHeader($SCREENNAME);
-		$this->data['footer'] = $this->template_student->getFooter();
+		$this->data['header'] = $this->template_student->getHeader($SCREENNAME,base_url());
+		$this->data['footer'] = $this->template_student->getFooter(base_url());
 	}
 
 	public function logOut()
@@ -138,7 +138,7 @@ class Authen extends CI_Controller {
 		$this->session->unset_userdata('mem_stus');
 		$this->session->sess_destroy();
 
-		redirect('Authen','refresh');
+		redirect('authen','refresh');
 	}
 
 

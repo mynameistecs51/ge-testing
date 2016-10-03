@@ -21,7 +21,7 @@
 			<div class="panel-body">
 				<div class="form_input  col-sm-12">
 					<div class="containner">
-						<?php echo form_open('Authen/insertRegis'); ?>
+						<?php echo form_open('authen/insertRegis'); ?>
 						<div class="form-group">
 							<div class="text-header"><b style="color:#000;"><h3>.::LOGIN::.</h3></b></div>
 							<div class="col-sm-4">

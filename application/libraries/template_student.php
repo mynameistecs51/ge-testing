@@ -8,9 +8,10 @@ class Template_student
 	public function __construct()
 	{
 		$this->ci =& get_instance();
+
 	}
 
-	public function getHeader($SCREENNAME)
+	public function getHeader($SCREENNAME,$base_url)
 	{
 		return'
 		<!DOCTYPE html>
@@ -26,37 +27,37 @@ class Template_student
 			<title>'.$SCREENNAME.'</title>
 
 			<!-- Bootstrap Core CSS -->
-			<link href="'.base_url().'assets/css/bootstrap.css" rel="stylesheet">
-			<link href="'.base_url().'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
+			<link href="'.$base_url.'assets/css/bootstrap.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" >
 
 
 			<!-- Custom CSS -->
-			<link href="'.base_url().'assets/css/portfolio-item.css" rel="stylesheet">
-			<link href="'.base_url().'assets/css/main.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/css/portfolio-item.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/css/main.css" rel="stylesheet">
 
 			<!-- jQuery -->
-			<script src="'.base_url().'assets/js/jquery.js"></script>
+			<script src="'.$base_url.'assets/js/jquery.js"></script>
 
 
 			<!-- Bootstrap Core JavaScript -->
-			<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
+			<script src="'.$base_url.'assets/js/bootstrap.min.js"></script>
 
 			<!-- datePicker -->
-			<link href="'.base_url().'assets/datepicker/jquery-ui.css" rel="stylesheet">
-			<script src="'.base_url().'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
-			<script src="'.base_url().'assets/datepicker/jquery-ui-datepicker-th.js"></script>
+			<link href="'.$base_url.'assets/datepicker/jquery-ui.css" rel="stylesheet">
+			<script src="'.$base_url.'assets/datepicker/jquery-ui-1.10.3.custom.js"></script>
+			<script src="'.$base_url.'assets/datepicker/jquery-ui-datepicker-th.js"></script>
 
 			<!-- time picker -->
-			<!--	<link href="'.base_url().'assets/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-			<script src="'.base_url().'assets/timepicker/bootstrap-timepicker.min.js"></script> -->
+			<!--	<link href="'.$base_url.'assets/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+			<script src="'.$base_url.'assets/timepicker/bootstrap-timepicker.min.js"></script> -->
 
 			<!-- datetime picker -->
-			<link href="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
-			<script src="'.base_url().'assets/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+			<link href="'.$base_url.'assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+			<script src="'.$base_url.'assets/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 			<!-- select picker -->
-			<link href="'.base_url().'assets/selectpicker/bootstrap-select.min.css" rel="stylesheet">
-			<script src="'.base_url().'assets/selectpicker/bootstrap-select.min.js"></script>
+			<link href="'.$base_url.'assets/selectpicker/bootstrap-select.min.css" rel="stylesheet">
+			<script src="'.$base_url.'assets/selectpicker/bootstrap-select.min.js"></script>
 
 		</head>
 
@@ -76,7 +77,7 @@ class Template_student
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
-						'.$this->menu().'
+						'.$this->menu($base_url).'
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -85,7 +86,7 @@ class Template_student
 			';
 		}
 
-		public function  getFooter()
+		public function  getFooter($base_url)
 		{
 			return '
 			<!-- Footer -->
@@ -100,7 +101,7 @@ class Template_student
 		</div>
 		<!-- /.container -->
 
-		<script src="'.base_url().'assets/js/bootstrap-hover-dropdown.min.js"></script>
+		<script src="'.$base_url.'assets/js/bootstrap-hover-dropdown.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				$(".dropdown-toggle").dropdownHover({delay:0});	//menuhover
@@ -114,18 +115,16 @@ class Template_student
 	';
 }
 
-public function menu()
+public function menu($base_url)
 {
 	if($this->ci->session->userdata('id_member') == null){
 		return '
 		<ul class="nav navbar-nav">
 			<!-- <li><a href="#">คำร้องขอสอบกรณีพิเศษ</a></li> -->
 			<li>
-				'.anchor('Authen/regis', 'สมัครสมาชิก').'
+				'.anchor('authen/regis', 'สมัครสมาชิก').'
 			</li>
-			<li>
-				'.anchor('Authen', 'LOGIN', '').'
-			</li>
+			<li>'.anchor('authen', 'LOGIN', '').'</li>
 		</ul>
 		';
 	}else{
@@ -137,10 +136,10 @@ public function menu()
 			<li role="presentation" class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'.$this->ci->session->userdata('mem_name').'<span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu" style=" background-color:#000000;">
+				<ul class="dropdown-menu" style=" background-color:gray;">
 					<li>'.anchor('#', 'แก้ไขคำร้อง', 'class="page-scroll"').'</li>
-					<li>'.anchor('Student/printPDF/', 'PRINT PDF', 'class="page-scroll"').'</li>
-					<li>'.anchor('Authen/logOut/', 'LOGOUT').'</li>
+					<li>'.anchor('student/printPDF/', 'PRINT PDF', 'class="page-scroll"').'</li>
+					<li>'.anchor('authen/logOut/', 'LOGOUT').'</li>
 				</ul>
 			</li>
 		</ul>
