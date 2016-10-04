@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('tcpdf','database','template_student','form_validation','session');
+$autoload['libraries'] = array('tcpdf','database','template_student','template_admin','form_validation','session');
 
 
 /*

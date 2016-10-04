@@ -80,7 +80,7 @@ foreach ($reqDetail as $key => $row_SSD) :
 	</tr>
 	<tr >
 		<td  align="justify"   width="100%">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["mem_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> 	ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u>  หมู่เรียนที่  <u> '.$row_SSD["req_group"].' </u> ซึ่งเป็นการสอบในรายวิชา <br>';
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["mem_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> 	ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u>  ซึ่งเป็นการสอบในรายวิชา <br>';
 			for($i=0;$i < count($row_SSD['course']); $i++){
 				$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u> ".$row_SSD['course'][$i]['rc_group']. " </u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
 			}

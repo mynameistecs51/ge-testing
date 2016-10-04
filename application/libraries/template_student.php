@@ -138,7 +138,7 @@ public function menu($base_url)
 				</a>
 				<ul class="dropdown-menu" style=" background-color:gray;">
 					<li>'.anchor('#', 'แก้ไขคำร้อง', 'class="page-scroll"').'</li>
-					<li>'.anchor('student/printPDF/', 'PRINT PDF', 'class="page-scroll"').'</li>
+					<li>'.anchor('student/printPDF/', 'PRINT PDF', 'class="page-scroll"  target="_blank"').'</li>
 					<li>'.anchor('authen/logOut/', 'LOGOUT').'</li>
 				</ul>
 			</li>
