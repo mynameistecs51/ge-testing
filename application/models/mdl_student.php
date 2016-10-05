@@ -32,7 +32,8 @@ class Mdl_student extends CI_Model {
 	public function studentSelect_course($id_member)
 	{
 		$sql = "
-		SELECT	requestion.id_req,
+		SELECT
+		requestion.id_req,
 		CONCAT((CASE member.mem_preName
 		WHEN 1 THEN 'นาย'
 		WHEN 2 THEN 'นาง'

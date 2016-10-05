@@ -66,7 +66,7 @@ class Template_admin
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.html">ge-testing</a>
+						<a class="navbar-brand" href="'.base_url().'">ge-testing</a>
 					</div>
 					<!-- Top Menu Items -->
 					<ul class="nav navbar-right top-nav">
@@ -170,8 +170,8 @@ class Template_admin
 						</li>
 					</ul>
 					<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-					<div class="collapse navbar-collapse navbar-ex1-collapse">
-						<ul class="nav navbar-nav side-nav">
+					<div class="collapse navbar-collapse navbar-ex1-collapse ">
+						<ul class="nav navbar-nav side-nav col-sm-2">
 							<li class="active">
 								<a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
 							</li>
@@ -218,14 +218,13 @@ class Template_admin
 
 						<!-- Page Heading -->
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-sm-12">
 								<h1 class="page-header">
 									'.$SCREENNAME.'<!-- <small>ของผู้ยื่นคำร้องขอสอบ</small> -->
 								</h1>
 							</div>
 						</div>
 						<!-- /.row -->
-
 						';
 					}
 

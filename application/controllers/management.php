@@ -19,14 +19,23 @@ class Management extends CI_Controller {
 		$this->load->view($PAGE,$this->data);
 	}
 
-public function mainPage($SCREENNAME)
-{
-	$this->data['controller'] = $this->ctl;
-	$this->data['header'] = $this->template_admin->getHeader($SCREENNAME);
-	$this->data['footer'] = $this->template_admin->getFooter();
-}
+	public function mainPage($SCREENNAME)
+	{
+		$this->data['controller'] = $this->ctl;
+		$this->data['header'] = $this->template_admin->getHeader($SCREENNAME);
+		$this->data['footer'] = $this->template_admin->getFooter();
+	}
 
-
+	public function getCourse($id_course)
+	{
+		$SCREENNAME = 'ข้อมูลทั่วไป';
+		$PAGE = 'management';
+		$this->mainPage($SCREENNAME);
+		$this->data['getCourse'] = $this->mdl_management->getCourse();
+		$this->data['getGroup'] = $this->mdl_management->getGroup();
+		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
+		$this->load->view($PAGE,$this->data);
+	}
 
 }
 
