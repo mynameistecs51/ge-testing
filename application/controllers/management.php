@@ -5,22 +5,28 @@ class Management extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
+		$this->load->model('mdl_management');
+		$this->ctl = "management";
 	}
 
 	public function index()
 	{
 		$SCREENNAME = 'ข้อมูลทั่วไป';
 		$PAGE = 'management';
-		$this->mainPage();
+		$this->mainPage($SCREENNAME);
+		$this->data['getCourse'] = $this->mdl_management->getCourse();
+		$this->data['getGroup'] = $this->mdl_management->getGroup();
 		$this->load->view($PAGE,$this->data);
 	}
 
-public function mainPage()
+public function mainPage($SCREENNAME)
 {
-	$this->data['header'] = $this->template_admin->getHeader();
+	$this->data['controller'] = $this->ctl;
+	$this->data['header'] = $this->template_admin->getHeader($SCREENNAME);
 	$this->data['footer'] = $this->template_admin->getFooter();
 }
+
+
 
 }
 

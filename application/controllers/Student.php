@@ -85,13 +85,8 @@ class Student extends CI_Controller {
 				);
 			$this->mdl_student->insertReqCourse($selectCourse[$i]);
 		}
-		// echo "<pre>";
-		// print_r($selectCourse);
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
-		// print_r($dataDetail);
-		// print_r($dataRequestion);echo "<br>";
-		// print_r($selectCourse);
-		// $this->load->view('tcpdf',$dataDetail);
+
 		redirect($this->ctl.'/printPDF','refresh');
 	}
 

@@ -10,7 +10,7 @@ class Template_admin
 		$this->ci =& get_instance();
 	}
 
-	public function getHeader()
+	public function getHeader($SCREENNAME)
 	{
 		return '
 		<!DOCTYPE html>
@@ -220,178 +220,30 @@ class Template_admin
 						<div class="row">
 							<div class="col-lg-12">
 								<h1 class="page-header">
-									ข้อมูลทั่วไป <small>ของผู้ยื่นคำร้องขอสอบ</small>
+									'.$SCREENNAME.'<!-- <small>ของผู้ยื่นคำร้องขอสอบ</small> -->
 								</h1>
 							</div>
 						</div>
 						<!-- /.row -->
 
-						<!-- <div class="row">
-						<a href="dashboard">
-							<div class="col-lg-3 col-md-6">
-								<div class="panel panel-primary">
-									<div class="panel-heading">
-										<div class="row">
-											<div class="col-xs-3">
-												<i class="fa fa-comments fa-5x"></i>
-											</div>
-											<div class="col-xs-9 text-right" >
-												<div class="huge"><h4>กลุ่มวิชาภาษาศาสตร์</h4></div>
-												<div>New Comments!</div>
-											</div>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<span class="pull-left">View Details</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						</a>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel panel-green">
-								<div class="panel-heading">
-									<div class="row">
-										<div class="col-xs-3">
-											<i class="fa fa-link fa-5x"></i>
-										</div>
-										<div class="col-xs-9 text-right">
-											<div class="huge"><h4>กลุ่มวิชาสังคมศาสตร์</h4></div>
-											<div>New Tasks!</div>
-										</div>
-									</div>
-								</div>
-								<a href="#">
-									<div class="panel-footer">
-										<span class="pull-left">View Details</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel panel-yellow">
-								<div class="panel-heading">
-									<div class="row">
-										<div class="col-xs-3">
-											<i class="fa fa-users fa-5x"></i>
-										</div>
-										<div class="col-xs-9 text-right">
-											<div class="huge"><h4>กลุ่มวิชาวมนุษย์ศาสตร์</h4></div>
-											<div>New Orders!</div>
-										</div>
-									</div>
-								</div>
-								<a href="#">
-									<div class="panel-footer">
-										<span class="pull-left">View Details</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel panel-red">
-								<div class="panel-heading">
-									<div class="row">
-										<div class="col-xs-3">
-											<i class="fa fa-cloud-upload fa-5x"></i>
-										</div>
-										<div class="col-xs-9 text-right">
-											<div class="huge"><h4>กลุ่มวิชาวิทยาศาสตร์และเทคโนโลยี</h4></div>
-											<div>Support Tickets!</div>
-										</div>
-									</div>
-								</div>
-								<a href="#">
-									<div class="panel-footer">
-										<span class="pull-left">View Details</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div> -->
-					<!-- /.row -->
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="dropdown ">
-								<button class="btn btn-primary dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-									กลุ่มวิชาภาษาศาสตร์
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-									<li><a href="#"> ภาษาไทยเพื่อการสื่อสาร</a></li>
-									<li><a href="#">ภาษาอังกฤษเพื่อการสื่อสาร</a></li>
-									<li><a href="#">การอ่านและการเขียนภาษาอังกฤษเพื่อวัตถุประสงค์ทั่วไป</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="dropdown">
-								<button class="btn btn-warning dropdown-toggle col-sm-12" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-									กลุ่มวิชาสังคมศาสตร์
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-									<li><a href="#">จริยธรรมกับชีวิต</a></li>
-									<li><a href="#">สุนทรียภาพเพื่อชีวิต</a></li>
-									<li><a href="#">พฤติกรรมมนุษย์กับการพัฒนาตน</a></li>
-									<li><a href="#">การรู้สารสนเทศ</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="dropdown">
-								<button class="btn btn-success dropdown-toggle col-sm-12" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-									กลุ่มวิชามนุษย์ศาสตร์
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-									<li><a href="#">สังคมวัฒนธรรมไทยและภูมิปัญญาท้องถิ่น</a></li>
-									<li><a href="#">วิถีโลก </a></li>
-									<li><a href="#">กฎหมายเพื่อชีวิตและสิทธิมนุษยชน</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="dropdown">
-								<button class="btn btn-danger dropdown-toggle col-sm-12" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-									กุล่มวิชาวิทยาศาสตร์และเทคโนโลยี
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-									<li><a href="#">ชีวิตกับสิ่งแวดล้อม</a></li>
-									<li><a href="#">วิทยาศาสตร์เพื่อคุณภาพชีวิต</a></li>
-									<li><a href="#">การคิดและการตัดสินใจ</a></li>
-									<li><a href="#">เทคโนโลยีสารสนเทศเพื่อการเรียนรู้</a></li>
-								</ul>
-							</div>
-						</div>
+						';
+					}
+
+					public function getFooter()
+					{
+						return'
 					</div>
-					<div class="col-sm-12"><br></div>
-					';
-				}
-
-				public function getFooter()
-				{
-					return'
+					<!-- /.container-fluid -->
 				</div>
-				<!-- /.container-fluid -->
+				<!-- /#page-wrapper -->
 			</div>
-			<!-- /#page-wrapper -->
-		</div>
-		<!-- /#wrapper -->
+			<!-- /#wrapper -->
 
-	</body>
+		</body>
 
-	</html>
-	';
-}
+		</html>
+		';
+	}
 
 }
 
