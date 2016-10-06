@@ -173,7 +173,7 @@ class Template_admin
 					<div class="collapse navbar-collapse navbar-ex1-collapse ">
 						<ul class="nav navbar-nav side-nav col-sm-2">
 							<li class="active">
-								<a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+								'.anchor('management', '<i class="fa fa-fw fa-dashboard"></i>  ทั่วไป').'
 							</li>
 							<li>
 								<a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>

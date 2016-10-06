@@ -16,6 +16,7 @@ class Management extends CI_Controller {
 		$this->mainPage($SCREENNAME);
 		$this->data['getCourse'] = $this->mdl_management->getCourse();
 		$this->data['getGroup'] = $this->mdl_management->getGroup();
+		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($this->data['getCourse'][0]['id_course']);
 		$this->load->view($PAGE,$this->data);
 	}
 

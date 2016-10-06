@@ -38,7 +38,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><label><i class="fa fa-user pull-left"></i> จำนวนนักศึกษาที่ขอสอบกรณีพิเศษ</label><button class="btn btn-info pull-right"><i class="fa fa-file-pdf-o"></i>  exportPDF</button></h3>
+				<h3 class="panel-title"><label><i class="fa fa-user pull-left"></i> จำนวนนักศึกษาที่ขอสอบกรณีพิเศษวิชา  <u><?php echo $courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:''; ?></u></label><button class="btn btn-info pull-right"><i class="fa fa-file-pdf-o"></i>  exportPDF</button></h3>
 			</div>
 			<div class="panel-body">
 				<table id="example" class="display" width="100%" cellspacing="0">
