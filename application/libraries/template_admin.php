@@ -24,12 +24,12 @@ class Template_admin
 			<meta name="description" content="">
 			<meta name="author" content="">
 
-			<title>ADMIN</title>
+			<title>'.$SCREENNAME.'</title>
 
 			<!-- Bootstrap Core CSS -->
 			<link href="'.base_url().'assets/css/bootstrap.min.css" rel="stylesheet">
 			<link href="'.base_url().'assets/bootstrap-table/jquery.dataTables.min.css" rel="stylesheet">
-
+			<link href="'.base_url().'assets/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
 			<!-- Custom CSS -->
 			<link href="'.base_url().'assets/css/sb-admin.css" rel="stylesheet">
 
@@ -42,6 +42,8 @@ class Template_admin
 			<!-- Bootstrap Core JavaScript -->
 			<script src="'.base_url().'assets/js/bootstrap.min.js"></script>
 			<script src="'.base_url().'assets/bootstrap-table/jquery.dataTables.min.js"></script>
+			<script src="'.base_url().'assets/bootstrap-switch/bootstrap-switch.min.js"></script>
+
 
 			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
@@ -70,7 +72,8 @@ class Template_admin
 					</div>
 					<!-- Top Menu Items -->
 					<ul class="nav navbar-right top-nav">
-						<li class="dropdown">
+						<!--
+						 <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
 							<ul class="dropdown-menu message-dropdown">
 								<li class="message-preview">
@@ -150,8 +153,11 @@ class Template_admin
 								</li>
 							</ul>
 						</li>
+
+						///   End comment /// -->
+
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>'.$this->ci->session->userdata('mem_name').'<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li>
 									<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -163,9 +169,7 @@ class Template_admin
 									<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
 								</li>
 								<li class="divider"></li>
-								<li>
-									<a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-								</li>
+								<li>'.anchor('authen/logOut/', '<i class="fa fa-fw fa-power-off"></i> Log Out').'</li>
 							</ul>
 						</li>
 					</ul>
@@ -175,6 +179,10 @@ class Template_admin
 							<li class="active">
 								'.anchor('management', '<i class="fa fa-fw fa-dashboard"></i>  ทั่วไป').'
 							</li>
+							<li>
+								'.anchor('management/mnm_user/','<i class="fa fa-fw fa-user"></i> จัดการ User').'
+							</li>
+							<!--
 							<li>
 								<a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
 							</li>
@@ -207,42 +215,43 @@ class Template_admin
 							<li>
 								<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
 							</li>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</nav>
-
-				<div id="page-wrapper">
-
-					<div class="container-fluid">
-
-						<!-- Page Heading -->
-						<div class="row">
-							<div class="col-sm-12">
-								<h1 class="page-header">
-									'.$SCREENNAME.'<!-- <small>ของผู้ยื่นคำร้องขอสอบ</small> -->
-								</h1>
-							</div>
-						</div>
-						<!-- /.row -->
-						';
-					}
-
-					public function getFooter()
-					{
-						return'
-					</div>
-					<!-- /.container-fluid -->
+						-->
+					</ul>
 				</div>
-				<!-- /#page-wrapper -->
+				<!-- /.navbar-collapse -->
+			</nav>
+
+			<div id="page-wrapper">
+
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div class="row">
+						<div class="col-sm-12">
+							<h1 class="page-header">
+								'.$SCREENNAME.'<!-- <small>ของผู้ยื่นคำร้องขอสอบ</small> -->
+							</h1>
+						</div>
+					</div>
+					<!-- /.row -->
+					';
+				}
+
+				public function getFooter()
+				{
+					return'
+				</div>
+				<!-- /.container-fluid -->
 			</div>
-			<!-- /#wrapper -->
+			<!-- /#page-wrapper -->
+		</div>
+		<!-- /#wrapper -->
 
-		</body>
+	</body>
 
-		</html>
-		';
-	}
+	</html>
+	';
+}
 
 }
 

@@ -84,6 +84,34 @@ class Mdl_management extends CI_Model {
 		$query = $this->db->query($sql)->result_array();
 		return $query;
 	}
+
+	public function memberStatus()
+	{
+		$sql = "
+		SELECT
+		id_member,
+		CONCAT((CASE mem_preName
+		WHEN 1 THEN 'นาย'
+		WHEN 2 THEN 'นาง'
+		WHEN 3 THEN 'นางสาว'
+		END),' ',mem_name,' ',mem_lastname) AS mem_name,
+		mem_faculty,
+		mem_branch,
+		mem_status
+		FROM
+			member
+		";
+		$dataMember = $this->db->query($sql)->result_array();
+		return $dataMember;
+	}
+
+	public function updateMemberStatus($status)
+	{
+		$id_member = $this->input->post('id_member');
+
+		$updateStatus = $this->db->query('UPDATE member SET mem_status ="'.$status.'" WHERE id_member ="'.$id_member.'" ');
+		return true;
+	}
 }
 
 /* End of file mdl_management.php */

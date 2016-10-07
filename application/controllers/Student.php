@@ -26,11 +26,11 @@ class Student extends CI_Controller {
 	public function mainPage($SCREENNAME)
 	{
 		$this->data['courseData'] = $this->mdl_student->getCourseAll();
+		$this->data['preName'] = $this->session->userdata('mem_preName');
 		$this->data['name'] = $this->session->userdata('mem_name');
 		$this->data['lastname'] = $this->session->userdata('mem_lastname');
 		$this->data['mem_id'] = $this->session->userdata('mem_id');
 		$this->data['mem_tel'] = $this->session->userdata('mem_tel');
-		$this->data['preName'] = $this->session->userdata('mem_preName');
 		$this->data['id_member'] = $this->session->userdata('id_member');
 		$this->data['mem_email'] = $this->session->userdata('mem_email');
 		$this->data['mem_faculty'] = $this->session->userdata('mem_faculty');

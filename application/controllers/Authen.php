@@ -22,12 +22,13 @@ class Authen extends CI_Controller {
 			$session_data = $this->session->userdata('mem_status');
 			switch ($session_data) {
 				case '1':
-				redirect('dashboard/teacher','refresh');
+				redirect('management/management','refresh');
 				break;
 				case '2':
-				redirect('dashboard/headGroup','refresh');
+				redirect('management/headGroup','refresh');
 				break;
-				redirect('dashboard/admin','refresh');
+				case '3':
+				redirect('management/admin','refresh');
 				default:
 				redirect('student','refresh');
 				break;
@@ -79,12 +80,13 @@ class Authen extends CI_Controller {
 			$session_data = $this->session->userdata('mem_status');
 			switch ($session_data) {
 				case '1':
-				redirect('dashboard/teacher','refresh');
+				redirect('management/management','refresh');
 				break;
 				case '2':
-				redirect('dashboard/headGroup','refresh');
+				redirect('management/headGroup','refresh');
 				break;
-				redirect('dashboard/admin','refresh');
+				case '3':
+				redirect('management/admin','refresh');
 				default:
 				redirect('student','refresh');
 				break;

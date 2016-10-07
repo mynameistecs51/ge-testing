@@ -23,6 +23,9 @@ class Management extends CI_Controller {
 	public function mainPage($SCREENNAME)
 	{
 		$this->data['controller'] = $this->ctl;
+		$this->data['preName'] = $this->session->userdata('mem_preName');
+		$this->data['name'] = $this->session->userdata('mem_name');
+		$this->data['lastname'] = $this->session->userdata('mem_lastname');
 		$this->data['header'] = $this->template_admin->getHeader($SCREENNAME);
 		$this->data['footer'] = $this->template_admin->getFooter();
 	}
@@ -36,6 +39,28 @@ class Management extends CI_Controller {
 		$this->data['getGroup'] = $this->mdl_management->getGroup();
 		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
 		$this->load->view($PAGE,$this->data);
+	}
+
+	public function mnm_user($value='')
+	{
+		$SCREENNAME = "จัดการข้อมูล ผู้ใช้";
+		$PAGE = 'mnmUser';
+		$this->mainPage($SCREENNAME);
+		$this->data['dataMember'] = $this->mdl_management->memberStatus();
+		$this->load->view($PAGE,$this->data);
+	}
+
+	public function updateStatus()
+	{
+		$my_status = $this->input->post('my-checkbox');
+		if($my_status === "on"){
+			$update_status = $this->m_main->updateMemberStatus($status = "1");
+			// echo  $update_status;
+			// print_r($update_status);
+		}else{
+			$update_status = $this->m_main->updateMemberStatus($status = "0");
+			// echo  $update_status;
+		}
 	}
 
 }
