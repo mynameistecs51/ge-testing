@@ -52,17 +52,23 @@ class Management extends CI_Controller {
 
 	public function updateStatus()
 	{
+		// $id_member = $this->input->post('id_member');
 		$my_status = $this->input->post('my-checkbox');
 		if($my_status === "on"){
-			$update_status = $this->m_main->updateMemberStatus($status = "1");
+			$update_status = $this->mdl_management->updateMemberStatus($status = "1");
 			// echo  $update_status;
 			// print_r($update_status);
 		}else{
-			$update_status = $this->m_main->updateMemberStatus($status = "0");
+			$update_status = $this->mdl_management->updateMemberStatus($status = "0");
 			// echo  $update_status;
 		}
 	}
 
+	public function exportReport($id_course)
+	{
+		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
+		$this->load->view('exportReport',$this->data);
+	}
 }
 
 /* End of file dashboard.php */

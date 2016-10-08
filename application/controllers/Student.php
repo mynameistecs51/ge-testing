@@ -100,7 +100,7 @@ class Student extends CI_Controller {
 	public function printPDF()
 	{
 		$data_array = array();
-		//SSL = StudentSelectDetail
+		//SSD = StudentSelectDetail
 		foreach ($this->mdl_student->studentSelect_course($this->session->userdata('id_member')) as $key => $row_SSD) {
 			if(isset($data_array[$row_SSD->id_member])){
 				array_push($data_array[$row_SSD->id_member]['course'],

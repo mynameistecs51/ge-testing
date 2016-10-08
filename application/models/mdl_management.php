@@ -68,6 +68,7 @@ class Mdl_management extends CI_Model {
 		requestion_course.rc_teacher,
 		CONCAT(DATE_FORMAT(requestion_course.rc_date,'%d'),'/',DATE_FORMAT(requestion_course.rc_date,'%m'),'/',DATE_FORMAT(requestion_course.rc_date,'%Y')+543) AS rc_date,
 		requestion_course.rc_time,
+		course.id_course,
 		course.course_id,
 		course.course_name,
 		groupcourse.group_name
@@ -112,6 +113,7 @@ class Mdl_management extends CI_Model {
 		$updateStatus = $this->db->query('UPDATE member SET mem_status ="'.$status.'" WHERE id_member ="'.$id_member.'" ');
 		return true;
 	}
+
 }
 
 /* End of file mdl_management.php */

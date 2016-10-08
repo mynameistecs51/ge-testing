@@ -30,7 +30,7 @@
 						<div class="form-group">
 							<label for="loginPassword" class="col-sm-3	control-label"><h4>รหัสผ่าน</h4></label>
 							<div class="col-sm-8">
-								<input type="password" class="form-control col-sm-12 input-lg" id="loginPassword" name="loginPassword"  required title="กรุณากรอกข้อมูล">
+								<input type="password" class="form-control col-sm-12 input-lg" id="loginPassword" name="loginPassword" value="....." required title="กรุณากรอกข้อมูล">
 							</div>
 						</div>
 						<!-- <div class="col-sm-12  " > -->

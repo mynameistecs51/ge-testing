@@ -21,8 +21,10 @@
 						<td><?php echo $rowMember['mem_branch']; ?></td>
 						<?php $check = ($rowMember['mem_status'] == '0')?'':'checked'; ?>
 						<td>
-							<input type="hidden" name="id_member" value="<?php echo $rowMember['id_member']; ?>">
-							<input type="checkbox" name="my-checkbox" <?php echo $check; ?> >
+							<form>
+								<input type="hidden" name="id_member" value="<?php echo $rowMember['id_member']; ?>">
+								<input type="checkbox" name="my-checkbox" <?php echo $check; ?> >
+							</form>
 						</td>
 					</tr>
 				<?php endforeach; ?>
@@ -39,37 +41,34 @@
 		// } );
 
 		$("[name='my-checkbox']").bootstrapSwitch({onSwitchChange:function(e,s){
+
 			if(s){
-				alert($(this).closest('row>td').serialize());
+				$.ajax({
+					// url: "<?php echo site_url('/manage_status');?>",
+					url: "<?php echo base_url('management/updateStatus'); ?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("อัพเดทสถานะแล้ว");
+					//alert(data);
+				});
 			}else{
-				alert("NO");
+				$.ajax({
+					// url: "<?php echo site_url('/manage_status');?>",
+					url: "<?php echo base_url('management/updateStatus'); ?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("ยกเลิกสถานะแล้ว");
+					// alert(data);
+				});
 			}
-			/*
-				if(s){
-					$.ajax({
-						url: "<?php echo site_url('main/manage_status');?>",
-						type: "POST",
-						data: $(this).closest('form').serialize(),
-					}).success(function(data){
-						alert("อัพเดทสถานะแล้ว");
-										//alert(data);
-									});
-				}else{
-					$.ajax({
-						url: "<?php echo site_url('main/manage_status');?>",
-						type: "POST",
-						data: $(this).closest('form').serialize(),
-					}).success(function(data){
-						alert("ยกเลิกสถานะแล้ว");
-											// alert(data);
-										});
-				}
-				*/
-			},
-			onText:'อาจารย์',
-			offText:'ทั่วไป',
-			labelWidth:'1px'
-		});
+
+		},
+		onText:'อาจารย์',
+		offText:'ทั่วไป',
+		labelWidth:'1px'
+	});
 	} );
 </script>
 <?php echo $footer;?>

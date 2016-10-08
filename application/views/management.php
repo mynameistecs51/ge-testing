@@ -25,7 +25,7 @@
 								<?php echo '<li>'. anchor('management/getCourse/'.$rowCourse['id_course'], $rowCourse['course_name']) .'</li>'; ?>
 							<?php endif; ?>
 
-						<?php endforeach ?>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>
@@ -38,7 +38,13 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><label><i class="fa fa-user pull-left"></i> จำนวนนักศึกษาที่ขอสอบกรณีพิเศษวิชา  <u><?php echo $courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:''; ?></u></label><button class="btn btn-info pull-right btn-sm"><i class="fa fa-file-pdf-o"></i>  exportPDF</button></h3>
+				<h3 class="panel-title">
+					<label><i class="fa fa-user pull-left"></i> จำนวนนักศึกษาที่ขอสอบกรณีพิเศษวิชา
+						<u><?php echo $courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:''; ?></u>
+					</label>
+					<?php echo anchor('management/exportReport/'.$courseName = (isset($getDataCourse[0]['id_course'] ))?$getDataCourse[0]['id_course']:'', '<i class="fa fa-file-pdf-o"></i>  Eport PDF', 'class="btn btn-info pull-right btn-sm" target="_blank"'); ?>
+					<!-- <button > exportPDF</button> -->
+				</h3>
 			</div>
 			<div class="panel-body">
 				<table id="example" class="display" width="100%" cellspacing="0" style="background-color:#D8D8D8;">
@@ -48,7 +54,7 @@
 							<th class='text-center'>ชื่อ - สกุล</th>
 							<th class='text-center'>คณะ</th>
 							<th class='text-center'>สาขา</th>
-							<th class='text-center col-sm'>หมู่ที่</th>
+							<th class='col-sm-1 text-center col-sm'>หมู่ที่</th>
 							<th class='col-sm-1 text-center'>ว / ด / ป</th>
 							<th class='col-sm-1 text-center'>เวลา</th>
 							<th class='col-sm-1 text-center'>หมายเหตุ</th>
@@ -63,7 +69,7 @@
 								<td ><?php echo $rowDataCourse['studentName']; ?></td>
 								<td><?php echo $rowDataCourse['mem_faculty']; ?></td>
 								<td><?php echo $rowDataCourse['mem_branch']; ?></td>
-								<td class='col-sm-1 text-center'><?php echo $rowDataCourse['rc_group']; ?></td>
+								<td class=' text-center'><?php echo $rowDataCourse['rc_group']; ?></td>
 								<td><?php echo $rowDataCourse['rc_date']; ?></td>
 								<td><?php echo $rowDataCourse['rc_time']; ?></td>
 								<td></td>

@@ -76,7 +76,7 @@ class Template_student
 						<a class="navbar-brand" >สำนักวิชาการศึกษาทั่วไป</a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse pull-right " id="bs-example-navbar-collapse-1" style="margin-right:-80px;">
 						'.$this->menu($base_url).'
 					</div>
 					<!-- /.navbar-collapse -->
@@ -129,7 +129,7 @@ public function menu($base_url)
 		';
 	}else{
 		return '
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav ">
 			<li>
 				<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
 			</li>

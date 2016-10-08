@@ -13,9 +13,9 @@
 	}
 </style>
 <div class="col-sm-12" style="padding-top:2%;">
-	<div class="col-sm-2">
+	<div class="col-sm-1">
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-10">
 		<div class="panel panel-primary">
 			<div class="panel-heading" style="text-align:left;"><b>สมัครสมาชิก</b></div>
 			<div class="panel-body">

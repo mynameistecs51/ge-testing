@@ -4,9 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-/* Global Styles */
+ /* Global Styles */
 
-body {
+ body {
     margin-top: 100px;
     background-color: #222;
 }
@@ -32,9 +32,9 @@ body {
     line-height: normal;
 }
 
-@media(min-width:768px) {
+@media(min-width:768px) {  /* 768px */
     #wrapper {
-        padding-left: 225px;
+        padding-left: 160px;  /*225px;*/
     }
 
     #page-wrapper {
@@ -54,8 +54,8 @@ body {
 }
 
 .top-nav>li>a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 10px;
     line-height: 20px;
     color: #999;
 }
@@ -117,7 +117,7 @@ ul.alert-dropdown {
         position: fixed;
         top: 51px;
         left: 225px;
-        width: 225px;
+        width: 160px; /*225*/
         margin-left: -225px;
         border: none;
         border-radius: 0;
@@ -129,13 +129,16 @@ ul.alert-dropdown {
     }
 
     .side-nav>li>a {
-        width: 225px;
+        width: 160px;
+        height: 20px;
     }
 
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
         background-color: #000 !important;
+        padding-top: 10px;
+        padding-bottom: 30px;
     }
 }
 
