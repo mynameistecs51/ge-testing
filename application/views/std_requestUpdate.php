@@ -147,48 +147,60 @@
 			</div>
 			<div class="col-sm-12"></div>
 
-			<?php for($i =0;$i < count($rowRq['course']); $i++):?>
-				<div class="col-sm-4">
-					<label>ซึ่งเป็นการสอบในรายวิชา</label>
-					<p class="required">*</p>
-					<select name="courseID[]" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">
-						<?php foreach ($courseData as $rowCourse): ?>
+			<!--  show course select-->
+			<div class="col-sm-4">
+				<label>ซึ่งเป็นการสอบในรายวิชา</label>
+				<p class="required">*</p>
+				<select name="courseID[]" class="selectpicker show-tick form-control course"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">
+					<?php foreach ($courseData as $rowCourse): ?>
 
-							<option value="<?php echo $rowCourse['id_course'] ?>" <?php echo $SLC=($rowRq['course'][$i]['id_course'] == $rowCourse['id_course'])?'selected':''; ?> ><?php echo $rowCourse['course_id'].' '.$rowCourse['course_name']; ?></option>
-						<?php endforeach;?>
-					</select>
+						<option value="<?php echo $rowCourse['id_course'] ?>" <?php echo $SLC=($rowRq['course'][0]['id_course'] == $rowCourse['id_course'])?'selected':''; ?> ><?php echo $rowCourse['course_id'].' '.$rowCourse['course_name']; ?></option>
+					<?php endforeach;?>
+				</select>
+			</div>
+			<div class="col-sm-1">
+				<label>หมู่เรียนที่</label>
+				<p class="required">*</p>
+				<input type="number" min='1' max="10" name="group[]" class="form-control" value="<?php echo $rowRq['course'][0]['rc_group']; ?>">
+			</div>
+			<div class="col-sm-2">
+				<label>ในวันที่/เดือน/พ.ศ.</label>
+				<p class="required">*</p>
+				<input type="text" id='date' name="date[]" class="form-control date" value="<?php echo $rowRq['course'][0]['rc_date']; ?>"/>
+			</div>
+			<div class="col-sm-2">
+				<label>เวลา</label>
+				<p class="required">*</p>
+				<div id="time" class="input-group input-append time ">
+					<input name='time[]'  data-time-icon="icon-time" data-format="hh:mm" type="text" class='form-control ' value="<?php echo $rowRq['course'][0]['rc_time']; ?>"/>
+					<span class="input-group-addon add-on">
+						<span class="glyphicon glyphicon-time"></span>
+					</span>
 				</div>
-				<div class="col-sm-1">
-					<label>หมู่เรียนที่</label>
-					<p class="required">*</p>
-					<input type="number" min='1' max="10" name="group[]" class="form-control" value="<?php echo $rowRq['course'][$i]['rc_group']; ?>">
-				</div>
-				<div class="col-sm-2">
-					<label>ในวันที่/เดือน/พ.ศ.</label>
-					<p class="required">*</p>
-					<input type="text" id='date' name="date[]" class="form-control date" value="<?php echo $rowRq['course'][$i]['rc_date']; ?>"/>
-				</div>
-				<div class="col-sm-2">
-					<label>เวลา</label>
-					<p class="required">*</p>
-					<div id="time" class="input-group input-append time ">
-						<input name='time[]'  data-time-icon="icon-time" data-format="hh:mm" type="text" class='form-control ' value="<?php echo $rowRq['course'][$i]['rc_time']; ?>"/>
-						<span class="input-group-addon add-on">
-							<span class="glyphicon glyphicon-time"></span>
-						</span>
+			</div>
+			<div class="col-sm-2">
+				<label>ชื่ออาจารย์ประจำวิชา</label>
+				<p class="required">*</p>
+				<input type="text" name="teacher[]" class="form-control" value="<?php echo $rowRq['course'][0]['rc_teacher']; ?>">
+			</div>
+			<div class="col-sm-1">
+				<p>&nbsp;</p>
+				<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
+			</div>
+			<!-- /end show course select -->
+			<?php if(count($rowRq['course']) > 0): ?>
+				<?php for($i =1;$i < count($rowRq['course']); $i++):?>
+					<div id="add_Course<?php echo $i;?>">
+
+						<div class="col-sm-1">
+							<p>&nbsp;</p>
+							<i class="btn btn-danger del_Course" id="del_Course<?php echo $i;?>" >
+								<span class="glyphicon glyphicon glyphicon-minus"></span>
+							</i>
+						</div>
 					</div>
-				</div>
-				<div class="col-sm-2">
-					<label>ชื่ออาจารย์ประจำวิชา</label>
-					<p class="required">*</p>
-					<input type="text" name="teacher[]" class="form-control" value="<?php echo $rowRq['course'][$i]['rc_teacher']; ?>">
-				</div>
-				<div class="col-sm-1">
-					<p>&nbsp;</p>
-					<i class="btn btn-primary addCourse" id="addCourse" > <span class="glyphicon glyphicon-plus"></span></i>
-				</div>
-
-			<?php endfor; ?>
+				<?php endfor; ?>
+			<?php endif; ?>
 
 			<div class="add_Course">
 				<!-- add Course  -->
@@ -210,14 +222,17 @@
 			</div>
 			<?php if(count($evde)  > 0): ?>
 				<?php for($j =1;$j < count($evde);$j++): ?>
-
-					<div class="col-sm-5">
-						<p >โดยมีหลังฐานดังนี้ <?php echo $j+1; ?>.)</p>
-						<input type="text" class="form-control evidence" id='evidence'  name="evidence[]" value="<?php echo $evde[$j]; ?>" />
-					</div>
-					<div class="col-sm-1">
-						<p>&nbsp;</p>
-						<i class="btn btn-primary addEvidence" id="addEvidence" > <span class="glyphicon glyphicon-minus"></span></i>
+					<div  id="add_evidence<?php echo $j;?>">
+						<div class="col-sm-5">
+							<p >โดยมีหลังฐานดังนี้ <?php echo $j+1; ?>.)</p>
+							<input type="text" class="form-control evidence" id='evidence'  name="evidence[]" value="<?php echo $evde[$j]; ?>" />
+						</div>
+						<div class="col-sm-1">
+							<p>&nbsp;</p>
+							<i class="btn btn-danger delEvidence" id="delEvidence<?php echo $j;?>" >
+								<span class="glyphicon glyphicon glyphicon-minus"></span>
+							</i>
+						</div>
 					</div>
 				<?php endfor; ?>
 			<?php endif; ?>
@@ -246,9 +261,9 @@
 		$(function(){
 			//  ---- javasript custom ---//
 			addEvidence();
+			addCourse();
 			check_aboutPak();
 			check_aboutClass();
-			addCourse();
 
 			// --- core javascript ---//
 			$('.date').datepicker({
@@ -304,7 +319,7 @@
 		// --- end manage  Evidence -- //
 		// ---manage Course ---//
 		function countCourse(){
-			var numCourse = $('.courseID').length;
+			var numCourse = $('.selectpicker').length;
 			for(var Course = 0 ;Course < numCourse ; Course++){
 				delCourse(numCourse);
 			}
@@ -316,7 +331,7 @@
 				html +='<div class="col-sm-4">';
 				html +='<label>ซึ่งเป็นการสอบในรายวิชา</label>';
 				html +='<p class="required">*</p>';
-				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
+				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control course"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
 				html +='</select>';
 				html +='</div>';
 				html +='<div class="col-sm-1">';
@@ -350,6 +365,7 @@
 				html += '</div>';
 				html += '</div>';
 				$('.add_Course').append(html);
+				delCourse(numCourse);
 
 				$('#date'+numCourse).datepicker({
 					format:'dd/MM/YY',
@@ -359,7 +375,6 @@
 					pickSeconds: false,
 					pickDate: false,
 				});
-				delCourse(numCourse);
 				// getCourse on select
 				$.ajax({
 					url:'<?php echo base_url().$controller;?>/getCourseAll/',
