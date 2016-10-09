@@ -112,7 +112,7 @@ class Authen extends CI_Controller {
 					'mem_email' => $rowResult->mem_email,
 					'mem_faculty' => $rowResult->mem_faculty,
 					'mem_branch' => $rowResult->mem_branch,
-					// 'mem_tel' => $rowResult->mem_tel,
+					'mem_tel' => $rowResult->mem_tel,
 					);
 				$this->session->set_userdata($sess_array);
 			}

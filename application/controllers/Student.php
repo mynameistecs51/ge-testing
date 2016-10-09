@@ -16,11 +16,24 @@ class Student extends CI_Controller {
 	}
 	public function   index()
 	{
-		$SCREENNAME = "คำร้องขอสอบกรณีพิเศษ";
-		$PAGE = "std_request";
-		$this->data['controller'] = $this->ctl;
-		$this->mainPage($SCREENNAME);
-		$this->load->view($PAGE,$this->data);
+		$getMember = $this->getSelectCourse($this->session->userdata('id_member'));
+
+		if( isset($getMember[$this->session->userdata('id_member')]['req_create'])){
+			$SCREENNAME = "แก้ไข คำร้องขอสอบกรณีพิเศษ";
+			$PAGE = "std_requestUpdate";
+			$this->data['SCREENNAME'] =  "แก้ไข คำร้องขอสอบกรณีพิเศษ";
+			$this->data['controller'] = $this->ctl;
+			$this->data['dataRequestion'] = $getMember;
+			$this->mainPage($SCREENNAME);
+			$this->load->view($PAGE,$this->data);
+		}else{
+			$SCREENNAME = "คำร้องขอสอบกรณีพิเศษ";
+			$PAGE = "std_request";
+			$this->data['controller'] = $this->ctl;
+			$this->mainPage($SCREENNAME);
+			$this->load->view($PAGE,$this->data);
+		// print_r($getMember);
+		}
 	}
 
 	public function mainPage($SCREENNAME)
@@ -99,52 +112,7 @@ class Student extends CI_Controller {
 
 	public function printPDF()
 	{
-		$data_array = array();
-		//SSD = StudentSelectDetail
-		foreach ($this->mdl_student->studentSelect_course($this->session->userdata('id_member')) as $key => $row_SSD) {
-			if(isset($data_array[$row_SSD->id_member])){
-				array_push($data_array[$row_SSD->id_member]['course'],
-					array(
-						'course_id' => $row_SSD->course_id,
-						'course_name' => $row_SSD->course_name,
-						'rc_group' => $row_SSD->rc_group,
-						'rc_date' => $row_SSD->rc_date,
-						'rc_time' => $row_SSD->rc_time,
-						'rc_teacher' => $row_SSD->rc_teacher,
-						)
-					);
-				continue;
-			}
-			if(!isset($data_array[$row_SSD->id_member])){
-				$data_array[$row_SSD->id_member] = array(
-					'id_member' => $row_SSD->id_member,
-					'studentName' => $row_SSD->studentName,
-					'mem_tel' => $row_SSD->mem_tel,
-					'mem_email' => $row_SSD->mem_email,
-					'mem_id' => $row_SSD->mem_id,
-					'mem_faculty' => $row_SSD->mem_faculty,
-					'mem_branch' => $row_SSD->mem_branch,
-					'req_classNum' => $row_SSD->req_classNum,
-					'req_pak' => $row_SSD->pak,
-					'req_class' => $row_SSD->class,
-					'req_term' => $row_SSD->req_term,
-					'req_year' => $row_SSD->req_year,
-					'req_group' => $row_SSD->req_group,
-					'req_detail' => $row_SSD->req_detail,
-					'req_evidence' => $row_SSD->req_evidence,
-					'course' => array(
-						$key => array(
-							'course_id' => $row_SSD->course_id,
-							'course_name' => $row_SSD->course_name,
-							'rc_group' => $row_SSD->rc_group,
-							'rc_date' => $row_SSD->rc_date,
-							'rc_time' => $row_SSD->rc_time,
-							'rc_teacher' => $row_SSD->rc_teacher,
-							)
-						)
-					);
-			}
-		}
+		$data_array = $this->getSelectCourse($this->session->userdata('id_member'));
 		$SCREENNAME = "จัดการข้อมูล";
 		$PAGE = "printPDF";
 		$this->data['controller'] = $this->ctl;
@@ -154,7 +122,58 @@ class Student extends CI_Controller {
 		// echo "<pre>";
 		// print_r($data_array);
 	}
-
+	public function getSelectCourse($id_member)  //เรียกดูว่า user  ลงทะเบียนขอสอบวิชาอะไรบ้าง
+	{
+		$data_array = array();
+		//SSD = StudentSelectDetail
+		foreach ($this->mdl_student->studentSelect_course($id_member) as $key => $row_SSD) {
+			if(isset($data_array[$row_SSD['id_member']])){
+				array_push($data_array[$row_SSD['id_member']]['course'],
+					array(
+						'id_course' => $row_SSD['id_course'],
+						'course_id' => $row_SSD['course_id'],
+						'course_name' => $row_SSD['course_name'],
+						'rc_group' => $row_SSD['rc_group'],
+						'rc_date' => $row_SSD['rc_date'],
+						'rc_time' => $row_SSD['rc_time'],
+						'rc_teacher' => $row_SSD['rc_teacher'],
+						)
+					);
+				continue;
+			}
+			if(!isset($data_array[$row_SSD['id_member']])){
+				$data_array[$row_SSD['id_member']] = array(
+					'id_member' => $row_SSD['id_member'],
+					'studentName' => $row_SSD['studentName'],
+					'mem_tel' => $row_SSD['mem_tel'],
+					'mem_email' => $row_SSD['mem_email'] ,
+					'mem_id' => $row_SSD['mem_id'],
+					'mem_faculty' => $row_SSD['mem_faculty'],
+					'mem_branch' => $row_SSD['mem_branch'],
+					'req_classNum' => $row_SSD['req_classNum'],
+					'req_pak' => $row_SSD['pak'],
+					'req_class' => $row_SSD['class'],
+					'req_term' => $row_SSD['req_term'],
+					'req_year' => $row_SSD['req_year'],
+					'req_detail' => $row_SSD['req_detail'],
+					'req_evidence' => $row_SSD['req_evidence'],
+					'req_create' => $row_SSD['id_create'],
+					'course' => array(
+						$key => array(
+							'id_course' => $row_SSD['id_course'],
+							'course_id' => $row_SSD['course_id'],
+							'course_name' => $row_SSD['course_name'],
+							'rc_group' => $row_SSD['rc_group'],
+							'rc_date' => $row_SSD['rc_date'],
+							'rc_time' => $row_SSD['rc_time'],
+							'rc_teacher' => $row_SSD['rc_teacher'],
+							)
+						)
+					);
+			}
+		}
+		return $data_array;
+	}
 	public function tcpdf()
 	{
 		$this->load->view('tcpdf');
