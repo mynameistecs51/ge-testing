@@ -357,6 +357,13 @@
 		// --- end manage  Evidence -- //
 		// ---manage Course ---//
 
+		function countCourse(){
+			var numCourse = $('.courseID').length;
+			for(var Course = 0;Course < numCourse ; Course++){
+				delCourse(Course);
+			}
+		}
+
 		function  addCourse(){
 			$('#addCourse').click(function(){
 				var  numCourse = $('.del_Course').length+1;
@@ -426,13 +433,6 @@
 				});
 			});
 			countCourse();
-		}
-
-		function countCourse(){
-			var numCourse = $('.courseID').length;
-			for(var Course = 0 ;Course < numCourse ; Course++){
-				delCourse(numCourse);
-			}
 		}
 
 		function delCourse(numCourse) {
