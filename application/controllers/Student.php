@@ -103,6 +103,55 @@ class Student extends CI_Controller {
 		redirect($this->ctl.'/printPDF','refresh');
 	}
 
+	public function updateRequestion()
+	{
+		$id_member = $this->input->post('id_member');
+
+		$dataRequestion = array(
+			'id_req' => '',
+			'req_prename' =>  $this->input->post('prename'),
+			'req_name' =>  $this->input->post('name'),
+			'req_lastname' =>  $this->input->post('lastname'),
+			'req_stdID' =>  $this->input->post('stdID'),
+			'req_classNum' =>  $this->input->post('classNumber'),
+			'req_tel' =>  $this->input->post('tel'),
+			'req_term' =>  $this->input->post('term'),
+			'req_pak' =>  $this->input->post('pak'),
+			'req_class' =>  $this->input->post('class'),
+			'req_year' =>  $this->input->post('year'),
+			'req_detail' 	=> $this->input->post('detail'),
+			'req_evidence'  => implode('  ,  ',$this->input->post('evidence')),
+			'id_create' =>$this->session->userdata('id_member'),
+			'dt_create' => $this->dt_now ,
+			'ip_create' => $_SERVER["REMOTE_ADDR"],
+			);
+		$id_req = $this->mdl_student->updateRequestion($dataRequestion,$id_member);
+
+		$this->db->delete('requestion_course',array('id_member' => $id_member));
+		$countCourse = count($this->input->post('courseID'));
+		$courseID = $this->input->post('courseID');
+		$dateSelect = $this->convert_date($this->input->post('date'));
+		$timeSelect = $this->input->post('time');
+		$group = $this->input->post('group');
+		$teacherSelect = $this->input->post('teacher');
+		$selectCourse = array();
+		for($i = 0; $i < $countCourse; $i++){
+			$selectCourse[$i] = array(
+				'id_reqCourse' => '',
+				'id_req' =>$id_req,
+				'id_member' => $this->input->post('id_member'),
+				'id_course' => $courseID[$i],
+				'rc_group' => $group[$i],
+				'rc_teacher' => $teacherSelect[$i],
+				'rc_date' => $dateSelect[$i],
+				'rc_time' => $timeSelect[$i],
+				'dt_create' => $this->dt_now,
+				);
+			$this->mdl_student->updateReqCourse($selectCourse[$i]);
+		}
+		redirect('student','refresh');
+	}
+
 	public function getCourseAll()
 	{
 		$allCourse = $this->mdl_student->getCourseAll();
@@ -143,6 +192,7 @@ class Student extends CI_Controller {
 			}
 			if(!isset($data_array[$row_SSD['id_member']])){
 				$data_array[$row_SSD['id_member']] = array(
+					'id_req' => $row_SSD['id_req'],
 					'id_member' => $row_SSD['id_member'],
 					'studentName' => $row_SSD['studentName'],
 					'mem_tel' => $row_SSD['mem_tel'],
@@ -174,7 +224,7 @@ class Student extends CI_Controller {
 		}
 		return $data_array;
 	}
-	public function tcpdf()
+	public function tcpdf()  //ปริ๊นหน้าคำร้องขอสอบ
 	{
 		$this->load->view('tcpdf');
 	}

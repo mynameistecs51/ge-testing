@@ -61,7 +61,6 @@ class Mdl_management extends CI_Model {
 		END) AS class,
 		requestion.req_term,
 		requestion.req_year,
-		requestion.req_group,
 		requestion.req_detail,
 		requestion.req_evidence,
 		requestion_course.rc_group,

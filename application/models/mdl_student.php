@@ -29,6 +29,23 @@ class Mdl_student extends CI_Model {
 		// print_r($selectCourse);
 	}
 
+	public function updateRequestion($dataRequestion,$id_member)
+	{
+		$this->db->delete('requestion',array('id_create' => $id_member));
+		$this->db->insert('requestion',$dataRequestion);
+		$last_id = $this->db->insert_id();
+		return $last_id;
+	}
+
+	public function updateReqCourse($selectCourse)
+	{
+		// $id_member = $this->input->post('id_member');
+		// $this->db->delete('requestion_course',array('id_member' => $id_member));
+		$this->db->insert('requestion_course',$selectCourse);
+		// $this->insertReqCourse($selectCourse);
+
+	}
+
 	public function studentSelect_course($id_member)
 	{
 		$sql = "
