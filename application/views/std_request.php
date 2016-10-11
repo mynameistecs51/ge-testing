@@ -71,7 +71,7 @@
 			<input type="text" name="faculty" class="form-control" value="<?php echo $mem_faculty; ?>" required="">
 		</div>
 		<div class="col-sm-3">
-			<label>สาขาวิขา</label>
+			<label>สาขาวิชา</label>
 			<p class="required">*</p>
 			<input type="text" name="branch" class="form-control" value="<?php echo $mem_branch; ?>" required="">
 		</div>
@@ -174,7 +174,7 @@
 			<textarea name="detail" class="form-control" rows='3'></textarea>
 		</div>
 		<div class="col-sm-5">
-			<p >โดยมีหลังฐานดังนี้ 1.)</p>
+			<p >โดยมีหลักฐานดังนี้ 1.)</p>
 			<input type="text" class="form-control evidence" id='evidence'  name="evidence[]"/>
 		</div>
 		<div class="col-sm-1">
@@ -321,10 +321,10 @@
 				delCourse(numCourse);
 				// getCourse on select
 				$.ajax({
-					url:'<?php echo base_url().$controller;?>/getCourseAll/',
+					url:'<?php echo base_url().'index.php/'.$controller;?>/getCourseAll/',
 					dataType: 'JSON',
 					success:function(resp){
-						var selected ="<option >------------------SELCET---------------------</option>";
+						var selected ="";
 						$.each(resp, function( indexCourse, valueCourse ) {
 							selected +="<option value='"+valueCourse['id_course']+"'>"+valueCourse['course_id']+" "+valueCourse['course_name']+"</option>";
 						});

@@ -5,7 +5,7 @@ class Student extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ctl='Student';
+		$this->ctl='student';
 		$this->load->model('mdl_student');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
@@ -120,7 +120,7 @@ class Student extends CI_Controller {
 			'req_class' =>  $this->input->post('class'),
 			'req_year' =>  $this->input->post('year'),
 			'req_detail' 	=> $this->input->post('detail'),
-			'req_evidence'  => implode('  ,  ',$this->input->post('evidence')),
+			'req_evidence'  => implode(',',$this->input->post('evidence')),
 			'id_create' =>$this->session->userdata('id_member'),
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],

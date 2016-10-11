@@ -66,7 +66,7 @@
 
 		},
 		onText:'อาจารย์',
-		offText:'ทั่วไป',
+		offText:'นักศึกษา.',
 		labelWidth:'1px'
 	});
 	} );

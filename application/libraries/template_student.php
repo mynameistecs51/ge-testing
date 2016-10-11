@@ -73,7 +73,7 @@ class Template_student
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" >สำนักวิชาการศึกษาทั่วไป</a>
+						<a class="navbar-brand" >สำนักวิชาศึกษาทั่วไป มหาวิทยาลัยราชภัฏอุดรธานี</a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse pull-right " id="bs-example-navbar-collapse-1" style="margin-right:-80px;">
@@ -122,7 +122,7 @@ public function menu($base_url)
 		<ul class="nav navbar-nav">
 			<!-- <li><a href="#">คำร้องขอสอบกรณีพิเศษ</a></li> -->
 			<li>
-				'.anchor('authen/regis', 'สมัครสมาชิก').'
+				'.anchor('authen/regis', 'ลงทะเบียน').'
 			</li>
 			<li>'.anchor('authen', 'LOGIN', '').'</li>
 		</ul>

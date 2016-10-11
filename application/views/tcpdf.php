@@ -53,7 +53,7 @@ $pdf->AddFont('THSarabun','','THSarabun.php');
 $pdf->SetFont('THSarabun','',13);
 
 // $pdf->Write(0, '*** นึกศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน', '', 0, 'L', true, 0, false, false, 0); //ตำแหน่งซ้ายขวา L,R
-$pdf->writeHTML('<div>***นักศึกษาสามารถยื่นคำร้องขอสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <u> ส่วนของเจ้าหน้าที่</u></div>');
+$pdf->writeHTML('<div style="font-weight: bold;">***นักศึกษาสามารถยื่นคำร้องขอสอบ ภายใน 2 สัปดาห์แรกของการเปิดภาคเรียน  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <u> ส่วนของเจ้าหน้าที่</u></div>');
 $pdf->writeHTML("<hr>");
 
 $pdf->Ln(1);  //ความก้างของบรรทัด
@@ -80,11 +80,11 @@ foreach ($reqDetail as $key => $row_SSD) :
 	</tr>
 	<tr >
 		<td  align="justify"   width="100%">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["mem_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> 	ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u>  ซึ่งเป็นการสอบในรายวิชา <br>';
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ด้วยข้าพเจ้า <u> '.$row_SSD["studentName"].' </u>  รหัสนักศึกษา <u>  '.$row_SSD["mem_id"].'  </u> คณะ  <u>  '.$row_SSD["mem_faculty"].'  </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].'  </u>  ชั้นปีที่ <u>  '.$row_SSD["req_classNum"].'  </u>  <br> ภาค  <u> '.$row_SSD["req_pak"].'  </u>	ระดับ  <u>  '.$row_SSD["req_class"].'  </u> หมายเลขที่ติดต่อได้สะดวก  <u>  '.$row_SSD["mem_tel"].'  </u> <br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ได้ขาดสอบปลายภาคเรียนที่  <u>  '.$row_SSD["req_term"].'  </u> ปีการศึกษา <u>  '.$row_SSD["req_year"].'  </u>  ซึ่งเป็นการสอบในรายวิชา  ดังต่อไปนี้ <br>';
 			for($i=0;$i < count($row_SSD['course']); $i++){
-				$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u> ".$row_SSD['course'][$i]['rc_group']. " </u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
+				$html.= $i+intval(1).".)  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u> ".$row_SSD['course'][$i]['rc_group']. " </u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   <br>";
 			}
-			$html.='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u>  '.$row_SSD["req_detail"].'  </u>  โดยมีหลักฐาน <u> '.$row_SSD["req_evidence"].' </u>
+			$html.='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ข้าพเจ้าจึงมีความประสงค์จะขอสอบกรณีพิเศษ ทั้งนี้เนื่องจาก  <u>  '.$row_SSD["req_detail"].'  </u>  โดยมีหลักฐาน <u> '.$row_SSD["req_evidence"].' </u>
 		</td>
 	</tr>
 	<tr>
@@ -105,7 +105,7 @@ foreach ($reqDetail as $key => $row_SSD) :
 	<tr >
 		<td border="1" width="50%">
 			<div align="center"><b>&nbsp;</b></div>
-			&nbsp;<u><b>ความคิดเห็นอาจารย์ประจำวิชา</b></u><br><br>
+			&nbsp;<u><b>&nbsp;&nbsp;ความคิดเห็นอาจารย์ประจำวิชา&nbsp;&nbsp;</b></u><br><br>
 
 			.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................<br>
 			<div align="center">
@@ -116,11 +116,11 @@ foreach ($reqDetail as $key => $row_SSD) :
 		</td>
 		<td border="1" width="50%">
 			<div align="center"><b>ผลการพิจารณาคำร้องขอสอบกรณีพิเศษ</b></div>
-			&nbsp;&nbsp;<u><b>ความคิดเห็นหัวหน้ากลุ่มวิชา</b></u><br>
+			&nbsp;&nbsp;<u>&nbsp;&nbsp;<b>ความคิดเห็นหัวหน้ากลุ่มวิชา&nbsp;&nbsp;</b></u><br>
 			<div align="center">
 				<label><input type="checkbox" name="check" value="ไม่อนุญาต" disabled="">ไม่อนุญาต</label>
 				<label><input type="checkbox" name="check" value="อนุญาต" disabled="">อนุญาต</label>
-			</div><br>
+			</div><br>&nbsp;&nbsp;
 			เหตุผลประกอบ  ..................................................................................................................................................................................................................................................................................................................................<br>
 			<div align="center">
 				(ลงชื่อ)..........................................................<br>
@@ -133,27 +133,28 @@ foreach ($reqDetail as $key => $row_SSD) :
 		<td width="100%">
 			<!--  <hr style="border:2px dashed "> -->
 			<div align="right">
-			--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br><u>ส่วนของนักศึกษา </u> <br>***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ</div>
-			<div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ข้าพเจ้า<u> '.$row_SSD["studentName"].' </u> รหัสนักศึกษา<u> '.$row_SSD["mem_id"].' </u>  คณะ <u> '.$row_SSD["mem_faculty"].' </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].' </u> ชั้นปีที่ <u> '.$row_SSD["req_classNum"].' </u>  หมายเหตุที่ติดต่อได้สะดวก <u> '.$row_SSD["mem_tel"].' </u>ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชา <br>';
-				for($i=0;$i < count($row_SSD['course']); $i++){
-					$html.= $i+intval(1).")  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u>".$row_SSD['course'][$i]['rc_group']. "</u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน   ";
-				}
-				$html.='</div><i align="right">	..........................................................................<br>
-				(วันที่รับคำร้อง....................................................)<br>
-				นางสาวนุชรี  วุฒิเบญจรัศมี &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-				เจ้าหน้าที่ผู้รับคำร้อง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</i>
-			<div align="left">
-				<br><br>
-				***นักศึกษาสามารถติดต่อข่าวสาร  ผลการพิจารณาคำร้องขอสอบกรณีพิเศษ ได้ที่หน้าห้อง <br>
-				สำนักงาน  สำนักศึกษาทั่วไป  ชั้นใต้ดิน  อาคารเฉลิมพระเกียรติ โทร. 042-211040 ต่อ 1888 และ <br>
-				Facebook Page ฝ่ายวิชาการ  สำนักศึกษาทั่วไป มรภ.อุดรธานี  URL : https://www.facebook.com/GE.Soc.Udru/
-			</div>
-		</td>
-	</tr>
-</table>
-';
-endforeach;
+				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				<i style="font-weight: bold;">***ฉีกและเก็บไว้เป็นหลักฐานเพื่อใช้เข้าสอบกรณีพิเศษ  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <u> ส่วนของนักศึกษา</u></i></div>
+				<div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ข้าพเจ้า<u> '.$row_SSD["studentName"].' </u> รหัสนักศึกษา<u> '.$row_SSD["mem_id"].' </u>  คณะ <u> '.$row_SSD["mem_faculty"].' </u>  สาขาวิชา <u> '.$row_SSD["mem_branch"].' </u> ชั้นปีที่ <u> '.$row_SSD["req_classNum"].' </u>  หมายเลขที่ติดต่อได้สะดวก <u> '.$row_SSD["mem_tel"].'  </u>ได้ยื่นคำร้องขอสอบกรณีพิเศษรายวิชาศึกษาทั่วไป  รายวิชาดังต่อไปนี้<br>';
+					for($i=0;$i < count($row_SSD['course']); $i++){
+						$html.= $i+intval(1).".)  วิชา <u> ".$row_SSD['course'][$i]['course_name']."</u> รหัส <u>".$row_SSD['course'][$i]['course_id']. "</u> หมู่เรียนที่ <u>".$row_SSD['course'][$i]['rc_group']. "</u> ในวันที่ <u> ".$row_SSD['course'][$i]['rc_date']."</u>  เวลา <u> ".$row_SSD['course'][$i]['rc_time']." </u> น.    โดยมีอาจารย์ <u>".$row_SSD['course'][$i]['rc_teacher']."</u> เป็นผู้สอน  <br>  ";
+					}
+					$html.='</div><i align="right">	..........................................................................<br>
+					(วันที่รับคำร้อง....................................................)<br>
+					นางสาวนุชรี  วุฒิเบญจรัศมี &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+					เจ้าหน้าที่ผู้รับคำร้อง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</i>
+				<div align="left" style="font-size:8ppt;">
+
+					***นักศึกษาสามารถติดตามข่าวสาร  ผลการพิจารณาคำร้องขอสอบกรณีพิเศษ ได้ที่หน้าห้อง
+					สำนักงาน  สำนักวิชาศึกษาทั่วไป  ชั้นใต้ดิน  อาคารเฉลิมพระเกียรติ โทร. 042-211040 ต่อ 1888 <br> และ
+					Facebook Page ฝ่ายวิชาการ  สำนักวิชาศึกษาทั่วไป มรภ.อุดรธานี  URL : https://www.facebook.com/GE.Soc.Udru/
+				</div>
+			</td>
+		</tr>
+	</table>
+	';
+	endforeach;
 // $pdf->AddFont('THSarabun','','THSarabun.php');
 // $pdf->SetFont('THSarabun','',14);
 // $pdf->SetDrawColor(255,0,0);
@@ -162,8 +163,8 @@ endforeach;
 // print a cell
 // สร้างเนื้อหาจาก  HTML code
 // $pdf->writeHTML($html, true, 0, true, 0);
-$pdf->writeHTML($html, true, false, true, false, '');
-$pdf->Output('student request.pdf','I');
+	$pdf->writeHTML($html, true, false, true, false, '');
+	$pdf->Output('student request.pdf','I');
 // ---------------------------------------------------------
 
 //Close and output PDF document
@@ -178,4 +179,4 @@ $pdf->Output('student request.pdf','I');
 
 
 //header('Content-type: application/pdf');
-?>
+	?>

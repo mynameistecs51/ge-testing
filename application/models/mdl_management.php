@@ -56,7 +56,7 @@ class Mdl_management extends CI_Model {
 		END )AS pak,
 		(CASE requestion.req_class
 		WHEN 1 THEN 'ปริญาตรี'
-		WHEN 2 THEN 'ปริญญาโท'
+		WHEN 2 THEN 'ปริญาตรี(ต่อเนื่อง)'
 		WHEN 3 THEN 'อื่น ๆ'
 		END) AS class,
 		requestion.req_term,

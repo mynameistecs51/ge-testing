@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-sm-10">
 		<div class="panel panel-primary">
-			<div class="panel-heading" style="text-align:left;"><b>สมัครสมาชิก</b></div>
+			<div class="panel-heading" style="text-align:left;"><b>ลงทะเบียน</b></div>
 			<div class="panel-body">
 				<div class="form_input  col-sm-12">
 					<div class="containner">

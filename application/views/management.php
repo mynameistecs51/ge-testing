@@ -21,8 +21,7 @@
 						<?php foreach ($getCourse as $key => $rowCourse): ?>
 
 							<?php if ($rowGroup['id_group'] == $rowCourse['id_group']): ?>
-								<?php //echo '<li><a href="'.$controller.'/getCourse/'.$rowCourse["id_course"].'">'.$rowCourse["course_name"].'</a></li>'; ?>
-								<?php echo '<li>'. anchor('management/getCourse/'.$rowCourse['id_course'], $rowCourse['course_name']) .'</li>'; ?>
+								<?php echo '<li>'. anchor('management/getCourse/'.$rowCourse['id_course'], $rowCourse['course_name']).'</li>'; ?>
 							<?php endif; ?>
 
 						<?php endforeach; ?>

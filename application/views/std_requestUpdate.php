@@ -72,7 +72,7 @@
 			<input type="text" name="faculty" class="form-control" value="<?php echo $mem_faculty; ?>" required="">
 		</div>
 		<div class="col-sm-3">
-			<label>สาขาวิขา</label>
+			<label>สาขาวิชา</label>
 			<p class="required">*</p>
 			<input type="text" name="branch" class="form-control" value="<?php echo $mem_branch; ?>" required="">
 		</div>
@@ -121,7 +121,7 @@
 				</select>
 			</div>
 			<div class="col-sm-6">
-				<label>ภาค</label><?php echo $rowRq['req_pak']; ?>
+				<label>ภาค</label>
 				<p class="required">*</p>
 				<?php $chkPak = ($rowRq['req_pak'] == 'ปกติ' )?'checked':''; ?>
 				<label class="radio-inline pak"><input type="radio" name="pak" id='pak1' value="1"  <?php echo $chkPak; ?>> ปกติ</label>
@@ -251,7 +251,7 @@
 
 			<?php $evde =explode(',',$rowRq['req_evidence']); ?>
 			<div class="col-sm-5">
-				<p >โดยมีหลังฐานดังนี้ <?php echo '1'; ?>.)</p>
+				<p >โดยมีหลักฐานดังนี้ <?php echo '1'; ?>.)</p>
 				<input type="text" class="form-control evidence" id='evidence'  name="evidence[]" value="<?php echo $evde[0]; ?>" />
 			</div>
 			<div class="col-sm-1">
@@ -262,7 +262,7 @@
 				<?php for($j =1;$j < count($evde);$j++): ?>
 					<div  id="add_evidence<?php echo $j;?>">
 						<div class="col-sm-5">
-							<p >โดยมีหลังฐานดังนี้ <?php echo $j+1; ?>.)</p>
+							<p >โดยมีหลักฐานดังนี้ <?php echo $j+1; ?>.)</p>
 							<input type="text" class="form-control evidence" id='evidence<?php echo $j; ?>'  name="evidence[]" value="<?php echo $evde[$j]; ?>" />
 						</div>
 						<div class="col-sm-1">
@@ -280,11 +280,14 @@
 		<?php endforeach; ?>
 		<div class="col-sm-12"><br></div>
 		<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;">
-			<button type="submit" id="save" class="btn btn-modal">
+			<button type="submit" id="save" class="btn btn-success">
 				<span class="   glyphicon glyphicon-floppy-saved"> อัพเดท</span>
 			</button>
 			<button type="reset" class="btn btn-modal" data-dismiss="modal">
 				<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
+			</button>
+			<button type="submit" class="btn btn-primary" data-dismiss="modal">
+				<span class=" glyphicon glyphicon-print"> ปริ๊น </span>
 			</button>
 		</div>
 		<!-- </form> -->
@@ -371,7 +374,7 @@
 				html +='<div class="col-sm-4">';
 				html +='<label>ซึ่งเป็นการสอบในรายวิชา</label>';
 				html +='<p class="required">*</p>';
-				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control course"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
+				html +='<select name="courseID[]" id="courseID'+numCourse+'" class="selectpicker show-tick form-control courseID"  data-live-search="true" title="........กรุณาเลือกรายวิชาที่ขาดสอบ.......">';
 				html +='</select>';
 				html +='</div>';
 				html +='<div class="col-sm-1">';
@@ -418,7 +421,7 @@
 				});
 				// getCourse on select
 				$.ajax({
-					url:'<?php echo base_url().$controller;?>/getCourseAll/',
+					url:'<?php echo base_url().'index.php/'.$controller;?>/getCourseAll/',
 					dataType: 'JSON',
 					success:function(resp){
 						var selected ="";
