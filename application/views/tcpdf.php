@@ -11,10 +11,12 @@ $pdf->SetTitle('แบบคำร้องขอสอบในกรณีพ�
 $pdf->SetSubject('แบบคำร้องขอสอบในกรณีพิเศษ');
 $pdf->SetKeywords('แบบคำร้องขอสอบในกรณีพิเศษ');
 
-/*
+
 // set default header data
-$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 046', PDF_HEADER_STRING);
-*/
+$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' test', PDF_HEADER_STRING);
+$pdf->setFooterData(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+
+
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->setPrintHeader(false);
@@ -28,8 +30,13 @@ $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+// set cell padding
+$pdf->setCellPaddings(0, 0, 0, 0);
+// set cell margins
+$pdf->setCellMargins(0, 0, 0, 0);
 
-
+// $pdf->SetMargins(PDF_MARGIN_HEADER,'5');
+// $pdf->SetMargins(PDF_MARGIN_FOOTER,'0.5');
 // set auto page breaks
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
@@ -145,7 +152,6 @@ foreach ($reqDetail as $key => $row_SSD) :
 					เจ้าหน้าที่ผู้รับคำร้อง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</i>
 				<div align="left" style="font-size:8ppt;">
-
 					***นักศึกษาสามารถติดตามข่าวสาร  ผลการพิจารณาคำร้องขอสอบกรณีพิเศษ ได้ที่หน้าห้อง
 					สำนักงาน  สำนักวิชาศึกษาทั่วไป  ชั้นใต้ดิน  อาคารเฉลิมพระเกียรติ โทร. 042-211040 ต่อ 1888 <br> และ
 					Facebook Page ฝ่ายวิชาการ  สำนักวิชาศึกษาทั่วไป มรภ.อุดรธานี  URL : https://www.facebook.com/GE.Soc.Udru/

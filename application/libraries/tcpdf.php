@@ -10,7 +10,6 @@ class Pdf extends TCPDF
 	}
 
 
-
 }
 
 /* End of file tcpdf.php */

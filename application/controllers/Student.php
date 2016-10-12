@@ -149,7 +149,9 @@ class Student extends CI_Controller {
 				);
 			$this->mdl_student->updateReqCourse($selectCourse[$i]);
 		}
+
 		redirect('student','refresh');
+
 	}
 
 	public function getCourseAll()
