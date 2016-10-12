@@ -150,8 +150,8 @@ class Student extends CI_Controller {
 			$this->mdl_student->updateReqCourse($selectCourse[$i]);
 		}
 
+		header("Location: printPDF");
 		redirect('student','refresh');
-
 	}
 
 	public function getCourseAll()
