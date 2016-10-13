@@ -74,12 +74,13 @@ $html = '
 		<tr  style="background-color:#D8D8D8;text-align:center;">
 			<th class="col-sm-1 text-center" style="width: 20px;">ที่</th>
 			<th class="text-center" style="width: 20%;">ชื่อ - สกุล</th>
-			<th class="text-center"  style="width: 20%;">คณะ</th>
+			<th class="text-center"  style="width: 18%;">คณะ</th>
 			<th class="text-center"  style="width: 20%;">สาขา</th>
 			<th class="col-sm-1 text-center col-sm" style="width: 30px;text-align:center;">หมู่ที่</th>
-			<th class="col-sm-1 text-center" style="width: 80px;">ว / ด / ป</th>
+			<th class="col-sm-1 text-center" style="width: 60px;">ปีการศึกษา</th>
+			<th class="col-sm-1 text-center" style="width: 70px;">ว / ด / ป</th>
 			<th class="col-sm-1 text-center"  style="width: 60px;">เวลา</th>
-			<th class="col-sm-1 text-center">หมายเหตุ</th>
+			<th class="col-sm-1 text-center " style="width: 60px;">หมายเหตุ</th>
 		</tr>
 	</thead>
 	<tbody>';
@@ -89,12 +90,13 @@ $html = '
 			$html.='<tr style="text-align:center;">';
 		$html.='<td style="width: 20px;text-align:center;">'.$num++.'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['studentName'].'</td>';
-		$html.='<td  style="width: 20%;">'.$rowDataCourse['mem_faculty'].'</td>';
+		$html.='<td  style="width: 18%;">'.$rowDataCourse['mem_faculty'].'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['mem_branch'].'</td>';
 		$html.='<td style="width: 30px;text-align:center;">'.$rowDataCourse['rc_group'].'</td>';
-		$html.='<td style="width: 80px;">'.$rowDataCourse['rc_date'].'</td>';
+		$html.='<td style="width: 60px;">'.$rowDataCourse['req_year'].'</td>';
+		$html.='<td style="width: 70px;">'.$rowDataCourse['rc_date'].'</td>';
 		$html.='<td style="width: 60px;text-align:center;">'.$rowDataCourse['rc_time'].'</td>';
-		$html.='<td></td>';
+		$html.='<td  style="width: 60px;"></td>';
 		$html.='</tr>';
 
 		endforeach;

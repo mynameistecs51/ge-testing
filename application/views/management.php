@@ -54,6 +54,7 @@
 							<th class='text-center'>คณะ</th>
 							<th class='text-center'>สาขา</th>
 							<th class='col-sm-1 text-center col-sm'>หมู่ที่</th>
+							<th class='col-sm-2 text-center'>ปีการศึกษา</th>
 							<th class='col-sm-1 text-center'>ว / ด / ป</th>
 							<th class='col-sm-1 text-center'>เวลา</th>
 							<th class='col-sm-1 text-center'>หมายเหตุ</th>
@@ -69,6 +70,7 @@
 								<td><?php echo $rowDataCourse['mem_faculty']; ?></td>
 								<td><?php echo $rowDataCourse['mem_branch']; ?></td>
 								<td class=' text-center'><?php echo $rowDataCourse['rc_group']; ?></td>
+								<td class=' text-center'><?php echo $rowDataCourse['req_year']; ?></td>
 								<td><?php echo $rowDataCourse['rc_date']; ?></td>
 								<td><?php echo $rowDataCourse['rc_time']; ?></td>
 								<td></td>
