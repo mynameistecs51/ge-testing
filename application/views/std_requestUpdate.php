@@ -287,7 +287,7 @@
 				<span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
 			</button>
 			<button type="submit" class="btn btn-primary" data-dismiss="modal">
-				<span class=" glyphicon glyphicon-print"> ปริ๊น </span>
+				<span class=" glyphicon glyphicon-print"> พิมพ์เอกสาร </span>
 			</button>
 		</div>
 		<!-- </form> -->

@@ -53,7 +53,8 @@ $pdf->AddFont('THSarabun','','THSarabun.php');
 $pdf->SetFont('THSarabun','',13);
 
 // $pdf->Write(0, '*** นึกศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน', '', 0, 'L', true, 0, false, false, 0); //ตำแหน่งซ้ายขวา L,R
-$pdf->writeHTML('<div>รายชื่อ นักศึกษา ที่ขอสอบกรณีพิเศษ <u>'.$courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:''.'</u></div>');
+$pdf->writeHTML('<div>รายชื่อ นักศึกษา ที่ขอสอบกรณีพิเศษ  วิชา <u>'.($courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:'').'</u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ปีการศึกษา  '.($term =(isset($getDataCourse[0]['req_term']))?$getDataCourse[0]['req_term'].'/'.$getDataCourse[0]['req_year']:'').'</div>');
+// $pdf->writeHTML($getDataCourse[0]['req_term'].'/'.$getDataCourse[0]['req_year']);
 $pdf->writeHTML("<hr>");
 
 $pdf->Ln(1);  //ความก้างของบรรทัด
@@ -93,7 +94,7 @@ $html = '
 		$html.='<td  style="width: 18%;">'.$rowDataCourse['mem_faculty'].'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['mem_branch'].'</td>';
 		$html.='<td style="width: 30px;text-align:center;">'.$rowDataCourse['rc_group'].'</td>';
-		$html.='<td style="width: 60px;">'.$rowDataCourse['req_year'].'</td>';
+		$html.='<td style="width: 60px;">'.$rowDataCourse['req_term'].'/'.$rowDataCourse['req_year'].'</td>';
 		$html.='<td style="width: 70px;">'.$rowDataCourse['rc_date'].'</td>';
 		$html.='<td style="width: 60px;text-align:center;">'.$rowDataCourse['rc_time'].'</td>';
 		$html.='<td  style="width: 60px;"></td>';

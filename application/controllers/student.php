@@ -151,7 +151,8 @@ class Student extends CI_Controller {
 		}
 
 		header("Location: printPDF");
-		redirect('student','refresh');
+		header("Location: student");
+		// redirect('student/printPDF','target ="_blank"');
 	}
 
 	public function getCourseAll()
