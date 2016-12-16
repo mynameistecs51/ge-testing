@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2016 at 09:59 AM
+-- Generation Time: Dec 16, 2016 at 03:27 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -31,27 +31,41 @@ CREATE TABLE IF NOT EXISTS `course` (
   `course_id` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `course_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `id_group` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`id_course`, `course_id`, `course_name`, `id_group`) VALUES
-(1, '1500101', 'ภาษาไทยเพื่อการสื่อสาร', 1),
-(2, '1500102', 'ภาษาอังกฤษเพื่อการสื่อสาร', 1),
-(3, '1500103', 'การอ่านและการเขียนภาษาอังกฤษเพื่อวัตถุประสงค์ทั่วไป', 1),
-(4, '1500104', 'จริยธรรมกับชีวิต', 2),
-(5, '2000101', 'สุนทรียภาพเพื่อชีวิต', 2),
-(6, '2500101', 'พฤติกรรมมนุษย์กับการพัฒนาตน', 2),
-(7, '1500105', 'การรู้สารสนเทศ', 2),
-(9, '2500102', 'สังคมวัฒนธรรมไทยและภูมิปัญญาท้องถิ่น', 3),
-(10, '2500103', 'วิถีโลก', 3),
-(11, '2500104', 'กฎหมายเพื่อชีวิตและสิทธิมนุษยชน', 3),
-(12, '4000101', 'ชีวิตกับสิ่งแวดล้อม', 4),
-(13, '4000102', 'วิทยาศาสตร์เพื่อคุณภาพชีวิต', 4),
-(14, '4000103', 'การคิดและการตัดสินใจ', 4),
-(15, '4000104', 'เทคโนโลยีสารสนเทศเพื่อการเรียนรู้', 4);
+(1, 'GE10001', 'ภาษาไทยเพื่อการสื่อสาร', 1),
+(2, 'GE10004', 'สุนทรียภาพในภาษาไทย', 1),
+(3, 'GE10002', 'ภาษาอังกฤษเพื่อการสื่อสาร', 1),
+(4, 'GE10005', 'ภาษาอังกฤษเพื่อการสื่อสารในสถานการณ์เฉพาะหน้า', 1),
+(5, 'GE10003', 'การอ่านและการเขียนภาษาอังกฤษเพื่อจุดประสงค์ทั่วไป', 1),
+(6, 'GE10006', 'การอ่านและการเขียนภาษาอังกฤษเพื่อการนําไปใช้', 1),
+(7, 'GE20001', 'จริยธรรมเพื่อการดํารงชีวิต', 2),
+(9, 'GE20005', 'ศาสนาเพื่อการดํารงชีวิต', 2),
+(10, 'GE20002', 'สุนทรียภาพเพื่อชีวิต', 2),
+(11, 'GE20006', 'สุนทรียภาพในอีสาน', 2),
+(12, 'GE20003', 'พฤติกรรมมนุษย์เพื่อการพัฒนาตน', 2),
+(13, 'GE20007', 'จิตวิทยาการพัฒนาตนในสังคมยุคใหม่', 2),
+(14, 'GE20004', 'การรู้สารสนเทศ', 2),
+(15, 'GE20008', 'ทักษะสารสนเทศในชีวิตประจําวัน', 2),
+(16, 'GE30001', 'วิถีชีวิตพื้นถิ่นอุดรธานี', 3),
+(17, 'GE30004', 'สังคมและวัฒนธรรมไทย', 3),
+(18, 'GE30005', 'พลวัตกับสังคมโลก', 3),
+(19, 'GE30006', 'ลุ่มน้ําโขงกับโลกสมัยใหม่', 3),
+(20, 'GE30007', 'กฎหมายเพื่อความเข้าใจสังคม', 3),
+(21, 'GE30008', 'กฎหมายในชีวิตประจําวัน', 3),
+(22, 'GE40001', 'ชีวิตกับสิ่งแวดล้อม', 4),
+(23, 'GE40005', 'สิ่งแวดล้อมกับการเปลี่ยนแปลง', 4),
+(24, 'GE40002', 'วิทยาศาสตร์เพื่อคุณภาพชีวิต', 4),
+(25, 'GE40006', 'วิทยาศาสตร์เพื่ออนาคต', 4),
+(26, 'GE40003', 'การคิดและการตัดสินใจ', 4),
+(27, 'GE40007', 'การคิดและคณิตศาสตร์ในชีวิตประจําวัน', 4),
+(28, 'GE40004', 'เทคโนโลยีสารสนเทศเพื่อการเรียนรู้', 4),
+(29, 'GE40008', 'รู้ทันโลกเทคโนโลยี', 4);
 
 -- --------------------------------------------------------
 
@@ -118,21 +132,21 @@ CREATE TABLE IF NOT EXISTS `requestion` (
   `req_tel` varchar(15) COLLATE utf8_unicode_ci NOT NULL COMMENT 'เบอร์โทร',
   `req_pak` enum('1','2','3','4') COLLATE utf8_unicode_ci NOT NULL COMMENT 'ภาค 1=ปกติ ,2= พิเศษ ,3=อื่น ๆ',
   `req_class` char(1) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ระดับ 1=ปริญญาตรี,2 =ปริญญาตรี(ต่อเนื่อง),3 =อื่น ๆ',
-  `req_term` char(1) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ภาคเรียน',
+  `req_term` varchar(8) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ภาคเรียน',
   `req_year` char(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ปีการศึกษา',
   `req_detail` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'สาเหตุที่ขาดสอบ',
   `req_evidence` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'หลักฐาน',
   `id_create` int(11) NOT NULL COMMENT 'คือ id_member',
   `dt_create` datetime NOT NULL,
   `ip_create` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `requestion`
 --
 
 INSERT INTO `requestion` (`id_req`, `req_prename`, `req_name`, `req_lastname`, `req_stdID`, `req_classNum`, `req_tel`, `req_pak`, `req_class`, `req_term`, `req_year`, `req_detail`, `req_evidence`, `id_create`, `dt_create`, `ip_create`) VALUES
-(46, 'นาย', 'ไชยวัฒน์', 'หอมแสง', '59000000201', '2', '0812345678', '2', '2', '2', '2559', 'test', 'test1                          ,      test2  ,  test3  ,  test4', 9, '2016-10-10 15:11:49', '::1');
+(69, 'นาย', 'ไชยวัฒน์', 'หอมแสง', '59000000201', '2', '0812345678', '2', '2', '2', '2559', 'ป่วย', 'ใบรับรองแพทย์    ,test2                          ,test3                          ,test4', 9, '2016-10-13 12:13:40', '::1');
 
 -- --------------------------------------------------------
 
@@ -150,18 +164,16 @@ CREATE TABLE IF NOT EXISTS `requestion_course` (
   `rc_date` date NOT NULL,
   `rc_time` time NOT NULL,
   `dt_create` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `requestion_course`
 --
 
 INSERT INTO `requestion_course` (`id_reqCourse`, `id_req`, `id_member`, `id_course`, `rc_group`, `rc_teacher`, `rc_date`, `rc_time`, `dt_create`) VALUES
-(75, 46, 9, 6, '3', 'ปณวรรต', '2016-10-04', '15:09:00', '2016-10-10 15:11:49'),
-(76, 46, 9, 9, '1', 'ปณวรรต', '2016-10-10', '15:03:00', '2016-10-10 15:11:49'),
-(77, 46, 9, 10, '4', 'ปณวรรต', '2016-10-10', '10:09:00', '2016-10-10 15:11:49'),
-(78, 46, 9, 12, '2', 'ปณวรรต', '2016-10-02', '09:07:00', '2016-10-10 15:11:49'),
-(79, 46, 9, 0, '', '', '2016-10-10', '00:00:00', '2016-10-10 15:11:49');
+(126, 69, 9, 6, '3', 'ปณวรรต ', '2016-10-04', '15:09:00', '2016-10-13 12:13:40'),
+(127, 69, 9, 9, '1', 'ปณวรรต', '2016-10-10', '15:03:00', '2016-10-13 12:13:40'),
+(128, 69, 9, 15, '2', 'ปณวรรต', '2016-10-13', '11:30:00', '2016-10-13 12:13:40');
 
 --
 -- Indexes for dumped tables
@@ -205,7 +217,7 @@ ALTER TABLE `requestion_course`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `groupcourse`
 --
@@ -220,12 +232,12 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `requestion`
 --
 ALTER TABLE `requestion`
-  MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id คำร้อง primary key',AUTO_INCREMENT=47;
+  MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id คำร้อง primary key',AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `requestion_course`
 --
 ALTER TABLE `requestion_course`
-  MODIFY `id_reqCourse` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=80;
+  MODIFY `id_reqCourse` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=129;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
