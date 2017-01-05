@@ -69,6 +69,15 @@ class Management extends CI_Controller {
 		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
 		$this->load->view('exportReport',$this->data);
 	}
+
+	public function downloadFile($file_name)
+	{
+		//echo $file_name;
+		$data = file_get_contents('./assets/files/'.$file_name);
+		$name = $file_name;
+		echo force_download($name,$data);
+		redirect('authen/','refresh');
+	}
 }
 
 /* End of file dashboard.php */

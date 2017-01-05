@@ -64,7 +64,7 @@ $autoload['libraries'] = array('tcpdf','database','template_student','template_a
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form');
+$autoload['helper'] = array('url','form','download');
 
 
 /*

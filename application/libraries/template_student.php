@@ -122,6 +122,12 @@ public function menu($base_url)
 		<ul class="nav navbar-nav">
 			<!-- <li><a href="#">คำร้องขอสอบกรณีพิเศษ</a></li> -->
 			<li>
+				'.anchor('/management/downloadFile/manual_staff.pdf/', 'คู่มือใช้งานเอาจารย์/จ้าหน้าที่').'
+			</li>
+			<li>
+				'.anchor('/management/downloadFile/manual_student.pdf/', 'คู่มือใช้งานนักศึกษา').'
+			</li>
+			<li>
 				'.anchor('authen/regis', 'ลงทะเบียน').'
 			</li>
 			<li>'.anchor('authen', 'LOGIN', '').'</li>
