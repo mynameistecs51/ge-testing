@@ -25,7 +25,7 @@
 						<div class="form-group">
 							<div class="text-header"><b style="color:#000;"><h3>.::LOGIN::.</h3></b></div>
 							<div class="col-sm-4">
-								<label> EMIL
+								<label> EMAIL
 									<p class="required">*</p>
 									<input type="text" name="email" class="form-control" placeholder="YOUR EMIL@mail.com" required="" autofocus>
 								</label>
