@@ -163,7 +163,7 @@
 			<div class="col-sm-1">
 				<label>หมู่เรียนที่</label>
 				<p class="required">*</p>
-				<input type="number" min='1' max="10" name="group[]" class="form-control" value="<?php echo $rowRq['course'][0]['rc_group']; ?>">
+				<input type="number" min='1' max="100" name="group[]" class="form-control" value="<?php echo $rowRq['course'][0]['rc_group']; ?>">
 			</div>
 			<div class="col-sm-2">
 				<label>ในวันที่/เดือน/พ.ศ.</label>
@@ -206,7 +206,7 @@
 						<div class="col-sm-1">
 							<label>หมู่เรียนที่</label>
 							<p class="required">*</p>
-							<input type="number" min='1' max="10" name="group[]" class="form-control" value="<?php echo $rowRq['course'][$i]['rc_group']; ?>">
+							<input type="number" min='1' max="100" name="group[]" class="form-control" value="<?php echo $rowRq['course'][$i]['rc_group']; ?>">
 						</div>
 						<div class="col-sm-2">
 							<label>ในวันที่/เดือน/พ.ศ.</label>
@@ -380,7 +380,7 @@
 				html +='<div class="col-sm-1">';
 				html +='<label>หมู่เรียนที่</label>';
 				html +='<p class="required">*</p>';
-				html +='<input type="number" min="1" max="10" name="group[]" class="form-control">';
+				html +='<input type="number" min="1" max="100" name="group[]" class="form-control">';
 				html +='</div>';
 				html +='<div class="col-sm-2">';
 				html +='<label>ในวันที่/เดือน/พ.ศ.</label>';

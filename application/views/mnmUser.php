@@ -45,7 +45,7 @@
 			if(s){
 				$.ajax({
 					// url: "<?php echo site_url('/manage_status');?>",
-					url: "<?php echo base_url('management/updateStatus'); ?>",
+					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){
@@ -55,7 +55,7 @@
 			}else{
 				$.ajax({
 					// url: "<?php echo site_url('/manage_status');?>",
-					url: "<?php echo base_url('management/updateStatus'); ?>",
+					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){
