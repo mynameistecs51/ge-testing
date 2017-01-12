@@ -98,6 +98,7 @@ class Template_admin
 							<li>
 								'.anchor('management/mnm_user/','<i class="fa fa-fw fa-user"></i> จัดการ User').'
 							</li>
+							<li>'.anchor('management/std_selectCourse/', '<i class="fa fa-fw fa-book"></i> นึกษาที่ขอสอบ').'</li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->

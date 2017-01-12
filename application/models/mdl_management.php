@@ -99,7 +99,7 @@ class Mdl_management extends CI_Model {
 		mem_branch,
 		mem_status
 		FROM
-			member
+		member
 		";
 		$dataMember = $this->db->query($sql)->result_array();
 		return $dataMember;
@@ -113,6 +113,31 @@ class Mdl_management extends CI_Model {
 		return true;
 	}
 
+	public function std_selectCourse()
+	{
+		$sql = "
+		SELECT
+		`member`.`mem_id`,
+		`member`.`mem_preName`,
+		`member`.`mem_name`,
+		`member`.`mem_lastname`,
+		`member`.`mem_faculty`,
+		`member`.`mem_branch`,
+		`groupcourse`.`group_name`,
+		`course`.`course_id`,
+		`course`.`course_name`
+		FROM
+		`requestion_course`
+		INNER JOIN `member` ON `member`.`id_member` = `requestion_course`.`id_member`
+		INNER JOIN `requestion` ON `requestion_course`.`id_req` =
+		`requestion`.`id_req`
+		INNER JOIN `course` ON `requestion_course`.`id_course` = `course`.`id_course`
+		INNER JOIN `groupcourse` ON `course`.`id_group` = `groupcourse`.`id_group`
+		ORDER BY `member`.`mem_id` DESC
+		";
+		$query = $this->db->query($sql)->result_array();
+		return $query;
+	}
 }
 
 /* End of file mdl_management.php */

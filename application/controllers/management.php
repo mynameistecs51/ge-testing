@@ -50,6 +50,37 @@ class Management extends CI_Controller {
 		$this->load->view($PAGE,$this->data);
 	}
 
+	public function std_selectCourse()
+	{
+		$stdSelect = array();
+		foreach ($this->mdl_management->std_selectCourse() as $keyStd => $rowStd){
+			if(isset($stdSelect[$rowStd['mem_id']])){
+				array_push($stdSelect[$rowStd['mem_id']]['course'],array(
+					'course_id' => $rowStd['course_id'],
+					'course_name' => $rowStd['course_name']
+					));
+				continue;
+			}else{
+				$stdSelect[$rowStd['mem_id']] = array(
+					// 'mem_id' => $rowStd['mem_id'],
+					'mem_name' => $rowStd['mem_name'],
+					'course' => array(
+						$keyStd => array(
+							'course_id' => $rowStd['course_id'],
+							'course_name' => $rowStd['course_name']
+							)
+						)
+					);
+			}
+		}
+
+		$SCREENNAME = "นักศึกษาที่ขอสอบแต่ล่ะวิชา";
+		$PAGE = 'std_selectCourse';
+		$this->mainPage($SCREENNAME);
+		$this->data['std_selectCourse'] = $stdSelect;
+		$this->load->view($PAGE,$this->data);
+	}
+
 	public function updateStatus()
 	{
 		// $id_member = $this->input->post('id_member');
