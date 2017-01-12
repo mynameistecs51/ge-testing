@@ -135,7 +135,7 @@ class Mdl_management extends CI_Model {
 		INNER JOIN `groupcourse` ON `course`.`id_group` = `groupcourse`.`id_group`
 		ORDER BY `member`.`mem_id` DESC
 		";
-		$query = $this->db->query($sql)->result_array();
+		$query = $this->db->query($sql)->result();
 		return $query;
 	}
 }

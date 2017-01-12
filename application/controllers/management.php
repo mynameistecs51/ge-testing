@@ -54,62 +54,55 @@ class Management extends CI_Controller {
 	{
 		$stdSelect = array();
 		foreach ($this->mdl_management->std_selectCourse() as $keyStd => $rowStd){
-			if(isset($stdSelect[$rowStd['mem_id']])){
-				array_push($stdSelect[$rowStd['mem_id']]['course'],array(
-					'course_id' => $rowStd['course_id'],
-					'course_name' => $rowStd['course_name']
-					));
-				continue;
-			}else{
-				$stdSelect[$rowStd['mem_id']] = array(
-					// 'mem_id' => $rowStd['mem_id'],
-					'mem_name' => $rowStd['mem_name'],
+
+			if( !isset($stdSelect[$rowStd->mem_id])){
+				$stdSelect[$rowStd->mem_id] = array(
+					'mem_name'=>$rowStd->mem_name,
 					'course' => array(
-						$keyStd => array(
-							'course_id' => $rowStd['course_id'],
-							'course_name' => $rowStd['course_name']
-							)
+						// 'course_name' => $rowStd->course_name
 						)
 					);
 			}
-		}
+                   array_push($stdSelect[$rowStd->mem_id]['course'],array('course_name' => $rowStd->course_name));     //แสดงชื่อกรรมการที่ตรวจโครงงาน
 
-		$SCREENNAME = "นักศึกษาที่ขอสอบแต่ล่ะวิชา";
-		$PAGE = 'std_selectCourse';
-		$this->mainPage($SCREENNAME);
-		$this->data['std_selectCourse'] = $stdSelect;
-		$this->load->view($PAGE,$this->data);
-	}
+                 }
 
-	public function updateStatus()
-	{
+                 $SCREENNAME = "นักศึกษาที่ขอสอบแต่ล่ะวิชา";
+                 $PAGE = 'std_selectCourse';
+                 $this->mainPage($SCREENNAME);
+                 $this->data['std_selectCourse'] = $stdSelect;
+                 $this->load->view($PAGE,$this->data);
+               }
+
+               public function updateStatus()
+               {
 		// $id_member = $this->input->post('id_member');
-		$my_status = $this->input->post('my-checkbox');
-		if($my_status === "on"){
-			$update_status = $this->mdl_management->updateMemberStatus($status = "1");
+               	$my_status = $this->input->post('my-checkbox');
+               	if($my_status === "on"){
+               		$update_status = $this->mdl_management->updateMemberStatus($status = "1");
 			// echo  $update_status;
 			// print_r($update_status);
-		}else{
-			$update_status = $this->mdl_management->updateMemberStatus($status = "0");
+               	}else{
+               		$update_status = $this->mdl_management->updateMemberStatus($status = "0");
 			// echo  $update_status;
-		}
-	}
+               	}
+               }
 
-	public function exportReport($id_course)
-	{
-		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
-		$this->load->view('exportReport',$this->data);
-	}
+               public function exportReport($id_course)
+               {
+               	$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
+               	$this->load->view('exportReport',$this->data);
+               }
 
-	public function downloadFile($file_name)
-	{
+               public function downloadFile($file_name)
+               {
 		//echo $file_name;
-		$data = file_get_contents('./assets/files/'.$file_name);
-		$name = $file_name;
-		echo force_download($name,$data);
-		redirect('authen/','refresh');
-	}
-}
+               	$data = file_get_contents('./assets/files/'.$file_name);
+               	$name = $file_name;
+               	echo force_download($name,$data);
+               	redirect('authen/','refresh');
+               }
+             }
 
-/* End of file dashboard.php */
+             /* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
