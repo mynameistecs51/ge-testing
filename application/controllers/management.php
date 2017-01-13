@@ -58,6 +58,8 @@ class Management extends CI_Controller {
 			if( !isset($stdSelect[$rowStd->mem_id])){
 				$stdSelect[$rowStd->mem_id] = array(
 					'mem_name'=>$rowStd->mem_name,
+					'mem_faculty' => $rowStd->mem_faculty,
+					'mem_branch' => $rowStd->mem_branch,
 					'course' => array(
 						// 'course_name' => $rowStd->course_name
 						)

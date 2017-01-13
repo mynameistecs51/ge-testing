@@ -1,4 +1,40 @@
 <?php echo $header; ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#example').DataTable();
+
+		$("[name='my-checkbox']").bootstrapSwitch({onSwitchChange:function(e,s){
+
+			if(s){
+				$.ajax({
+					// url: "<?php echo site_url('/manage_status');?>",
+					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("อัพเดทสถานะแล้ว");
+					//alert(data);
+				});
+			}else{
+				$.ajax({
+					// url: "<?php echo site_url('/manage_status');?>",
+					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("ยกเลิกสถานะแล้ว");
+					// alert(data);
+				});
+			}
+
+		},
+		onText:'อาจารย์',
+		offText:'นักศึกษา.',
+		labelWidth:'1px'
+	});
+	} );
+</script>
 <div class="row">
 	<div class="col-sm-12">
 		<table id="example" class="display" width="100%" cellspacing="0" style="background-color:#D8D8D8;">
@@ -32,43 +68,4 @@
 		</table>
 	</div>
 </div><!-- /.  End row -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#example').DataTable();
-		// var table = $('#example').DataTable();
-		// table.on( 'search.dt', function () {
-		// 	$('#filterInfo').html( 'Currently applied global search: '+table.search() );
-		// } );
-
-		$("[name='my-checkbox']").bootstrapSwitch({onSwitchChange:function(e,s){
-
-			if(s){
-				$.ajax({
-					// url: "<?php echo site_url('/manage_status');?>",
-					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
-					type: "POST",
-					data: $(this).closest('form').serialize(),
-				}).success(function(data){
-					alert("อัพเดทสถานะแล้ว");
-					//alert(data);
-				});
-			}else{
-				$.ajax({
-					// url: "<?php echo site_url('/manage_status');?>",
-					url: "<?php echo base_url('index.php/'.$controller.'/updateStatus'); ?>",
-					type: "POST",
-					data: $(this).closest('form').serialize(),
-				}).success(function(data){
-					alert("ยกเลิกสถานะแล้ว");
-					// alert(data);
-				});
-			}
-
-		},
-		onText:'อาจารย์',
-		offText:'นักศึกษา.',
-		labelWidth:'1px'
-	});
-	} );
-</script>
 <?php echo $footer;?>

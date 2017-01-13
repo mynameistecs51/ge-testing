@@ -118,9 +118,14 @@ class Mdl_management extends CI_Model {
 		$sql = "
 		SELECT
 		`member`.`mem_id`,
-		`member`.`mem_preName`,
-		`member`.`mem_name`,
-		`member`.`mem_lastname`,
+		CONCAT(
+		(CASE`member`.`mem_preName`
+		WHEN 1 THEN 'นาย'
+		WHEN 2 THEN 'นาง'
+		WHEN 3 THEN 'นางสาว'
+		END),' ',
+		`member`.`mem_name`,'  ',
+		`member`.`mem_lastname`)AS mem_name,
 		`member`.`mem_faculty`,
 		`member`.`mem_branch`,
 		`groupcourse`.`group_name`,
