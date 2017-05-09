@@ -1,11 +1,11 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
-	RewriteBase /ge-testing/
+	RewriteBase /gepr/
 
 	#RewriteCond $1 !^(index\.php|images|robots\.txt)
 	#RewriteRule ^(.*)$ /index.php/$1 [L]
 
-	RewriteCond $1 !^(index\.php|css|font-awesome-4.1.0|fonts|images|js|robots\.txt)
+	#RewriteCond $1 !^(index\.php|css|font-awesome-4.1.0|fonts|images|js|robots\.txt)
 	RewriteCond %{REQUEST_URI} ^system.*
 	RewriteRule ^(.*)$ index.php?/$1 [L]
 

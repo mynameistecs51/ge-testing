@@ -66,7 +66,7 @@ class Template_student
 			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand" >สำนักวิชาศึกษาทั่วไป  มหาวิทยาลัยราชภัฏอุดรธานี</a>
+					<a class="navbar-brand" >สำนักวิชาศึกษาทั่วไป  มหาวิทยาลัยราชภัฏอุดรธานี</a>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span>
@@ -117,6 +117,7 @@ class Template_student
 
 public function menu($base_url)
 {
+//เอาลงทะเบียนออก เมื่อเสร็จแล้วให้เอามาใส่เหมือนเดิมก่อน login <li>	'.anchor('authen/regis', 'ลงทะเบียน').'	</li>
 	if($this->ci->session->userdata('id_member') == null){
 		return '
 		<ul class="nav navbar-nav">
@@ -127,9 +128,7 @@ public function menu($base_url)
 			<li>
 				'.anchor('/management/downloadFile/manual_student.pdf/', 'คู่มือใช้งานนักศึกษา').'
 			</li>
-			<li>
-				'.anchor('authen/regis', 'ลงทะเบียน').'
-			</li>
+			 <li>	'.anchor('authen/regis', 'ลงทะเบียน').'	</li>
 			<li>'.anchor('authen', 'LOGIN', '').'</li>
 		</ul>
 		';

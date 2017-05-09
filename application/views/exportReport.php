@@ -49,8 +49,10 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 $pdf->AddPage();
 // set font
 
-$pdf->AddFont('THSarabun','','THSarabun.php');
-$pdf->SetFont('THSarabun','',13);
+// $pdf->AddFont(''thsarabunnew','',''thsarabunnew.php');
+// $pdf->SetFont(''thsarabunnew','',13);
+$pdf->AddFont('thsarabunnew','','thsarabunnew.php');
+$pdf->SetFont('thsarabunnew','',13,'false');
 
 // $pdf->Write(0, '*** นึกศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน', '', 0, 'L', true, 0, false, false, 0); //ตำแหน่งซ้ายขวา L,R
 $pdf->writeHTML('<div>รายชื่อ นักศึกษา ที่ขอสอบกรณีพิเศษ  วิชา <u>'.($courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:'').'</u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ปีการศึกษา  '.($term =(isset($getDataCourse[0]['req_term']))?$getDataCourse[0]['req_term'].'/'.$getDataCourse[0]['req_year']:'').'</div>');
@@ -90,7 +92,7 @@ $html = '
 
 			$html.='<tr style="text-align:center;">';
 		$html.='<td style="width: 20px;text-align:center;">'.$num++.'</td>';
-		$html.='<td style="width: 20%;">'.$rowDataCourse['studentName'].'</td>';
+		$html.='<td style="width: 20%;text-align:left">'.$rowDataCourse['studentName'].'</td>';
 		$html.='<td  style="width: 18%;">'.$rowDataCourse['mem_faculty'].'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['mem_branch'].'</td>';
 		$html.='<td style="width: 30px;text-align:center;">'.$rowDataCourse['rc_group'].'</td>';

@@ -36,6 +36,15 @@ class Authen extends CI_Controller {
 		}
 	}
 
+	public function endRegis()
+	{
+		$SCREENNAME = "ปิดให้ลงทะเบียน";
+		$PAGE = "_end";
+		$this->data['controller'] = $this->ctl;
+		$this->mainPage($SCREENNAME);
+		$this->load->view($PAGE,$this->data);
+	}
+
 	public function regis()
 	{
 		$SCREENNAME="สมัครสมาชิก";
