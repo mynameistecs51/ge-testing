@@ -51,8 +51,8 @@ $pdf->AddPage();
 
 // $pdf->AddFont(''thsarabunnew','',''thsarabunnew.php');
 // $pdf->SetFont(''thsarabunnew','',13);
-$pdf->AddFont('thsarabunnew','','thsarabunnew.php');
-$pdf->SetFont('thsarabunnew','',13,'false');
+$pdf->AddFont('angsananew','','angsananew.php');
+$pdf->SetFont('angsananew','',12,true);
 
 // $pdf->Write(0, '*** นึกศึกษาสามารถยื่นคำร้องของสอบ ภายใน ๒ สัปดาห์แรกของการเปิดภาคเรียน', '', 0, 'L', true, 0, false, false, 0); //ตำแหน่งซ้ายขวา L,R
 $pdf->writeHTML('<div>รายชื่อ นักศึกษา ที่ขอสอบกรณีพิเศษ  วิชา <u>'.($courseName = (isset($getDataCourse[0]['course_name'] ))?$getDataCourse[0]['course_name']:'').'</u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ปีการศึกษา  '.($term =(isset($getDataCourse[0]['req_term']))?$getDataCourse[0]['req_term'].'/'.$getDataCourse[0]['req_year']:'').'</div>');
@@ -91,7 +91,7 @@ $html = '
 		foreach ($getDataCourse as $key => $rowDataCourse):
 
 			$html.='<tr style="text-align:center;">';
-		$html.='<td style="width: 20px;text-align:center;">'.$num++.'</td>';
+		$html.='<td style="width: 20px;text-align:center;">'.($num-2).'</td>';
 		$html.='<td style="width: 20%;text-align:left">'.$rowDataCourse['studentName'].'</td>';
 		$html.='<td  style="width: 18%;">'.$rowDataCourse['mem_faculty'].'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['mem_branch'].'</td>';
@@ -101,7 +101,7 @@ $html = '
 		$html.='<td style="width: 60px;text-align:center;">'.$rowDataCourse['rc_time'].'</td>';
 		$html.='<td  style="width: 60px;"></td>';
 		$html.='</tr>';
-
+		$num+=1;
 		endforeach;
 		$html.='
 	</tbody>

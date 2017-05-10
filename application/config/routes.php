@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "authen";
+$route['management/(:num)'] = 'management/exportReport/$1';
 // $route['default_controller'] = "authen/endRegis";
 $route['404_override'] = '';
 
