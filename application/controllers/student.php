@@ -259,7 +259,10 @@ class Student extends CI_Controller {
 			window.location.href='".site_url($url)."';
 		</SCRIPT>";
 	}
-
+public function test()
+{
+	echo dirname(__FILE__).'/tcpdf_autoconfig.php';
+}
 
 }
 /* End of file Studen.php */
