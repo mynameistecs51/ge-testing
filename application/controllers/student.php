@@ -48,6 +48,7 @@ class Student extends CI_Controller {
 		$this->data['mem_email'] = $this->session->userdata('mem_email');
 		$this->data['mem_faculty'] = $this->session->userdata('mem_faculty');
 		$this->data['mem_branch'] = $this->session->userdata('mem_branch');
+		$this->data['controller'] = $this->ctl;
 		$this->data['today'] = $this->datenow;
 		$this->data['header'] = $this->template_student->getHeader($SCREENNAME,base_url());
 		$this->data['footer'] = $this->template_student->getFooter(base_url());
@@ -150,9 +151,10 @@ class Student extends CI_Controller {
 			$this->mdl_student->updateReqCourse($selectCourse[$i]);
 		}
 
-		header("Location: printPDF");
-		header("Location: student");
-		// redirect('student/printPDF','target ="_blank"');
+		// $this->index();
+		// header("Location: student");
+		// header("Location: printPDF");
+		// redirect('student/printPDF','_blank');
 	}
 
 	public function getCourseAll()
@@ -259,10 +261,6 @@ class Student extends CI_Controller {
 			window.location.href='".site_url($url)."';
 		</SCRIPT>";
 	}
-public function test()
-{
-	echo dirname(__FILE__).'/tcpdf_autoconfig.php';
-}
 
 }
 /* End of file Studen.php */

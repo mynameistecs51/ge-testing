@@ -32,7 +32,8 @@
 	<!-- Portfolio Item Row -->
 	<div class="row">
 		<!-- <form accept="insertRequestion" method="post"> -->
-		<?php echo form_open('student/updateRequestion'); ?>
+		<!-- student/updateRequestion -->
+		<?php echo form_open('#','id="formRequest"'); ?>
 		<input type="hidden" name="id_member" value="<?php echo $id_member; ?>" />
 		<input type="hidden" name="id_req" value="<?php echo $dataRequestion[$id_member]['id_req']; ?>">
 		<div class="form-group">
@@ -305,6 +306,7 @@
 			addEvidence();
 			check_aboutPak();
 			check_aboutClass();
+			formSubmit();
 			// --- core javascript ---//
 			$('.date').datepicker({
 				format:'dd/MM/YY',
@@ -316,7 +318,27 @@
 				pickSeconds: false,
 				pickDate: false,
 			});
+
 		});
+
+		function formSubmit() {
+			$('#formRequest').submit(function(e){
+				$.ajax({
+					url: '<?php echo base_url().'index.php/'.$controller.'/updateRequestion/'; ?>',
+					type: 'post',
+					// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+					data: $('#formRequest').serializeArray(),
+					success:function(){
+						// alert("OK");
+						window.open("student/printPdf",'_blank');
+					},
+					error:function(res){
+						alert("รายการอัพเดทมีข้อผิดพลาด");
+					}
+				});
+				e.preventDefault();
+			});
+		}
 		// --manage Evidence --//
 		function countEvidence(){
 			var  countEvid=$('.evidence').length;
