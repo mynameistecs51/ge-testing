@@ -11,7 +11,7 @@ class Student extends CI_Controller {
 		$this->dt_now = $now->format('Y-m-d H:i:s');
 		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
 		if($this->session->userdata('id_member') == ''){
-			redirect('Authen/','refresh');
+			redirect('authen/','refresh');
 		}
 	}
 	public function   index()
