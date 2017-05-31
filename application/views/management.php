@@ -61,11 +61,12 @@
 						</tr>
 					</thead>
 					<tbody >
-						<?php $num = count($getDataCourse); ?>
+						<?php //$num = count($getDataCourse); ?>
+						<?php $i=1; ?>
 						<?php foreach ($getDataCourse as $key => $rowDataCourse): ?>
 
 							<tr >
-								<td><?php echo ($num-2); ?></td>
+								<td><?php echo $i++; ?></td>
 								<td ><?php echo $rowDataCourse['studentName']; ?></td>
 								<td><?php echo $rowDataCourse['mem_faculty']; ?></td>
 								<td><?php echo $rowDataCourse['mem_branch']; ?></td>
@@ -74,10 +75,11 @@
 								<td><?php echo $rowDataCourse['rc_date']; ?></td>
 								<td><?php echo $rowDataCourse['rc_time']; ?></td>
 								<td></td>
-								<?php $num+=1;?>
 							</tr>
+							<!-- <?php $num++; ?> -->
 
 						<?php endforeach; ?>
+
 					</tbody>
 				</table>
 			</div>
