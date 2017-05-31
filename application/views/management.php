@@ -1,3 +1,4 @@
+
 <?php echo $header; ?>
 <style type="text/css">
 	table th{
@@ -96,4 +97,3 @@
 		// } );
 	} );
 </script>
-<?php echo $footer; ?>

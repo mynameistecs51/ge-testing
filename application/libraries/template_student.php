@@ -128,28 +128,30 @@ public function menu($base_url)
 			<li>
 				'.anchor('/management/downloadFile/manual_student.pdf/', 'คู่มือใช้งานนักศึกษา').'
 			</li>
-			 <li>	'.anchor('authen/regis', 'ลงทะเบียน').'	</li>
-			<li>'.anchor('authen', 'LOGIN', '').'</li>
-		</ul>
-		';
-	}else{
-		return '
-		<ul class="nav navbar-nav ">
-			<li>
-				<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
-			</li>
-			<li role="presentation" class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'.$this->ci->session->userdata('mem_name').'<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu" style=" background-color:gray;">
-					<li>'.anchor('#', 'แก้ไขคำร้อง', 'class="page-scroll"').'</li>
-					<li>'.anchor('student/printPDF/', 'PRINT PDF', 'class="page-scroll"  target="_blank"').'</li>
-					<li>'.anchor('authen/logOut/', 'Log Out').'</li>
-				</ul>
-			</li>
-		</ul>
-		';
-	}
+			<!--
+				<li>	'.anchor('authen/regis', 'ลงทะเบียน').'	</li>
+				<li>'.anchor('authen', 'LOGIN', '').'</li>
+			-->
+	</ul>
+	';
+}else{
+	return '
+	<ul class="nav navbar-nav ">
+		<li>
+			<a href="#">คำร้องขอสอบกรณีพิเศษ</a>
+		</li>
+		<li role="presentation" class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'.$this->ci->session->userdata('mem_name').'<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" style=" background-color:gray;">
+				<li>'.anchor('#', 'แก้ไขคำร้อง', 'class="page-scroll"').'</li>
+				<li>'.anchor('student/printPDF/', 'PRINT PDF', 'class="page-scroll"  target="_blank"').'</li>
+				<li>'.anchor('authen/logOut/', 'Log Out').'</li>
+			</ul>
+		</li>
+	</ul>
+	';
+}
 }
 
 }

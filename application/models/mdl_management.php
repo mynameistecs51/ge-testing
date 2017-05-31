@@ -80,7 +80,6 @@ class Mdl_management extends CI_Model {
 		ON requestion.id_req = requestion_course.id_req
 		INNER JOIN member ON member.id_member = requestion.id_create
 		WHERE requestion_course.id_course = '".$id_course."'
-		ORDER BY id_member ASC
 		";
 		$query = $this->db->query($sql)->result_array();
 		return $query;
