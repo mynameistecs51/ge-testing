@@ -88,10 +88,11 @@ $html = '
 	</thead>
 	<tbody>';
 		$num = count($getDataCourse);
+		$i = 1;
 		foreach ($getDataCourse as $key => $rowDataCourse):
 
 			$html.='<tr style="text-align:center;">';
-		$html.='<td style="width: 20px;text-align:center;">'.($num-2).'</td>';
+		$html.='<td style="width: 20px;text-align:center;">'.$i++.'</td>';
 		$html.='<td style="width: 20%;text-align:left">'.$rowDataCourse['studentName'].'</td>';
 		$html.='<td  style="width: 18%;">'.$rowDataCourse['mem_faculty'].'</td>';
 		$html.='<td style="width: 20%;">'.$rowDataCourse['mem_branch'].'</td>';
@@ -101,7 +102,6 @@ $html = '
 		$html.='<td style="width: 60px;text-align:center;">'.$rowDataCourse['rc_time'].'</td>';
 		$html.='<td  style="width: 60px;"></td>';
 		$html.='</tr>';
-		$num+=1;
 		endforeach;
 		$html.='
 	</tbody>
