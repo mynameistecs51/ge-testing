@@ -8,6 +8,7 @@ class Template_admin
 	public function __construct()
 	{
 		$this->ci =& get_instance();
+		// $this->ci->load->model('mdl_onoff');
 	}
 
 	public function getHeader($SCREENNAME)
@@ -99,6 +100,7 @@ class Template_admin
 								'.anchor('management/mnm_user/','<i class="fa fa-fw fa-user"></i> จัดการ User').'
 							</li>
 							<li>'.anchor('management/std_selectCourse/', '<i class="fa fa-fw fa-book"></i> นึกษาที่ขอสอบ').'</li>
+							<li>'.anchor('management/onoff/', '<i class="fa fa-fw fa-power-off"></i> กำหนด รับคำร้อง').'</li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->

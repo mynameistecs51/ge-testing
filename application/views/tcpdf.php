@@ -169,7 +169,12 @@ foreach ($reqDetail as $key => $row_SSD) :
 // print a cell
 // สร้างเนื้อหาจาก  HTML code
 // $pdf->writeHTML($html, true, 0, true, 0);
+if(empty($html)){
+	$pdf->writeHTML('', true, false, true, false, '');
+}else{
 	$pdf->writeHTML($html, true, false, true, false, '');
+}
+
 	$pdf->Output('student request.pdf','I');
 // ---------------------------------------------------------
 

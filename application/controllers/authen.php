@@ -7,11 +7,17 @@ class Authen extends CI_Controller {
 		parent::__construct();
 		$this->ctl = 'authen/';
 		$this->load->model('mdl_authen','',TRUE);
+		$this->load->model('mdl_onoff','',TRUE);
 		$this->load->library('session');
+		$status = $this->mdl_onoff->getStatus();
+		if($status[0]['onoff_status'] == 'off'){
+			$this->endRegis();
+		}
 	}
 
 	public function index()
 	{
+
 		if($this->session->userdata("id_member")==""){
 			$SCREENNAME="LOGIN";
 			$PAGE = "login";
@@ -22,18 +28,19 @@ class Authen extends CI_Controller {
 			$session_data = $this->session->userdata('mem_status');
 			switch ($session_data) {
 				case '1':
-				redirect('management/management','refresh');
+				redirect('management','refresh');
 				break;
 				case '2':
-				redirect('management/headGroup','refresh');
+				redirect('management','refresh');
 				break;
 				case '3':
-				redirect('management/admin','refresh');
+				redirect('management','refresh');
 				default:
 				redirect('student','refresh');
 				break;
 			}
 		}
+
 	}
 
 	public function endRegis()
@@ -67,7 +74,7 @@ class Authen extends CI_Controller {
 			'mem_faculty' => $this->input->post('faculty'),
 			'mem_branch' => $this->input->post('branch'),
 			'mem_tel' => $this->input->post('tel'),
-			);
+		);
 
 		$this->mdl_authen->insertRegis($dataRegis);
 		$massage = 'สมัครสมาชิกสำเร็จ';
@@ -89,13 +96,13 @@ class Authen extends CI_Controller {
 			$session_data = $this->session->userdata('mem_status');
 			switch ($session_data) {
 				case '1':
-				redirect('management/management','refresh');
+				redirect('management','refresh');
 				break;
 				case '2':
-				redirect('management/headGroup','refresh');
+				redirect('management','refresh');
 				break;
 				case '3':
-				redirect('management/admin','refresh');
+				redirect('management','refresh');
 				default:
 				redirect('student','refresh');
 				break;
@@ -122,7 +129,7 @@ class Authen extends CI_Controller {
 					'mem_faculty' => $rowResult->mem_faculty,
 					'mem_branch' => $rowResult->mem_branch,
 					'mem_tel' => $rowResult->mem_tel,
-					);
+				);
 				$this->session->set_userdata($sess_array);
 			}
 		}else{
@@ -157,8 +164,8 @@ class Authen extends CI_Controller {
 	{
 		echo "<meta charset='UTF-8'>
 		<SCRIPT LANGUAGE='JavaScript'>
-			window.alert('$massage')
-			window.location.href='".site_url($url)."';
+		window.alert('$massage')
+		window.location.href='".site_url($url)."';
 		</SCRIPT>";
 	}
 

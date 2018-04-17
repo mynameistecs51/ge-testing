@@ -1,23 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.12deb2+deb8u2
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 26, 2017 at 06:16 PM
--- Server version: 5.5.54-0+deb8u1
--- PHP Version: 5.6.30-0+deb8u1
+-- Generation Time: Apr 17, 2018 at 11:34 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gepr`
+-- Database: `ge_extrafinal`
 --
 
 -- --------------------------------------------------------
@@ -26,12 +28,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `course`
 --
 
-CREATE TABLE IF NOT EXISTS `course` (
-`id_course` int(11) NOT NULL,
+CREATE TABLE `course` (
+  `id_course` int(11) NOT NULL,
   `course_id` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `course_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `id_group` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `course`
@@ -75,10 +77,10 @@ INSERT INTO `course` (`id_course`, `course_id`, `course_name`, `id_group`) VALUE
 -- Table structure for table `groupcourse`
 --
 
-CREATE TABLE IF NOT EXISTS `groupcourse` (
-`id_group` int(11) NOT NULL,
+CREATE TABLE `groupcourse` (
+  `id_group` int(11) NOT NULL,
   `group_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `groupcourse`
@@ -96,8 +98,8 @@ INSERT INTO `groupcourse` (`id_group`, `group_name`) VALUES
 -- Table structure for table `member`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
-`id_member` int(11) NOT NULL,
+CREATE TABLE `member` (
+  `id_member` int(11) NOT NULL,
   `mem_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `mem_preName` enum('1','2','3') COLLATE utf8_unicode_ci NOT NULL COMMENT '1=นาย,2=นาง,3=นางสาว',
   `mem_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -108,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `mem_email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `mem_passwd` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `mem_status` enum('0','1','2','3') COLLATE utf8_unicode_ci NOT NULL COMMENT '0 = ทั่วไป||นศ ,1 = อาหจารย์ ,2 = หัวหน้าหมวด ,3 = admin'
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `member`
@@ -116,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 
 INSERT INTO `member` (`id_member`, `mem_id`, `mem_preName`, `mem_name`, `mem_lastname`, `mem_faculty`, `mem_branch`, `mem_tel`, `mem_email`, `mem_passwd`, `mem_status`) VALUES
 (9, '59000000201', '1', 'ไชยวัฒน์', 'หอมแสง', 'วิทยาศาสตร์', 'วิทยาการคอมพิวเตอร์', '0812345678', 'te@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0'),
-(10, '-', '1', 'เต้', 'ไชยวัฒน์', 'วิทยาศาสตร์', 'หมวดวิชาภาษาศาสตร์', '111111111', 'te@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1'),
+(10, '123456', '1', 'เต้', 'ไชยวัฒน์', 'วิทยาศาสตร์', 'หมวดวิชาภาษาศาสตร์', '111111111', 'te@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1'),
 (11, '-', '2', 'วันวิสาข์', 'คงธนกุลบวร', 'ภาษาศาสตร์', 'ภาษาอังกฤษ', '+66952259895', 'w.khongtanakunbawon@gmail.com', '343b4a53f95a05b874881695cf5c0fc8', '1'),
 (12, 'G18', '2', 'คนางค์', 'มาตรา', 'สำนักวิชาศึกษาทั่วไป', 'สารสนเทศศาสตร์', '0815455203', '', 'd41d8cd98f00b204e9800998ecf8427e', '1'),
 (32, '59040305124', '3', 'มณีเนตร', 'พิณรัตน์', 'มนุษยศาสตร์เเละสังคมศาสตร์', 'ภาษาอังกฤษธุรกิจ', '0986218809', 'maneenatepinrat@gmail.com', 'caafd8edcee81f8cdf03d0d759c2c5c0', '0'),
@@ -186,7 +188,28 @@ INSERT INTO `member` (`id_member`, `mem_id`, `mem_preName`, `mem_name`, `mem_las
 (96, '57100105122', '3', 'หัทยา', 'สุนทรชัย', 'ครุศาสตร์', 'นาฏศิลป์ไทย', '0973378942', 'Nattasinnook@Gmail.com', 'b547ddfefce9a1265db20a789a8885de', '0'),
 (97, '57100105122', '3', 'หัทยา', 'สุนทรชัย', 'ครุศาสตร์', 'นาฏศิลป์ไทย', '0973378942', 'nattasinnook@gmail.com', 'b547ddfefce9a1265db20a789a8885de', '0'),
 (98, '59041301102', '1', 'วสิษฐ์พล', 'ประพันธ์ศรี', 'เทคโนโลยี', 'วิศวกรรมอิเล็กทรอนิกส์', '0990301661', 'wasispol@gmail.com', 'a851698b69bbe00ebcb609915f294fac', '0'),
-(99, '58040510358', '3', 'ปัญญรัตน์', 'ฉลองชาติ', 'วิทยาการจัดการ', 'การบัญชี', '0801927944', 'aumaim_panyarat@hotmail.co.th', '43d4036ce20f7c8d010c9d185a38ffb0', '0');
+(99, '58040510358', '3', 'ปัญญรัตน์', 'ฉลองชาติ', 'วิทยาการจัดการ', 'การบัญชี', '0801927944', 'aumaim_panyarat@hotmail.co.th', '43d4036ce20f7c8d010c9d185a38ffb0', '0'),
+(100, '123456789', '1', 'user', 'user', 'test', 'test', '888888888888888', 'user@local.com', '81dc9bdb52d04dc20036dbd8313ed055', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `onoff`
+--
+
+CREATE TABLE `onoff` (
+  `onoff_id` int(11) NOT NULL,
+  `onoff_status` enum('on','off') NOT NULL,
+  `dt_create` datetime NOT NULL,
+  `id_create` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `onoff`
+--
+
+INSERT INTO `onoff` (`onoff_id`, `onoff_status`, `dt_create`, `id_create`) VALUES
+(1, 'off', '2018-04-17 00:00:00', 123456);
 
 -- --------------------------------------------------------
 
@@ -194,8 +217,8 @@ INSERT INTO `member` (`id_member`, `mem_id`, `mem_preName`, `mem_name`, `mem_las
 -- Table structure for table `requestion`
 --
 
-CREATE TABLE IF NOT EXISTS `requestion` (
-`id_req` int(11) NOT NULL COMMENT 'id คำร้อง primary key',
+CREATE TABLE `requestion` (
+  `id_req` int(11) NOT NULL COMMENT 'id คำร้อง primary key',
   `req_prename` enum('นาย','นาง','นางสาว') COLLATE utf8_unicode_ci NOT NULL COMMENT 'คำนำหน้าผู้เขียนคำร้อง',
   `req_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่อผู้เขียนคำร้อง',
   `req_lastname` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'นามสกุลผู้เขียนคำร้อง',
@@ -211,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `requestion` (
   `id_create` int(11) NOT NULL COMMENT 'คือ id_member',
   `dt_create` datetime NOT NULL,
   `ip_create` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `requestion`
@@ -283,8 +306,8 @@ INSERT INTO `requestion` (`id_req`, `req_prename`, `req_name`, `req_lastname`, `
 -- Table structure for table `requestion_course`
 --
 
-CREATE TABLE IF NOT EXISTS `requestion_course` (
-`id_reqCourse` int(11) NOT NULL,
+CREATE TABLE `requestion_course` (
+  `id_reqCourse` int(11) NOT NULL,
   `id_req` int(11) NOT NULL,
   `id_member` int(11) NOT NULL,
   `id_course` int(11) NOT NULL,
@@ -293,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `requestion_course` (
   `rc_date` date NOT NULL,
   `rc_time` time NOT NULL,
   `dt_create` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1237 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `requestion_course`
@@ -372,31 +395,37 @@ INSERT INTO `requestion_course` (`id_reqCourse`, `id_req`, `id_member`, `id_cour
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
- ADD PRIMARY KEY (`id_course`);
+  ADD PRIMARY KEY (`id_course`);
 
 --
 -- Indexes for table `groupcourse`
 --
 ALTER TABLE `groupcourse`
- ADD PRIMARY KEY (`id_group`);
+  ADD PRIMARY KEY (`id_group`);
 
 --
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
- ADD PRIMARY KEY (`id_member`);
+  ADD PRIMARY KEY (`id_member`);
+
+--
+-- Indexes for table `onoff`
+--
+ALTER TABLE `onoff`
+  ADD PRIMARY KEY (`onoff_id`);
 
 --
 -- Indexes for table `requestion`
 --
 ALTER TABLE `requestion`
- ADD PRIMARY KEY (`id_req`);
+  ADD PRIMARY KEY (`id_req`);
 
 --
 -- Indexes for table `requestion_course`
 --
 ALTER TABLE `requestion_course`
- ADD PRIMARY KEY (`id_reqCourse`);
+  ADD PRIMARY KEY (`id_reqCourse`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -406,27 +435,39 @@ ALTER TABLE `requestion_course`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `groupcourse`
 --
 ALTER TABLE `groupcourse`
-MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `onoff`
+--
+ALTER TABLE `onoff`
+  MODIFY `onoff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `requestion`
 --
 ALTER TABLE `requestion`
-MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id คำร้อง primary key',AUTO_INCREMENT=1031;
+  MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id คำร้อง primary key', AUTO_INCREMENT=1031;
+
 --
 -- AUTO_INCREMENT for table `requestion_course`
 --
 ALTER TABLE `requestion_course`
-MODIFY `id_reqCourse` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1237;
+  MODIFY `id_reqCourse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1237;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -7,6 +7,7 @@ class Student extends CI_Controller {
 		parent::__construct();
 		$this->ctl='student';
 		$this->load->model('mdl_student');
+		$this->load->model('mdl_onoff');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
 		$this->datenow =$now->format('d/m/').($now->format('Y')+543);
@@ -16,23 +17,28 @@ class Student extends CI_Controller {
 	}
 	public function   index()
 	{
-		$getMember = $this->getSelectCourse($this->session->userdata('id_member'));
-
-		if( isset($getMember[$this->session->userdata('id_member')]['req_create'])){
-			$SCREENNAME = "แก้ไข คำร้องขอสอบกรณีพิเศษ";
-			$PAGE = "std_requestUpdate";
-			$this->data['SCREENNAME'] =  "แก้ไข คำร้องขอสอบกรณีพิเศษ";
-			$this->data['controller'] = $this->ctl;
-			$this->data['dataRequestion'] = $getMember;
-			$this->mainPage($SCREENNAME);
-			$this->load->view($PAGE,$this->data);
+		$status = $this->mdl_onoff->getStatus();
+		if($status[0]['onoff_status'] == 'off'){
+			$this->endRegis();
 		}else{
-			$SCREENNAME = "คำร้องขอสอบกรณีพิเศษ";
-			$PAGE = "std_request";
-			$this->data['controller'] = $this->ctl;
-			$this->mainPage($SCREENNAME);
-			$this->load->view($PAGE,$this->data);
+			$getMember = $this->getSelectCourse($this->session->userdata('id_member'));
+
+			if( isset($getMember[$this->session->userdata('id_member')]['req_create'])){
+				$SCREENNAME = "แก้ไข คำร้องขอสอบกรณีพิเศษ";
+				$PAGE = "std_requestUpdate";
+				$this->data['SCREENNAME'] =  "แก้ไข คำร้องขอสอบกรณีพิเศษ";
+				$this->data['controller'] = $this->ctl;
+				$this->data['dataRequestion'] = $getMember;
+				$this->mainPage($SCREENNAME);
+				$this->load->view($PAGE,$this->data);
+			}else{
+				$SCREENNAME = "คำร้องขอสอบกรณีพิเศษ";
+				$PAGE = "std_request";
+				$this->data['controller'] = $this->ctl;
+				$this->mainPage($SCREENNAME);
+				$this->load->view($PAGE,$this->data);
 		// print_r($getMember);
+			}
 		}
 	}
 
@@ -73,7 +79,7 @@ class Student extends CI_Controller {
 			'id_create' =>$this->session->userdata('id_member'),
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
-			);
+		);
 		$id_req = $this->mdl_student->insertRequestion($dataRequestion);
 		// $this->db->insert('requestion',$dataRequestion);
 
@@ -96,7 +102,7 @@ class Student extends CI_Controller {
 				'rc_date' => $dateSelect[$i],
 				'rc_time' => $timeSelect[$i],
 				'dt_create' => $this->dt_now,
-				);
+			);
 			$this->mdl_student->insertReqCourse($selectCourse[$i]);
 		}
 		$dataDetail = array_merge($dataRequestion,array('selectCourse' => $selectCourse));
@@ -125,7 +131,7 @@ class Student extends CI_Controller {
 			'id_create' =>$this->session->userdata('id_member'),
 			'dt_create' => $this->dt_now ,
 			'ip_create' => $_SERVER["REMOTE_ADDR"],
-			);
+		);
 		$id_req = $this->mdl_student->updateRequestion($dataRequestion,$id_member);
 
 		$this->db->delete('requestion_course',array('id_member' => $id_member));
@@ -147,7 +153,7 @@ class Student extends CI_Controller {
 				'rc_date' => $dateSelect[$i],
 				'rc_time' => $timeSelect[$i],
 				'dt_create' => $this->dt_now,
-				);
+			);
 			$this->mdl_student->updateReqCourse($selectCourse[$i]);
 		}
 
@@ -191,8 +197,8 @@ class Student extends CI_Controller {
 						'rc_date' => $row_SSD['rc_date'],
 						'rc_time' => $row_SSD['rc_time'],
 						'rc_teacher' => $row_SSD['rc_teacher'],
-						)
-					);
+					)
+				);
 				continue;
 			}
 			if(!isset($data_array[$row_SSD['id_member']])){
@@ -222,9 +228,9 @@ class Student extends CI_Controller {
 							'rc_date' => $row_SSD['rc_date'],
 							'rc_time' => $row_SSD['rc_time'],
 							'rc_teacher' => $row_SSD['rc_teacher'],
-							)
 						)
-					);
+					)
+				);
 			}
 		}
 		return $data_array;
@@ -257,9 +263,18 @@ class Student extends CI_Controller {
 	{
 		echo "<meta charset='UTF-8'>
 		<SCRIPT LANGUAGE='JavaScript'>
-			window.alert('$massage')
-			window.location.href='".site_url($url)."';
+		window.alert('$massage')
+		window.location.href='".site_url($url)."';
 		</SCRIPT>";
+	}
+
+	public function endRegis()
+	{
+		$SCREENNAME = "ปิดให้ลงทะเบียน";
+		$PAGE = "_end";
+		$this->data['controller'] = $this->ctl;
+		$this->mainPage($SCREENNAME);
+		$this->load->view($PAGE,$this->data);
 	}
 
 }

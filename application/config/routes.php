@@ -38,8 +38,8 @@
 |
 */
 
-// $route['default_controller'] = "authen";
-$route['default_controller'] = "authen/endRegis/";
+$route['default_controller'] = "authen";
+// $route['default_controller'] = "authen/endRegis/";
 $route['404_override'] = '';
 
 

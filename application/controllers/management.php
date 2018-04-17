@@ -6,6 +6,7 @@ class Management extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('mdl_management');
+		$this->load->model('mdl_onoff');
 		$this->ctl = "management";
 	}
 
@@ -62,49 +63,72 @@ class Management extends CI_Controller {
 					'mem_branch' => $rowStd->mem_branch,
 					'course' => array(
 						// 'course_name' => $rowStd->course_name
-						)
-					);
+					)
+				);
 			}
-                   array_push($stdSelect[$rowStd->mem_id]['course'],array('course_name' => $rowStd->course_name));     //แสดงชื่อกรรมการที่ตรวจโครงงาน
+			array_push($stdSelect[$rowStd->mem_id]['course'],array('course_name' => $rowStd->course_name));
+			 //แสดงชื่อกรรมการที่ตรวจโครงงาน
 
-                 }
+		}
 
-                 $SCREENNAME = "นักศึกษาที่ขอสอบแต่ล่ะวิชา";
-                 $PAGE = 'std_selectCourse';
-                 $this->mainPage($SCREENNAME);
-                 $this->data['std_selectCourse'] = $stdSelect;
-                 $this->load->view($PAGE,$this->data);
-               }
+		$SCREENNAME = "นักศึกษาที่ขอสอบแต่ล่ะวิชา";
+		$PAGE = 'std_selectCourse';
+		$this->mainPage($SCREENNAME);
+		$this->data['std_selectCourse'] = $stdSelect;
+		$this->load->view($PAGE,$this->data);
+	}
 
-               public function updateStatus()
-               {
+	public function updateStatus()
+	{
 		// $id_member = $this->input->post('id_member');
-               	$my_status = $this->input->post('my-checkbox');
-               	if($my_status === "on"){
-               		$update_status = $this->mdl_management->updateMemberStatus($status = "1");
+		$my_status = $this->input->post('my-checkbox');
+		if($my_status === "on"){
+			$update_status = $this->mdl_management->updateMemberStatus($status = "1");
 			// echo  $update_status;
 			// print_r($update_status);
-               	}else{
-               		$update_status = $this->mdl_management->updateMemberStatus($status = "0");
+		}else{
+			$update_status = $this->mdl_management->updateMemberStatus($status = "0");
 			// echo  $update_status;
-               	}
-               }
+		}
+	}
 
-               public function exportReport($id_course)
-               {
-               	$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
-               	$this->load->view('exportReport',$this->data);
-               }
+	public function exportReport($id_course)
+	{
+		$this->data['getDataCourse'] = $this->mdl_management->getDataCourse($id_course);
+		$this->load->view('exportReport',$this->data);
+	}
 
-               public function downloadFile($file_name)
-               {
+	public function downloadFile($file_name)
+	{
 		//echo $file_name;
-               	$data = file_get_contents('./assets/files/'.$file_name);
-               	$name = $file_name;
-               	echo force_download($name,$data);
-               	redirect('authen/','refresh');
-               }
-             }
+		$data = file_get_contents('./assets/files/'.$file_name);
+		$name = $file_name;
+		echo force_download($name,$data);
+		redirect('authen/','refresh');
+	}
 
-             /* End of file dashboard.php */
+	public function onOff()
+	{
+		$SCREENNAME = 'กำหนดรับคำร้อง';
+		$PAGE = 'onoff';
+		$this->mainPage($SCREENNAME);
+		$this->data['status'] = $this->mdl_onoff->getStatus();
+		$this->load->view($PAGE,$this->data);
+	}
+
+	public function updateOnoff()
+	{
+		$my_status = $this->input->post('my-checkbox');
+
+		if($my_status === "on"){
+			$update_status = $this->mdl_onoff->update_status(array('onoff_status' => "on",'id_create' =>  $this->session->userdata('mem_id')));
+		}else{
+			$update_onoff_status = $this->mdl_onoff->update_status(array('onoff_status' => "off" ,'id_create' => $this->session->userdata('mem_id')));
+		}
+
+		return true;
+	}
+}
+
+/* End of file dashboard.php */
 /* Location: ./application/controllers/dashboard.php */
