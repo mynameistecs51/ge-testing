@@ -91,11 +91,13 @@ class Template_student
 			return '
 			<!-- Footer -->
 			<footer>
-				<div class="row">
+				<!--
+        <div class="row">
 					<div class="col-lg-12">
 						<p class="pull-right">Copyright &copy; Webdeveloper By Mr.Chaiwat Homsang</p>
 					</div>
 				</div>
+        -->
 				<!-- /.row -->
 			</footer>
 		</div>
