@@ -90,59 +90,78 @@ class Mdl_management extends CI_Model {
 		$sql = "
 		SELECT
 		id_member,
-		CONCAT((CASE mem_preName
-		WHEN 1 THEN 'นาย'
-		WHEN 2 THEN 'นาง'
-		WHEN 3 THEN 'นางสาว'
-		END),' ',mem_name,' ',mem_lastname) AS mem_name,
-		mem_faculty,
-		mem_branch,
-		mem_status
-		FROM
-		member
-		";
-		$dataMember = $this->db->query($sql)->result_array();
-		return $dataMember;
-	}
+    mem_id,
+    CONCAT((CASE mem_preName
+    WHEN 1 THEN 'นาย'
+    WHEN 2 THEN 'นาง'
+    WHEN 3 THEN 'นางสาว'
+    END),' ',mem_name,' ',mem_lastname) AS mem_name,
+    mem_faculty,
+    mem_branch,
+    mem_status,
+    req_year
+    FROM
+    member
+    INNER JOIN
+    requestion ON requestion.id_create = member.id_member
+    ";
+    $dataMember = $this->db->query($sql)->result_array();
+    return $dataMember;
+  }
 
-	public function updateMemberStatus($status)
-	{
-		$id_member = $this->input->post('id_member');
+  public function updateMemberStatus($status)
+  {
+    $id_member = $this->input->post('id_member');
 
-		$updateStatus = $this->db->query('UPDATE member SET mem_status ="'.$status.'" WHERE id_member ="'.$id_member.'" ');
-		return true;
-	}
+    $updateStatus = $this->db->query('UPDATE member SET mem_status ="'.$status.'" WHERE id_member ="'.$id_member.'" ');
+    return true;
+  }
 
-	public function std_selectCourse()
-	{
-		$sql = "
-		SELECT
-		`member`.`mem_id`,
-		CONCAT(
-		(CASE`member`.`mem_preName`
-		WHEN 1 THEN 'นาย'
-		WHEN 2 THEN 'นาง'
-		WHEN 3 THEN 'นางสาว'
-		END),' ',
-		`member`.`mem_name`,'  ',
-		`member`.`mem_lastname`)AS mem_name,
-		`member`.`mem_faculty`,
-		`member`.`mem_branch`,
-		`groupcourse`.`group_name`,
-		`course`.`course_id`,
-		`course`.`course_name`
-		FROM
-		`requestion_course`
-		INNER JOIN `member` ON `member`.`id_member` = `requestion_course`.`id_member`
-		INNER JOIN `requestion` ON `requestion_course`.`id_req` =
-		`requestion`.`id_req`
-		INNER JOIN `course` ON `requestion_course`.`id_course` = `course`.`id_course`
-		INNER JOIN `groupcourse` ON `course`.`id_group` = `groupcourse`.`id_group`
-		ORDER BY `member`.`mem_id` DESC
-		";
-		$query = $this->db->query($sql)->result();
-		return $query;
-	}
+  public function std_selectCourse()
+  {
+    $sql = "
+    SELECT
+    `member`.`mem_id`,
+    CONCAT(
+    (CASE`member`.`mem_preName`
+    WHEN 1 THEN 'นาย'
+    WHEN 2 THEN 'นาง'
+    WHEN 3 THEN 'นางสาว'
+    END),' ',
+    `member`.`mem_name`,'  ',
+    `member`.`mem_lastname`)AS mem_name,
+    `member`.`mem_faculty`,
+    `member`.`mem_branch`,
+    `groupcourse`.`group_name`,
+    `course`.`course_id`,
+    `course`.`course_name`
+    FROM
+    `requestion_course`
+    INNER JOIN `member` ON `member`.`id_member` = `requestion_course`.`id_member`
+    INNER JOIN `requestion` ON `requestion_course`.`id_req` =
+    `requestion`.`id_req`
+    INNER JOIN `course` ON `requestion_course`.`id_course` = `course`.`id_course`
+    INNER JOIN `groupcourse` ON `course`.`id_group` = `groupcourse`.`id_group`
+    ORDER BY `member`.`mem_id` DESC
+    ";
+    $query = $this->db->query($sql)->result();
+    return $query;
+  }
+
+  public function delFor($for,$value)
+  {
+    if($for == 1){
+      $this->db->where('mem_id', $value);
+      $this->db->delete('member');
+
+      $this->db->where('req_stdID', $value);
+      $this->db->delete('requestion');
+    }else{
+      $this->db->where('req_year', $value);
+      $this->db->delete('requestion');
+    }
+    return true;
+  }
 }
 
 /* End of file mdl_management.php */

@@ -128,6 +128,32 @@ class Management extends CI_Controller {
 
 		return true;
 	}
+
+  public function delUser()
+  {
+    $for = $this->input->post('delFor');
+    $value = $this->input->post('search');
+
+    if(!empty($value)){
+
+      $delfor = $this->mdl_management->delFor($for,$value);
+      if($delfor == true){
+        $this->alert('ลบข้อมูลเรียบร้อย','management/mnm_user');
+      }
+    }else{
+      $this->alert('กรุณากรอกข้อมูลที่ต้องการลบ !!','management/mnm_user');
+    }
+
+  }
+
+  public function alert($massage, $url)
+  {
+    echo "<meta charset='UTF-8'>
+    <SCRIPT LANGUAGE='JavaScript'>
+    window.alert('$massage')
+    window.location.href='".site_url($url)."';
+    </SCRIPT>";
+  }
 }
 
 /* End of file dashboard.php */
